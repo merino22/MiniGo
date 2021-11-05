@@ -1,4 +1,5 @@
 TARGET=go
+REV=11
 all: ${TARGET}
 
 ${TARGET}: ${TARGET}_parser.o ${TARGET}_lexer.o main.o
@@ -31,3 +32,8 @@ lexer_only:
 	flex go.l
 	gcc lex.yy.c -lfl
 	./a.out
+
+push:
+	git add .
+	git commit -m "Revision V{REV}.0"
+	git push origin master
