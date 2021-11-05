@@ -39,4 +39,4 @@ push:
 	git add .
 	git commit -m "Revision V${REV}.0"
 	git push origin master
-	REV=REV+1
+	${REV=REV+1}
