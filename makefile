@@ -34,7 +34,9 @@ lexer_only:
 	./a.out
 
 push:
+	git config pull.rebase false
+	git pull origin master
 	git add .
-	git commit -m "Revision V"+REV+".0"
+	git commit -m "Revision V${REV}.0"
 	git push origin master
 	REV=REV+1
