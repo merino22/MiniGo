@@ -34,9 +34,8 @@ lexer_only:
 	./a.out
 
 push: 
-	${REV = $(filter-out $@,$(MAKECMDGOALS))}
 	git config pull.rebase false
 	git pull origin master
 	git add .
-	git commit -m "Revision V${REV}.0"
+	git commit -m "Revision V${$(filter-out $@,$(MAKECMDGOALS))}.0"
 	git push origin master
