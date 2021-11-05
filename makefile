@@ -1,5 +1,5 @@
 TARGET=go
-REV=11
+REV=10
 all: ${TARGET}
 
 ${TARGET}: ${TARGET}_parser.o ${TARGET}_lexer.o main.o
@@ -35,5 +35,6 @@ lexer_only:
 
 push:
 	git add .
-	git commit -m "Revision V{REV}.0"
+	git commit -m "Revision V"+REV+".0"
 	git push origin master
+	REV=REV+1
