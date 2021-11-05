@@ -1,0 +1,135 @@
+
+[\t \r \n] { /* nada */ }
+"package"   {return (TK_PACKAGE);}
+"import"    {return (TK_IMPORT_KW);}
+"func"      {return (TK_FUNC_KW);}
+"var"       {return (TK_VAR_KW);}
+"int"       {return (TK_INT_KW);}
+"float32"   {return (TK_FLOAT_KW);}
+"bool"      {return (TK_BOOL_KW);}
+"continue"  {return (TK_CONTINUE_KW);}
+"break"     {return (TK_BREAK_KW);}
+"return"    {return (TK_RETURN_KW);}
+"if"        {return (TK_IF_KW);}
+"else"      {return (TK_ELSE_KW);}
+"for"       {return (TK_FOR_KW);}
+"true"      {return (TK_TRUE_KW);}
+"false"     {return (TK_FALSE_KW);}
+{alpha}     {sscanf(yytext, "%s", yylval.name); return (STRING);}
+{numbers}   {yylval.number = atoi(yytext); return (NUM);}
+"+"         {return (TK_PLUS);}
+"+="        {return (TK_PLUS_EQUAL);}
+"&&"        {return (TK_AND);}
+"=="        {return (TK_EQUAL_EQUAL);}
+"!="        {return (TK_NOT_EQUAL);}
+"("         {return (TK_OPEN_PAR);}
+")"         {return (TK_CLOSE_PAR);}
+"-"         {return (TK_MINUS);}
+"-="        {return (TK_LESS_EQUAL);}
+"|="        {return (TK_ASSIGNATION);}
+"||"        {return (TK_OR);}
+"<"         {return (TK_LESS);}
+"<="        {return (TK_LESS_OR_EQUAL);}
+"["         {return (TK_OPEN_BRACKET);}
+"]"         {return (TK_CLOSE_BRACKET);}
+"*"         {return (TK_ASTERISK);}
+"^"         {return (TK_POWER);}
+"*="        {return (TK_ASTERISK_EQUAL);}
+"^="        {return (TK_POWER_EQUAL);}
+">"         {return (TK_GREATER);}
+">="        {return (TK_GREATER_EQUAL);}
+"{"         {return (TK_OPEN_BRACE);}
+"}"         {return (TK_CLOSE_BRACE);}
+"/"         {return (TK_DIVISION);}
+"/="        {return (TK_DIVISION_EQUAL);}
+"++"        {return (TK_PLUS_PLUS);}
+"="         {return (TK_EQUAL);}
+":="        {return (TK_COLON_EQUAL);}
+","         {return (COMMA);}
+";"         {return (SEMI_COLON);}
+"%"         {return (MOD);}
+"%="        {return (MOD_EQUAL);}
+"--"        {return (TK_MINUS_MINUS);}
+"!"         {return (NOT);}
+":"         {return (COLON);}
+"//"        {return (SINGLE_LINE_COMMENT);}
+"/*"        {return (OPEN_COMMENT);}
+"*/"        {return (CLOSE_COMMENT);}
+"\""        {return (COMILLA);}
+
+
+%option yylineno
+%option noyywrap
+
+%{
+    #include <stdio.h>
+    #include <string.h>
+    //#include "tokens.h"
+%}
+
+numbers ([0-9])+
+alpha   ([a-zA-Z]+[0-9]*)+
+
+%%
+
+"package"    {printf("%s palabra \n", yytext);}
+"import"     {printf("%s palabra \n", yytext);}
+"func"       {printf("%s palabra \n", yytext);}
+"var"        {printf("%s palabra \n", yytext);}
+"int"        {printf("%s palabra \n", yytext);}
+"float32"    {printf("%s palabra \n", yytext);}
+"bool"       {printf("%s palabra \n", yytext);}
+"continue"   {printf("%s palabra \n", yytext);}
+"break"      {printf("%s palabra \n", yytext);}
+"printf"     {printf("%s palabra \n", yytext);}
+"if"         {printf("%s palabra \n", yytext);}
+"else"       {printf("%s palabra \n", yytext);}
+"for"        {printf("%s palabra \n", yytext);}
+"true"       {printf("%s palabra \n", yytext);}
+"false"      {printf("%s palabra \n", yytext);}
+"+"          {printf("%s palabra \n", yytext);}
+"+="         {printf("%s palabra \n", yytext);}
+"&&"         {printf("%s palabra \n", yytext);}
+"=="         {printf("%s palabra \n", yytext);}
+"!="         {printf("%s palabra \n", yytext);}
+"("          {printf("%s palabra \n", yytext);}
+")"          {printf("%s palabra \n", yytext);}
+"-"          {printf("%s palabra \n", yytext);}
+"-="         {printf("%s palabra \n", yytext);}
+"|="         {printf("%s palabra \n", yytext);}
+"||"         {printf("%s palabra \n", yytext);}
+"<"          {printf("%s palabra \n", yytext);}
+"<="         {printf("%s palabra \n", yytext);}
+"["          {printf("%s palabra \n", yytext);}
+"]"          {printf("%s palabra \n", yytext);}
+"*"          {printf("%s palabra \n", yytext);}
+"^"          {printf("%s palabra \n", yytext);}
+"*="         {printf("%s palabra \n", yytext);}
+"^="         {printf("%s palabra \n", yytext);}
+">"          {printf("%s palabra \n", yytext);}
+">="         {printf("%s palabra \n", yytext);}
+"{"          {printf("%s palabra \n", yytext);}
+"}"          {printf("%s palabra \n", yytext);}
+"/"          {printf("%s palabra \n", yytext);}
+"/="         {printf("%s palabra \n", yytext);}
+"++"         {printf("%s palabra \n", yytext);}
+"="          {printf("%s palabra \n", yytext);}
+":="         {printf("%s palabra \n", yytext);}
+","          {printf("%s palabra \n", yytext);}
+";"          {printf("%s palabra \n", yytext);}
+"%"          {printf("%s palabra \n", yytext);}
+"%="         {printf("%s palabra \n", yytext);}
+"--"         {printf("%s palabra \n", yytext);}
+"!"          {printf("%s palabra \n", yytext);}
+":"          {printf("%s palabra \n", yytext);}
+"//"         {printf("%s palabra \n", yytext);}
+"/*"         {printf("%s palabra \n", yytext);}
+"*/"         {printf("%s palabra \n", yytext);}
+"\""         {printf("%s palabra \n", yytext);}
+{alpha}     { printf("%s palabra \n", yytext);}
+{numbers}   { printf("%s numero \n", yytext);}
+\t           {}
+\r           {}
+\n           {}
+.            {return(0);}
+%%
