@@ -20,6 +20,8 @@ DIGIT [0-9]
 "while" { return TK_WHILE; }
 "void" { return TK_VOID; }
 "return" { return TK_RETURN; }
+"continue" { return TK_CONTINUE; }
+"break" { return TK_BREAK; }
 "int" { return TK_INT_TYPE; }
 "float32" { return TK_FLOAT_TYPE;  }
 "bool" { return TK_BOOL_TYPE; }
@@ -29,6 +31,9 @@ DIGIT [0-9]
 "var" { return TK_VAR; }
 "func" { return TK_FUNC; }
 "for" { return TK_FOR; }
+"true" { return TK_TRUE; }
+"false" { return TK_FALSE; }
+"Println" { return TK_PRINTLN; }
 \".*\" { yylval.string_t = strdup(yytext); return TK_LIT_STRING; }
 {DIGIT}+ { yylval.int_t = atoi(yytext); return TK_LIT_INT; }
 {DIGIT}+"."{DIGIT}+ { yylval.float_t = atof(yytext); return TK_LIT_FLOAT; }
@@ -59,6 +64,7 @@ DIGIT [0-9]
 ">=" { return TK_GREATER_OR_EQUAL; }
 "<=" { return TK_LESS_OR_EQUAL; }
 "(" { return '('; }
+"." { return '.'; }
 "//"[^\n]* {/* nada */}
 . {printf("caracter '%c' invalido en la linea %d\n", yytext[0], yylineno);}
 

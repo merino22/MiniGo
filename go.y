@@ -42,9 +42,9 @@
 %token<string_t>  TK_LIT_STRING TK_ID
 %token<int_t>  TK_LIT_INT
 %token<float_t>  TK_LIT_FLOAT
-%token<bool_t> TK_BOOL_TYPE
+%token<bool_t> TK_BOOL_TYPE TK_TRUE TK_FALSE
 %token TK_IF TK_ELSE
-%token TK_WHILE TK_RETURN TK_FOR
+%token TK_WHILE TK_RETURN TK_FOR TK_CONTINUE TK_BREAK 
 %token TK_VOID TK_INT_TYPE TK_FLOAT_TYPE TK_VAR
 %token TK_PRINTF
 %token TK_PLUS_EQUAL TK_MINUS_EQUAL TK_PLUS_PLUS TK_MINUS_MINUS TK_NOT
@@ -52,6 +52,7 @@
 %token TK_EQUAL TK_NOT_EQUAL TK_GREATER_OR_EQUAL TK_LESS_OR_EQUAL
 %token TK_PACKAGE TK_IMPORT
 %token TK_FUNC
+%token TK_PRINTLN
 
 %type<expr_t> assignment_expression logical_or_expression
 %type<statement_list_t> statement_list input
@@ -69,7 +70,7 @@
 %type<expr_t> constant expression logical_and_expression additive_expression multiplicative_expression equality_expression relational_expression
 %type<expr_t> unary_expression postfix_expression primary_expression
 %type<argument_list_t> argument_expression_list
-%type <statement_t> if_statement while_statement expression_statement jump_statement for_statement
+%type <statement_t> if_statement while_statement expression_statement jump_statement for_statement print_statement
 %%
 
 start: input{
@@ -180,6 +181,7 @@ statement: while_statement {$$ = $1;}
         | block_statement {$$ = $1;}
         | jump_statement {$$ = $1;}
         | for_statement { $$ = $1;}
+        | print_statement { $$ = $1; }
         | TK_PRINTF expression ';' {$$ = new PrintStatement($2, yylineno);}
         ;
 
@@ -223,6 +225,13 @@ block_statement: '{' statement_list '}' {
 
                }
                ;
+
+print_statement: TK_ID '.' TK_PRINTLN '(' concat_list ')' ';'
+               | TK_ID '.' TK_PRINTLN '(' concat_list ',' expression ')' ';'
+               ;
+
+concat_list: concat_list '+' TK_LIT_STRING //fmt.Println("result=", 1+1)
+           | TK_LIT_STRING
 
 type: TK_VOID {$$ = VOID;} // var a int = 4
     | TK_INT_TYPE{$$ = INT;}
@@ -282,6 +291,7 @@ equality_expression:  equality_expression TK_EQUAL relational_expression { $$ = 
                    ;
 
 logical_or_expression: logical_or_expression TK_OR logical_and_expression { $$ = new LogicalOrExpr($1, $3, yylineno); }
+                    //| TK_TRUE TK_OR TK_FALSE
                     | logical_and_expression {$$ = $1;}
                     ;
 

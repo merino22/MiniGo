@@ -27,6 +27,8 @@ func hola(int x) int{
     for x >= 100 {
         var aaron = 45.67;
         var check bool;
+        fmt.Println("Mario=", true && false);
+        fmt.Println("Mario" + "Aaron");
     }
 }
 
