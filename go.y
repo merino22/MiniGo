@@ -35,6 +35,8 @@
     InitializerElementList * initializer_list_t;
     Declaration * declaration_t;
     DeclarationList * declaration_list_t;
+    DeclarationList * package_list_t;
+    DeclarationList * import_list_t;
     Parameter * parameter_t;
     ParameterList * parameter_list_t;
 }
@@ -54,11 +56,12 @@
 %token TK_FUNC
 %token TK_PRINTLN
 
+%type<string_t> concat_list
 %type<expr_t> assignment_expression logical_or_expression
 %type<statement_list_t> statement_list input
 %type<statement_t> external_declaration method_definition block_statement statement
-%type<declaration_t> declaration
-%type<declaration_list_t> declaration_list
+%type<declaration_t> declaration package import
+%type<declaration_list_t> declaration_list package_list import_list
 %type<initializer_t> initializer
 %type<initializer_list_t> initializer_list
 %type<declarator_t> declarator
@@ -87,22 +90,25 @@ input: input external_declaration {$$ = $1; $$->push_back($2);}
 
 external_declaration: method_definition {$$ = $1;}
             | declaration {$$ = new GlobalDeclaration($1);}
-            | package_list imports
-            | package_list
+            | package_list import_list {
+                /*$$ = new PackageDeclaration($1); 
+                $$ = new ImportDeclaration($2);*/
+                }
+            | package_list {/*$$ = new PackageDeclaration($1);*/}
             ;
 
-package_list: package_list package
-            | package
+package_list: package_list package { }
+            | package {}
             ;
 
-package: TK_PACKAGE TK_ID
+package: TK_PACKAGE TK_ID {  }
         ;
 
-imports: TK_IMPORT '(' import_list ')' 
+import_list: TK_IMPORT '(' import ')'  {}
        ;
        
-import_list: import_list TK_LIT_STRING
-           | TK_LIT_STRING
+import: import TK_LIT_STRING { }
+           | TK_LIT_STRING {}
            ;
 
 method_definition: TK_FUNC TK_ID '(' parameters_type_list ')' type block_statement {
@@ -182,7 +188,6 @@ statement: while_statement {$$ = $1;}
         | jump_statement {$$ = $1;}
         | for_statement { $$ = $1;}
         | print_statement { $$ = $1; }
-        | TK_PRINTF expression ';' {$$ = new PrintStatement($2, yylineno);}
         ;
 
 statement_list: statement_list statement { $$ = $1; $$->push_back($2); }
@@ -195,9 +200,9 @@ if_statement: TK_IF expression statement {$$ = new IfStatement($2, $3, yylineno)
             | TK_IF expression statement TK_ELSE statement {$$ = new ElseStatement($2, $3, $5, yylineno);}
             ;
 
-for_statement: TK_FOR expression statement {}
-             | TK_FOR expression ';' expression ';' expression statement {}
-             | TK_FOR statement {}
+for_statement: TK_FOR expression statement {$$ = new ForStatement($2,$3,yylineno);}
+             | TK_FOR expression ';' expression ';' expression statement {$$ = new ForStatementExtended($2,$4,$6,$7,yylineno);}
+             | TK_FOR statement { {$$ = new ForStatement(NULL,$2,yylineno);} }
              ; 
 
 expression_statement: expression ';' {$$ = new ExprStatement($1, yylineno);}
@@ -226,12 +231,15 @@ block_statement: '{' statement_list '}' {
                }
                ;
 
-print_statement: TK_ID '.' TK_PRINTLN '(' concat_list ')' ';'
-               | TK_ID '.' TK_PRINTLN '(' concat_list ',' expression ')' ';'
+print_statement: TK_ID '.' TK_PRINTLN '(' concat_list ')' ';' {$$ = new PrintStatement($5,NULL,yylineno);}
+               | TK_ID '.' TK_PRINTLN '(' concat_list ',' expression ')' ';'{$$ = new PrintStatement($5,$7,yylineno);}
                ;
 
-concat_list: concat_list '+' TK_LIT_STRING //fmt.Println("result=", 1+1)
-           | TK_LIT_STRING
+concat_list: concat_list '+' TK_LIT_STRING {
+            strcat(const_cast<char *>$1,$3);
+            $$ = $1;
+            }//fmt.Println("result=", 1+1)
+           | TK_LIT_STRING {$$=$1;}
 
 type: TK_VOID {$$ = VOID;} // var a int = 4
     | TK_INT_TYPE{$$ = INT;}

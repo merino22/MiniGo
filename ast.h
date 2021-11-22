@@ -1,6 +1,7 @@
 #include <string>
 #include <list>
 #include <map>
+#include <cstring>
 
 using namespace std;
 
@@ -12,6 +13,8 @@ class Statement;
 typedef list<Expr *> InitializerElementList;
 typedef list<InitDeclarator *> InitDeclaratorList;
 typedef list<Declaration *> DeclarationList;
+typedef list<Declaration *> PackageList;
+typedef list<Declaration *> ImportList;
 typedef list<Parameter *> ParameterList;
 typedef list<Statement *> StatementList;
 typedef list<Expr *> ArgumentList;
@@ -151,6 +154,32 @@ class GlobalDeclaration : public Statement {
             return GLOBAL_DECLARATION_STATEMENT;
         }
 };
+
+class PackageDeclaration : public Statement {
+    public:
+        PackageDeclaration(Declaration * declaration){
+            this->declaration = declaration;
+        }
+        Declaration * declaration;
+        int evaluateSemantic();
+        StatementKind getKind(){
+            return GLOBAL_DECLARATION_STATEMENT;
+        }
+};
+
+class ImportDeclaration : public Statement {
+    public:
+        ImportDeclaration(Declaration * declaration){
+            this->declaration = declaration;
+        }
+        Declaration * declaration;
+        int evaluateSemantic();
+        StatementKind getKind(){
+            return GLOBAL_DECLARATION_STATEMENT;
+        }
+};
+
+
 
 class MethodDefinition : public Statement{
     public:
@@ -312,6 +341,41 @@ class WhileStatement: public Statement{
         }
 };
 
+class ForStatement: public Statement{
+    public:
+        ForStatement(Expr * expr, Statement * stmt, int line){
+            this->expr = expr;
+            this->stmt = stmt;
+            this->line = line;
+        }
+        Expr* expr;
+        Statement * stmt;
+        int line;
+        int evaluateSemantic();
+        StatementKind getKind(){
+            return FOR_STATEMENT;
+        }
+};
+
+class ForStatementExtended: public Statement{
+    public:
+        ForStatementExtended(Expr * leftExpr, Expr * middleExpr,Expr * rightExpr, Statement * stmt, int line){
+            this->leftExpr = leftExpr;
+            this->middleExpr = middleExpr;
+            this->rightExpr = rightExpr;
+            this->stmt = stmt;
+            this->line = line;
+        }
+        Expr* leftExpr;
+        Expr* middleExpr;
+        Expr* rightExpr;
+        Statement * stmt;
+        int line;
+        int evaluateSemantic();
+        StatementKind getKind(){
+            return FOR_STATEMENT;
+        }
+};
 class ElseStatement : public Statement{
     public:
         ElseStatement(Expr * conditionalExpr, Statement * trueStatement, Statement * falseStatement, int line){
@@ -365,10 +429,12 @@ class ReturnStatement : public Statement{
 
 class PrintStatement : public Statement{
     public:
-        PrintStatement(Expr * expr, int line){
+        PrintStatement(string string, Expr * expr, int line){
+            localString = string;
             this->expr = expr;
             this->line = line;
         }
+        string localString;
         Expr * expr;
         int evaluateSemantic();
         StatementKind getKind(){return PRINT_STATEMENT;}

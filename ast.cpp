@@ -154,6 +154,14 @@ int GlobalDeclaration::evaluateSemantic(){
     //TODO: evaluar semántica.
     return 0;
 }
+int PackageDeclaration::evaluateSemantic(){
+    //TODO: evaluar semántica.
+    return 0;
+}
+int ImportDeclaration::evaluateSemantic(){
+    //TODO: evaluar semántica.
+    return 0;
+}
 
 
 void addMethodDeclaration(string id, int line, Type type, ParameterList params){
@@ -365,6 +373,37 @@ int IfStatement::evaluateSemantic(){
     return 0;
 }
 
+int ForStatement::evaluateSemantic(){
+    if (this->expr!=NULL)
+    {
+        if(this->expr->getType() != BOOL){
+            cout<<"Expression for for must be boolean";
+            exit(0);
+        }
+    }
+    
+    
+    pushContext();
+    if(this->stmt != NULL){
+        this->stmt->evaluateSemantic();
+    }
+    popContext();
+    return 0;
+}
+
+int ForStatementExtended::evaluateSemantic(){
+    if(this->leftExpr->getType() != BOOL && this->middleExpr->getType() != BOOL && this->rightExpr->getType() != BOOL){
+        cout<<"Expressions for for must be boolean";
+        exit(0);
+    }
+    
+    pushContext();
+    if(this->stmt != NULL){
+        this->stmt->evaluateSemantic();
+    }
+    popContext();
+    return 0;
+}
 int ExprStatement::evaluateSemantic(){
     return this->expr->getType();
 }
@@ -374,7 +413,11 @@ int ReturnStatement::evaluateSemantic(){
 }
 
 int PrintStatement::evaluateSemantic(){
-    return this->expr->getType();
+    if (this->expr!=NULL)
+    {
+        return this->expr->getType();
+    }
+    return 1;
 }
 
 IMPLEMENT_BINARY_GET_TYPE(Add);
