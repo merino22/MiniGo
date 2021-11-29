@@ -240,6 +240,7 @@ concat_list: concat_list '+' TK_LIT_STRING {
             $$ = $1;
             }//fmt.Println("result=", 1+1)
            | TK_LIT_STRING {$$=$1;}
+           | TK_ID { $$ = $1;}
 
 type: TK_VOID {$$ = VOID;} // var a int = 4
     | TK_INT_TYPE{$$ = INT;}

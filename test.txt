@@ -27,7 +27,7 @@ func hola(int x) int{
     for x >= 100 {
         var aaron = 45.67;
         var check bool;
-        fmt.Println("Mario=", true && false);
+        fmt.Println("Mario=");
         fmt.Println("Mario" + "Aaron");
     }
 }
@@ -69,19 +69,19 @@ func main(){
     arr[6] = 23;
     arr[7] = 0;
     
-    printf("\nBefore sorting\n");
+    fmt.Println("\nBefore sorting\n");
     i = 0;
     while(i<size){
-        printf(arr[i]);
+        fmt.Println(i);
         i++;
     }
    
     bubble(arr,size);
    
-    printf("\nAfter sorting\n");
+    fmt.Println("\nAfter sorting\n");
     i = 0;
     while(i<size){
-        printf(arr[i]);
+        fmt.Println(i);
         i++;
     }
 }
