@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.5.1.  */
+/* A Bison parser, made by GNU Bison 3.7.5.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2020 Free Software Foundation,
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2021 Free Software Foundation,
    Inc.
 
    This program is free software: you can redistribute it and/or modify
@@ -34,6 +34,10 @@
 /* C LALR(1) parser skeleton written by Richard Stallman, by
    simplifying the original so-called "semantic" parser.  */
 
+/* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
+   especially those whose name start with YY_ or yy_.  They are
+   private implementation details that can be changed or removed.  */
+
 /* All symbols defined below should begin with yy or YY, to avoid
    infringing on user name space.  This should be done even for local
    variables, as they might otherwise be expanded by user macros.
@@ -41,14 +45,11 @@
    define necessary library symbols; they are noted "INFRINGES ON
    USER NAME SPACE" below.  */
 
-/* Undocumented macros, especially those whose name start with YY_,
-   are private implementation details.  Do not rely on them.  */
+/* Identify Bison output, and Bison version.  */
+#define YYBISON 30705
 
-/* Identify Bison output.  */
-#define YYBISON 1
-
-/* Bison version.  */
-#define YYBISON_VERSION "3.5.1"
+/* Bison version string.  */
+#define YYBISON_VERSION "3.7.5"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -83,7 +84,7 @@
     #define PLUSEQUAL 2
     #define MINUSEQUAL 3
 
-#line 87 "go_parser.cpp"
+#line 88 "go_parser.cpp"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -106,114 +107,110 @@
 #  endif
 # endif
 
-/* Enabling verbose error messages.  */
-#ifdef YYERROR_VERBOSE
-# undef YYERROR_VERBOSE
-# define YYERROR_VERBOSE 1
-#else
-# define YYERROR_VERBOSE 0
-#endif
-
-/* Use api.header.include to #include this header
-   instead of duplicating it here.  */
-#ifndef YY_YY_TOKENS_H_INCLUDED
-# define YY_YY_TOKENS_H_INCLUDED
-/* Debug traces.  */
-#ifndef YYDEBUG
-# define YYDEBUG 0
-#endif
-#if YYDEBUG
-extern int yydebug;
-#endif
-/* "%code requires" blocks.  */
-#line 1 "go.y"
-
-    #include "ast.h"
-
-#line 134 "go_parser.cpp"
-
-/* Token type.  */
-#ifndef YYTOKENTYPE
-# define YYTOKENTYPE
-  enum yytokentype
-  {
-    TK_LIT_STRING = 258,
-    TK_ID = 259,
-    TK_LIT_INT = 260,
-    TK_LIT_FLOAT = 261,
-    TK_BOOL_TYPE = 262,
-    TK_TRUE = 263,
-    TK_FALSE = 264,
-    TK_IF = 265,
-    TK_ELSE = 266,
-    TK_WHILE = 267,
-    TK_RETURN = 268,
-    TK_FOR = 269,
-    TK_CONTINUE = 270,
-    TK_BREAK = 271,
-    TK_VOID = 272,
-    TK_INT_TYPE = 273,
-    TK_FLOAT_TYPE = 274,
-    TK_VAR = 275,
-    TK_PRINTF = 276,
-    TK_PLUS_EQUAL = 277,
-    TK_MINUS_EQUAL = 278,
-    TK_PLUS_PLUS = 279,
-    TK_MINUS_MINUS = 280,
-    TK_NOT = 281,
-    TK_OR = 282,
-    TK_AND = 283,
-    TK_EQUAL = 284,
-    TK_NOT_EQUAL = 285,
-    TK_GREATER_OR_EQUAL = 286,
-    TK_LESS_OR_EQUAL = 287,
-    TK_PACKAGE = 288,
-    TK_IMPORT = 289,
-    TK_FUNC = 290,
-    TK_PRINTLN = 291
-  };
-#endif
-
-/* Value type.  */
-#if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-union YYSTYPE
+#include "tokens.h"
+/* Symbol kind.  */
+enum yysymbol_kind_t
 {
-#line 22 "go.y"
-
-    const char * string_t;
-    int int_t;
-    float float_t;
-    bool bool_t;
-    Expr * expr_t;
-    ArgumentList * argument_list_t;
-    Statement * statement_t;
-    StatementList * statement_list_t;
-    InitDeclaratorList * init_declarator_list_t;
-    InitDeclarator * init_declarator_t;
-    Declarator * declarator_t;
-    Initializer * initializer_t;
-    InitializerElementList * initializer_list_t;
-    Declaration * declaration_t;
-    DeclarationList * declaration_list_t;
-    DeclarationList * package_list_t;
-    DeclarationList * import_list_t;
-    Parameter * parameter_t;
-    ParameterList * parameter_list_t;
-
-#line 204 "go_parser.cpp"
-
+  YYSYMBOL_YYEMPTY = -2,
+  YYSYMBOL_YYEOF = 0,                      /* "end of file"  */
+  YYSYMBOL_YYerror = 1,                    /* error  */
+  YYSYMBOL_YYUNDEF = 2,                    /* "invalid token"  */
+  YYSYMBOL_TK_LIT_STRING = 3,              /* TK_LIT_STRING  */
+  YYSYMBOL_TK_ID = 4,                      /* TK_ID  */
+  YYSYMBOL_TK_LIT_INT = 5,                 /* TK_LIT_INT  */
+  YYSYMBOL_TK_LIT_FLOAT = 6,               /* TK_LIT_FLOAT  */
+  YYSYMBOL_TK_BOOL_TYPE = 7,               /* TK_BOOL_TYPE  */
+  YYSYMBOL_TK_TRUE = 8,                    /* TK_TRUE  */
+  YYSYMBOL_TK_FALSE = 9,                   /* TK_FALSE  */
+  YYSYMBOL_TK_IF = 10,                     /* TK_IF  */
+  YYSYMBOL_TK_ELSE = 11,                   /* TK_ELSE  */
+  YYSYMBOL_TK_WHILE = 12,                  /* TK_WHILE  */
+  YYSYMBOL_TK_RETURN = 13,                 /* TK_RETURN  */
+  YYSYMBOL_TK_FOR = 14,                    /* TK_FOR  */
+  YYSYMBOL_TK_CONTINUE = 15,               /* TK_CONTINUE  */
+  YYSYMBOL_TK_BREAK = 16,                  /* TK_BREAK  */
+  YYSYMBOL_TK_VOID = 17,                   /* TK_VOID  */
+  YYSYMBOL_TK_INT_TYPE = 18,               /* TK_INT_TYPE  */
+  YYSYMBOL_TK_FLOAT_TYPE = 19,             /* TK_FLOAT_TYPE  */
+  YYSYMBOL_TK_VAR = 20,                    /* TK_VAR  */
+  YYSYMBOL_TK_PRINTF = 21,                 /* TK_PRINTF  */
+  YYSYMBOL_TK_PLUS_EQUAL = 22,             /* TK_PLUS_EQUAL  */
+  YYSYMBOL_TK_MINUS_EQUAL = 23,            /* TK_MINUS_EQUAL  */
+  YYSYMBOL_TK_PLUS_PLUS = 24,              /* TK_PLUS_PLUS  */
+  YYSYMBOL_TK_MINUS_MINUS = 25,            /* TK_MINUS_MINUS  */
+  YYSYMBOL_TK_NOT = 26,                    /* TK_NOT  */
+  YYSYMBOL_TK_OR = 27,                     /* TK_OR  */
+  YYSYMBOL_TK_AND = 28,                    /* TK_AND  */
+  YYSYMBOL_TK_EQUAL = 29,                  /* TK_EQUAL  */
+  YYSYMBOL_TK_NOT_EQUAL = 30,              /* TK_NOT_EQUAL  */
+  YYSYMBOL_TK_GREATER_OR_EQUAL = 31,       /* TK_GREATER_OR_EQUAL  */
+  YYSYMBOL_TK_LESS_OR_EQUAL = 32,          /* TK_LESS_OR_EQUAL  */
+  YYSYMBOL_TK_PACKAGE = 33,                /* TK_PACKAGE  */
+  YYSYMBOL_TK_IMPORT = 34,                 /* TK_IMPORT  */
+  YYSYMBOL_TK_FUNC = 35,                   /* TK_FUNC  */
+  YYSYMBOL_TK_PRINTLN = 36,                /* TK_PRINTLN  */
+  YYSYMBOL_37_ = 37,                       /* '('  */
+  YYSYMBOL_38_ = 38,                       /* ')'  */
+  YYSYMBOL_39_ = 39,                       /* ';'  */
+  YYSYMBOL_40_ = 40,                       /* ','  */
+  YYSYMBOL_41_ = 41,                       /* '='  */
+  YYSYMBOL_42_ = 42,                       /* '['  */
+  YYSYMBOL_43_ = 43,                       /* ']'  */
+  YYSYMBOL_44_ = 44,                       /* '{'  */
+  YYSYMBOL_45_ = 45,                       /* '}'  */
+  YYSYMBOL_46_ = 46,                       /* '.'  */
+  YYSYMBOL_47_ = 47,                       /* '+'  */
+  YYSYMBOL_48_ = 48,                       /* '*'  */
+  YYSYMBOL_49_ = 49,                       /* '/'  */
+  YYSYMBOL_50_ = 50,                       /* '-'  */
+  YYSYMBOL_51_ = 51,                       /* '>'  */
+  YYSYMBOL_52_ = 52,                       /* '<'  */
+  YYSYMBOL_YYACCEPT = 53,                  /* $accept  */
+  YYSYMBOL_start = 54,                     /* start  */
+  YYSYMBOL_input = 55,                     /* input  */
+  YYSYMBOL_external_declaration = 56,      /* external_declaration  */
+  YYSYMBOL_package_list = 57,              /* package_list  */
+  YYSYMBOL_package = 58,                   /* package  */
+  YYSYMBOL_import_list = 59,               /* import_list  */
+  YYSYMBOL_import = 60,                    /* import  */
+  YYSYMBOL_method_definition = 61,         /* method_definition  */
+  YYSYMBOL_declaration_list = 62,          /* declaration_list  */
+  YYSYMBOL_declaration = 63,               /* declaration  */
+  YYSYMBOL_init_declarator_list = 64,      /* init_declarator_list  */
+  YYSYMBOL_init_declarator = 65,           /* init_declarator  */
+  YYSYMBOL_declarator = 66,                /* declarator  */
+  YYSYMBOL_parameters_type_list = 67,      /* parameters_type_list  */
+  YYSYMBOL_parameter_declaration = 68,     /* parameter_declaration  */
+  YYSYMBOL_initializer = 69,               /* initializer  */
+  YYSYMBOL_initializer_list = 70,          /* initializer_list  */
+  YYSYMBOL_statement = 71,                 /* statement  */
+  YYSYMBOL_statement_list = 72,            /* statement_list  */
+  YYSYMBOL_if_statement = 73,              /* if_statement  */
+  YYSYMBOL_for_statement = 74,             /* for_statement  */
+  YYSYMBOL_expression_statement = 75,      /* expression_statement  */
+  YYSYMBOL_while_statement = 76,           /* while_statement  */
+  YYSYMBOL_jump_statement = 77,            /* jump_statement  */
+  YYSYMBOL_block_statement = 78,           /* block_statement  */
+  YYSYMBOL_print_statement = 79,           /* print_statement  */
+  YYSYMBOL_concat_list = 80,               /* concat_list  */
+  YYSYMBOL_type = 81,                      /* type  */
+  YYSYMBOL_primary_expression = 82,        /* primary_expression  */
+  YYSYMBOL_assignment_expression = 83,     /* assignment_expression  */
+  YYSYMBOL_postfix_expression = 84,        /* postfix_expression  */
+  YYSYMBOL_argument_expression_list = 85,  /* argument_expression_list  */
+  YYSYMBOL_unary_expression = 86,          /* unary_expression  */
+  YYSYMBOL_multiplicative_expression = 87, /* multiplicative_expression  */
+  YYSYMBOL_additive_expression = 88,       /* additive_expression  */
+  YYSYMBOL_relational_expression = 89,     /* relational_expression  */
+  YYSYMBOL_equality_expression = 90,       /* equality_expression  */
+  YYSYMBOL_logical_or_expression = 91,     /* logical_or_expression  */
+  YYSYMBOL_logical_and_expression = 92,    /* logical_and_expression  */
+  YYSYMBOL_assignment_operator = 93,       /* assignment_operator  */
+  YYSYMBOL_expression = 94,                /* expression  */
+  YYSYMBOL_constant = 95                   /* constant  */
 };
-typedef union YYSTYPE YYSTYPE;
-# define YYSTYPE_IS_TRIVIAL 1
-# define YYSTYPE_IS_DECLARED 1
-#endif
+typedef enum yysymbol_kind_t yysymbol_kind_t;
 
-
-extern YYSTYPE yylval;
-
-int yyparse (void);
-
-#endif /* !YY_YY_TOKENS_H_INCLUDED  */
 
 
 
@@ -252,6 +249,18 @@ typedef __INT_LEAST16_TYPE__ yytype_int16;
 typedef int_least16_t yytype_int16;
 #else
 typedef short yytype_int16;
+#endif
+
+/* Work around bug in HP-UX 11.23, which defines these macros
+   incorrectly for preprocessor constants.  This workaround can likely
+   be removed in 2023, as HPE has promised support for HP-UX 11.23
+   (aka HP-UX 11i v2) only through the end of 2022; see Table 2 of
+   <https://h20195.www2.hpe.com/V2/getpdf.aspx/4AA4-7673ENW.pdf>.  */
+#ifdef __hpux
+# undef UINT_LEAST8_MAX
+# undef UINT_LEAST16_MAX
+# define UINT_LEAST8_MAX 255
+# define UINT_LEAST16_MAX 65535
 #endif
 
 #if defined __UINT_LEAST8_MAX__ && __UINT_LEAST8_MAX__ <= __INT_MAX__
@@ -313,6 +322,7 @@ typedef int yytype_uint16;
 
 #define YYSIZEOF(X) YY_CAST (YYPTRDIFF_T, sizeof (X))
 
+
 /* Stored state numbers (used for stacks). */
 typedef yytype_uint8 yy_state_t;
 
@@ -330,6 +340,7 @@ typedef int yy_state_fast_t;
 #  define YY_(Msgid) Msgid
 # endif
 #endif
+
 
 #ifndef YY_ATTRIBUTE_PURE
 # if defined __GNUC__ && 2 < __GNUC__ + (96 <= __GNUC_MINOR__)
@@ -349,9 +360,9 @@ typedef int yy_state_fast_t;
 
 /* Suppress unused-variable warnings by "using" E.  */
 #if ! defined lint || defined __GNUC__
-# define YYUSE(E) ((void) (E))
+# define YY_USE(E) ((void) (E))
 #else
-# define YYUSE(E) /* empty */
+# define YY_USE(E) /* empty */
 #endif
 
 #if defined __GNUC__ && ! defined __ICC && 407 <= __GNUC__ * 100 + __GNUC_MINOR__
@@ -388,7 +399,7 @@ typedef int yy_state_fast_t;
 
 #define YY_ASSERT(E) ((void) (0 && (E)))
 
-#if ! defined yyoverflow || YYERROR_VERBOSE
+#if !defined yyoverflow
 
 /* The parser invokes alloca or malloc; define the necessary symbols.  */
 
@@ -453,8 +464,7 @@ void free (void *); /* INFRINGES ON USER NAME SPACE */
 #   endif
 #  endif
 # endif
-#endif /* ! defined yyoverflow || YYERROR_VERBOSE */
-
+#endif /* !defined yyoverflow */
 
 #if (! defined yyoverflow \
      && (! defined __cplusplus \
@@ -530,14 +540,16 @@ union yyalloc
 /* YYNSTATES -- Number of states.  */
 #define YYNSTATES  197
 
-#define YYUNDEFTOK  2
+/* YYMAXUTOK -- Last valid token kind.  */
 #define YYMAXUTOK   291
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
    as returned by yylex, with out-of-bounds checking.  */
-#define YYTRANSLATE(YYX)                                                \
-  (0 <= (YYX) && (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
+#define YYTRANSLATE(YYX)                                \
+  (0 <= (YYX) && (YYX) <= YYMAXUTOK                     \
+   ? YY_CAST (yysymbol_kind_t, yytranslate[YYX])        \
+   : YYSYMBOL_YYUNDEF)
 
 /* YYTRANSLATE[TOKEN-NUM] -- Symbol number corresponding to TOKEN-NUM
    as returned by yylex.  */
@@ -594,37 +606,51 @@ static const yytype_int16 yyrline[] =
 };
 #endif
 
-#if YYDEBUG || YYERROR_VERBOSE || 0
+/** Accessing symbol of state STATE.  */
+#define YY_ACCESSING_SYMBOL(State) YY_CAST (yysymbol_kind_t, yystos[State])
+
+#if YYDEBUG || 0
+/* The user-facing name of the symbol whose (internal) number is
+   YYSYMBOL.  No bounds checking.  */
+static const char *yysymbol_name (yysymbol_kind_t yysymbol) YY_ATTRIBUTE_UNUSED;
+
 /* YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "$end", "error", "$undefined", "TK_LIT_STRING", "TK_ID", "TK_LIT_INT",
-  "TK_LIT_FLOAT", "TK_BOOL_TYPE", "TK_TRUE", "TK_FALSE", "TK_IF",
-  "TK_ELSE", "TK_WHILE", "TK_RETURN", "TK_FOR", "TK_CONTINUE", "TK_BREAK",
-  "TK_VOID", "TK_INT_TYPE", "TK_FLOAT_TYPE", "TK_VAR", "TK_PRINTF",
-  "TK_PLUS_EQUAL", "TK_MINUS_EQUAL", "TK_PLUS_PLUS", "TK_MINUS_MINUS",
-  "TK_NOT", "TK_OR", "TK_AND", "TK_EQUAL", "TK_NOT_EQUAL",
-  "TK_GREATER_OR_EQUAL", "TK_LESS_OR_EQUAL", "TK_PACKAGE", "TK_IMPORT",
-  "TK_FUNC", "TK_PRINTLN", "'('", "')'", "';'", "','", "'='", "'['", "']'",
-  "'{'", "'}'", "'.'", "'+'", "'*'", "'/'", "'-'", "'>'", "'<'", "$accept",
-  "start", "input", "external_declaration", "package_list", "package",
-  "import_list", "import", "method_definition", "declaration_list",
-  "declaration", "init_declarator_list", "init_declarator", "declarator",
-  "parameters_type_list", "parameter_declaration", "initializer",
-  "initializer_list", "statement", "statement_list", "if_statement",
-  "for_statement", "expression_statement", "while_statement",
-  "jump_statement", "block_statement", "print_statement", "concat_list",
-  "type", "primary_expression", "assignment_expression",
-  "postfix_expression", "argument_expression_list", "unary_expression",
+  "\"end of file\"", "error", "\"invalid token\"", "TK_LIT_STRING",
+  "TK_ID", "TK_LIT_INT", "TK_LIT_FLOAT", "TK_BOOL_TYPE", "TK_TRUE",
+  "TK_FALSE", "TK_IF", "TK_ELSE", "TK_WHILE", "TK_RETURN", "TK_FOR",
+  "TK_CONTINUE", "TK_BREAK", "TK_VOID", "TK_INT_TYPE", "TK_FLOAT_TYPE",
+  "TK_VAR", "TK_PRINTF", "TK_PLUS_EQUAL", "TK_MINUS_EQUAL", "TK_PLUS_PLUS",
+  "TK_MINUS_MINUS", "TK_NOT", "TK_OR", "TK_AND", "TK_EQUAL",
+  "TK_NOT_EQUAL", "TK_GREATER_OR_EQUAL", "TK_LESS_OR_EQUAL", "TK_PACKAGE",
+  "TK_IMPORT", "TK_FUNC", "TK_PRINTLN", "'('", "')'", "';'", "','", "'='",
+  "'['", "']'", "'{'", "'}'", "'.'", "'+'", "'*'", "'/'", "'-'", "'>'",
+  "'<'", "$accept", "start", "input", "external_declaration",
+  "package_list", "package", "import_list", "import", "method_definition",
+  "declaration_list", "declaration", "init_declarator_list",
+  "init_declarator", "declarator", "parameters_type_list",
+  "parameter_declaration", "initializer", "initializer_list", "statement",
+  "statement_list", "if_statement", "for_statement",
+  "expression_statement", "while_statement", "jump_statement",
+  "block_statement", "print_statement", "concat_list", "type",
+  "primary_expression", "assignment_expression", "postfix_expression",
+  "argument_expression_list", "unary_expression",
   "multiplicative_expression", "additive_expression",
   "relational_expression", "equality_expression", "logical_or_expression",
   "logical_and_expression", "assignment_operator", "expression",
   "constant", YY_NULLPTR
 };
+
+static const char *
+yysymbol_name (yysymbol_kind_t yysymbol)
+{
+  return yytname[yysymbol];
+}
 #endif
 
-# ifdef YYPRINT
+#ifdef YYPRINT
 /* YYTOKNUM[NUM] -- (External) token number corresponding to the
    (internal) symbol number NUM (which must be that of a token).  */
 static const yytype_int16 yytoknum[] =
@@ -636,7 +662,7 @@ static const yytype_int16 yytoknum[] =
       44,    61,    91,    93,   123,   125,    46,    43,    42,    47,
       45,    62,    60
 };
-# endif
+#endif
 
 #define YYPACT_NINF (-86)
 
@@ -712,9 +738,9 @@ static const yytype_int16 yypgoto[] =
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
-static const yytype_int16 yydefgoto[] =
+static const yytype_uint8 yydefgoto[] =
 {
-      -1,     4,     5,     6,     7,     8,    21,    63,     9,   128,
+       0,     4,     5,     6,     7,     8,    21,    63,     9,   128,
       10,    12,    13,    14,    59,    60,    56,    90,   130,   131,
      132,   133,   134,   135,   136,   137,   138,   180,    61,    42,
       67,    44,   105,    45,    46,    47,    48,    49,    50,    51,
@@ -865,10 +891,10 @@ static const yytype_int8 yyr2[] =
 };
 
 
+enum { YYENOMEM = -2 };
+
 #define yyerrok         (yyerrstatus = 0)
 #define yyclearin       (yychar = YYEMPTY)
-#define YYEMPTY         (-2)
-#define YYEOF           0
 
 #define YYACCEPT        goto yyacceptlab
 #define YYABORT         goto yyabortlab
@@ -894,10 +920,9 @@ static const yytype_int8 yyr2[] =
       }                                                           \
   while (0)
 
-/* Error token number */
-#define YYTERROR        1
-#define YYERRCODE       256
-
+/* Backward compatibility with an undocumented macro.
+   Use YYerror or YYUNDEF. */
+#define YYERRCODE YYUNDEF
 
 
 /* Enable debugging if requested.  */
@@ -915,18 +940,18 @@ do {                                            \
 } while (0)
 
 /* This macro is provided for backward compatibility. */
-#ifndef YY_LOCATION_PRINT
-# define YY_LOCATION_PRINT(File, Loc) ((void) 0)
-#endif
+# ifndef YY_LOCATION_PRINT
+#  define YY_LOCATION_PRINT(File, Loc) ((void) 0)
+# endif
 
 
-# define YY_SYMBOL_PRINT(Title, Type, Value, Location)                    \
+# define YY_SYMBOL_PRINT(Title, Kind, Value, Location)                    \
 do {                                                                      \
   if (yydebug)                                                            \
     {                                                                     \
       YYFPRINTF (stderr, "%s ", Title);                                   \
       yy_symbol_print (stderr,                                            \
-                  Type, Value); \
+                  Kind, Value); \
       YYFPRINTF (stderr, "\n");                                           \
     }                                                                     \
 } while (0)
@@ -937,18 +962,19 @@ do {                                                                      \
 `-----------------------------------*/
 
 static void
-yy_symbol_value_print (FILE *yyo, int yytype, YYSTYPE const * const yyvaluep)
+yy_symbol_value_print (FILE *yyo,
+                       yysymbol_kind_t yykind, YYSTYPE const * const yyvaluep)
 {
   FILE *yyoutput = yyo;
-  YYUSE (yyoutput);
+  YY_USE (yyoutput);
   if (!yyvaluep)
     return;
 # ifdef YYPRINT
-  if (yytype < YYNTOKENS)
-    YYPRINT (yyo, yytoknum[yytype], *yyvaluep);
+  if (yykind < YYNTOKENS)
+    YYPRINT (yyo, yytoknum[yykind], *yyvaluep);
 # endif
   YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-  YYUSE (yytype);
+  YY_USE (yykind);
   YY_IGNORE_MAYBE_UNINITIALIZED_END
 }
 
@@ -958,12 +984,13 @@ yy_symbol_value_print (FILE *yyo, int yytype, YYSTYPE const * const yyvaluep)
 `---------------------------*/
 
 static void
-yy_symbol_print (FILE *yyo, int yytype, YYSTYPE const * const yyvaluep)
+yy_symbol_print (FILE *yyo,
+                 yysymbol_kind_t yykind, YYSTYPE const * const yyvaluep)
 {
   YYFPRINTF (yyo, "%s %s (",
-             yytype < YYNTOKENS ? "token" : "nterm", yytname[yytype]);
+             yykind < YYNTOKENS ? "token" : "nterm", yysymbol_name (yykind));
 
-  yy_symbol_value_print (yyo, yytype, yyvaluep);
+  yy_symbol_value_print (yyo, yykind, yyvaluep);
   YYFPRINTF (yyo, ")");
 }
 
@@ -996,7 +1023,8 @@ do {                                                            \
 `------------------------------------------------*/
 
 static void
-yy_reduce_print (yy_state_t *yyssp, YYSTYPE *yyvsp, int yyrule)
+yy_reduce_print (yy_state_t *yyssp, YYSTYPE *yyvsp,
+                 int yyrule)
 {
   int yylno = yyrline[yyrule];
   int yynrhs = yyr2[yyrule];
@@ -1008,9 +1036,8 @@ yy_reduce_print (yy_state_t *yyssp, YYSTYPE *yyvsp, int yyrule)
     {
       YYFPRINTF (stderr, "   $%d = ", yyi + 1);
       yy_symbol_print (stderr,
-                       yystos[+yyssp[yyi + 1 - yynrhs]],
-                       &yyvsp[(yyi + 1) - (yynrhs)]
-                                              );
+                       YY_ACCESSING_SYMBOL (+yyssp[yyi + 1 - yynrhs]),
+                       &yyvsp[(yyi + 1) - (yynrhs)]);
       YYFPRINTF (stderr, "\n");
     }
 }
@@ -1025,8 +1052,8 @@ do {                                    \
    multiple parsers can coexist.  */
 int yydebug;
 #else /* !YYDEBUG */
-# define YYDPRINTF(Args)
-# define YY_SYMBOL_PRINT(Title, Type, Value, Location)
+# define YYDPRINTF(Args) ((void) 0)
+# define YY_SYMBOL_PRINT(Title, Kind, Value, Location)
 # define YY_STACK_PRINT(Bottom, Top)
 # define YY_REDUCE_PRINT(Rule)
 #endif /* !YYDEBUG */
@@ -1049,265 +1076,38 @@ int yydebug;
 #endif
 
 
-#if YYERROR_VERBOSE
 
-# ifndef yystrlen
-#  if defined __GLIBC__ && defined _STRING_H
-#   define yystrlen(S) (YY_CAST (YYPTRDIFF_T, strlen (S)))
-#  else
-/* Return the length of YYSTR.  */
-static YYPTRDIFF_T
-yystrlen (const char *yystr)
-{
-  YYPTRDIFF_T yylen;
-  for (yylen = 0; yystr[yylen]; yylen++)
-    continue;
-  return yylen;
-}
-#  endif
-# endif
 
-# ifndef yystpcpy
-#  if defined __GLIBC__ && defined _STRING_H && defined _GNU_SOURCE
-#   define yystpcpy stpcpy
-#  else
-/* Copy YYSRC to YYDEST, returning the address of the terminating '\0' in
-   YYDEST.  */
-static char *
-yystpcpy (char *yydest, const char *yysrc)
-{
-  char *yyd = yydest;
-  const char *yys = yysrc;
 
-  while ((*yyd++ = *yys++) != '\0')
-    continue;
-
-  return yyd - 1;
-}
-#  endif
-# endif
-
-# ifndef yytnamerr
-/* Copy to YYRES the contents of YYSTR after stripping away unnecessary
-   quotes and backslashes, so that it's suitable for yyerror.  The
-   heuristic is that double-quoting is unnecessary unless the string
-   contains an apostrophe, a comma, or backslash (other than
-   backslash-backslash).  YYSTR is taken from yytname.  If YYRES is
-   null, do not copy; instead, return the length of what the result
-   would have been.  */
-static YYPTRDIFF_T
-yytnamerr (char *yyres, const char *yystr)
-{
-  if (*yystr == '"')
-    {
-      YYPTRDIFF_T yyn = 0;
-      char const *yyp = yystr;
-
-      for (;;)
-        switch (*++yyp)
-          {
-          case '\'':
-          case ',':
-            goto do_not_strip_quotes;
-
-          case '\\':
-            if (*++yyp != '\\')
-              goto do_not_strip_quotes;
-            else
-              goto append;
-
-          append:
-          default:
-            if (yyres)
-              yyres[yyn] = *yyp;
-            yyn++;
-            break;
-
-          case '"':
-            if (yyres)
-              yyres[yyn] = '\0';
-            return yyn;
-          }
-    do_not_strip_quotes: ;
-    }
-
-  if (yyres)
-    return yystpcpy (yyres, yystr) - yyres;
-  else
-    return yystrlen (yystr);
-}
-# endif
-
-/* Copy into *YYMSG, which is of size *YYMSG_ALLOC, an error message
-   about the unexpected token YYTOKEN for the state stack whose top is
-   YYSSP.
-
-   Return 0 if *YYMSG was successfully written.  Return 1 if *YYMSG is
-   not large enough to hold the message.  In that case, also set
-   *YYMSG_ALLOC to the required number of bytes.  Return 2 if the
-   required number of bytes is too large to store.  */
-static int
-yysyntax_error (YYPTRDIFF_T *yymsg_alloc, char **yymsg,
-                yy_state_t *yyssp, int yytoken)
-{
-  enum { YYERROR_VERBOSE_ARGS_MAXIMUM = 5 };
-  /* Internationalized format string. */
-  const char *yyformat = YY_NULLPTR;
-  /* Arguments of yyformat: reported tokens (one for the "unexpected",
-     one per "expected"). */
-  char const *yyarg[YYERROR_VERBOSE_ARGS_MAXIMUM];
-  /* Actual size of YYARG. */
-  int yycount = 0;
-  /* Cumulated lengths of YYARG.  */
-  YYPTRDIFF_T yysize = 0;
-
-  /* There are many possibilities here to consider:
-     - If this state is a consistent state with a default action, then
-       the only way this function was invoked is if the default action
-       is an error action.  In that case, don't check for expected
-       tokens because there are none.
-     - The only way there can be no lookahead present (in yychar) is if
-       this state is a consistent state with a default action.  Thus,
-       detecting the absence of a lookahead is sufficient to determine
-       that there is no unexpected or expected token to report.  In that
-       case, just report a simple "syntax error".
-     - Don't assume there isn't a lookahead just because this state is a
-       consistent state with a default action.  There might have been a
-       previous inconsistent state, consistent state with a non-default
-       action, or user semantic action that manipulated yychar.
-     - Of course, the expected token list depends on states to have
-       correct lookahead information, and it depends on the parser not
-       to perform extra reductions after fetching a lookahead from the
-       scanner and before detecting a syntax error.  Thus, state merging
-       (from LALR or IELR) and default reductions corrupt the expected
-       token list.  However, the list is correct for canonical LR with
-       one exception: it will still contain any token that will not be
-       accepted due to an error action in a later state.
-  */
-  if (yytoken != YYEMPTY)
-    {
-      int yyn = yypact[+*yyssp];
-      YYPTRDIFF_T yysize0 = yytnamerr (YY_NULLPTR, yytname[yytoken]);
-      yysize = yysize0;
-      yyarg[yycount++] = yytname[yytoken];
-      if (!yypact_value_is_default (yyn))
-        {
-          /* Start YYX at -YYN if negative to avoid negative indexes in
-             YYCHECK.  In other words, skip the first -YYN actions for
-             this state because they are default actions.  */
-          int yyxbegin = yyn < 0 ? -yyn : 0;
-          /* Stay within bounds of both yycheck and yytname.  */
-          int yychecklim = YYLAST - yyn + 1;
-          int yyxend = yychecklim < YYNTOKENS ? yychecklim : YYNTOKENS;
-          int yyx;
-
-          for (yyx = yyxbegin; yyx < yyxend; ++yyx)
-            if (yycheck[yyx + yyn] == yyx && yyx != YYTERROR
-                && !yytable_value_is_error (yytable[yyx + yyn]))
-              {
-                if (yycount == YYERROR_VERBOSE_ARGS_MAXIMUM)
-                  {
-                    yycount = 1;
-                    yysize = yysize0;
-                    break;
-                  }
-                yyarg[yycount++] = yytname[yyx];
-                {
-                  YYPTRDIFF_T yysize1
-                    = yysize + yytnamerr (YY_NULLPTR, yytname[yyx]);
-                  if (yysize <= yysize1 && yysize1 <= YYSTACK_ALLOC_MAXIMUM)
-                    yysize = yysize1;
-                  else
-                    return 2;
-                }
-              }
-        }
-    }
-
-  switch (yycount)
-    {
-# define YYCASE_(N, S)                      \
-      case N:                               \
-        yyformat = S;                       \
-      break
-    default: /* Avoid compiler warnings. */
-      YYCASE_(0, YY_("syntax error"));
-      YYCASE_(1, YY_("syntax error, unexpected %s"));
-      YYCASE_(2, YY_("syntax error, unexpected %s, expecting %s"));
-      YYCASE_(3, YY_("syntax error, unexpected %s, expecting %s or %s"));
-      YYCASE_(4, YY_("syntax error, unexpected %s, expecting %s or %s or %s"));
-      YYCASE_(5, YY_("syntax error, unexpected %s, expecting %s or %s or %s or %s"));
-# undef YYCASE_
-    }
-
-  {
-    /* Don't count the "%s"s in the final size, but reserve room for
-       the terminator.  */
-    YYPTRDIFF_T yysize1 = yysize + (yystrlen (yyformat) - 2 * yycount) + 1;
-    if (yysize <= yysize1 && yysize1 <= YYSTACK_ALLOC_MAXIMUM)
-      yysize = yysize1;
-    else
-      return 2;
-  }
-
-  if (*yymsg_alloc < yysize)
-    {
-      *yymsg_alloc = 2 * yysize;
-      if (! (yysize <= *yymsg_alloc
-             && *yymsg_alloc <= YYSTACK_ALLOC_MAXIMUM))
-        *yymsg_alloc = YYSTACK_ALLOC_MAXIMUM;
-      return 1;
-    }
-
-  /* Avoid sprintf, as that infringes on the user's name space.
-     Don't have undefined behavior even if the translation
-     produced a string with the wrong number of "%s"s.  */
-  {
-    char *yyp = *yymsg;
-    int yyi = 0;
-    while ((*yyp = *yyformat) != '\0')
-      if (*yyp == '%' && yyformat[1] == 's' && yyi < yycount)
-        {
-          yyp += yytnamerr (yyp, yyarg[yyi++]);
-          yyformat += 2;
-        }
-      else
-        {
-          ++yyp;
-          ++yyformat;
-        }
-  }
-  return 0;
-}
-#endif /* YYERROR_VERBOSE */
 
 /*-----------------------------------------------.
 | Release the memory associated to this symbol.  |
 `-----------------------------------------------*/
 
 static void
-yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep)
+yydestruct (const char *yymsg,
+            yysymbol_kind_t yykind, YYSTYPE *yyvaluep)
 {
-  YYUSE (yyvaluep);
+  YY_USE (yyvaluep);
   if (!yymsg)
     yymsg = "Deleting";
-  YY_SYMBOL_PRINT (yymsg, yytype, yyvaluep, yylocationp);
+  YY_SYMBOL_PRINT (yymsg, yykind, yyvaluep, yylocationp);
 
   YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-  YYUSE (yytype);
+  YY_USE (yykind);
   YY_IGNORE_MAYBE_UNINITIALIZED_END
 }
 
 
-
-
-/* The lookahead symbol.  */
+/* Lookahead token kind.  */
 int yychar;
 
 /* The semantic value of the lookahead symbol.  */
 YYSTYPE yylval;
 /* Number of syntax errors so far.  */
 int yynerrs;
+
+
 
 
 /*----------.
@@ -1317,43 +1117,36 @@ int yynerrs;
 int
 yyparse (void)
 {
-    yy_state_fast_t yystate;
+    yy_state_fast_t yystate = 0;
     /* Number of tokens to shift before error messages enabled.  */
-    int yyerrstatus;
+    int yyerrstatus = 0;
 
-    /* The stacks and their tools:
-       'yyss': related to states.
-       'yyvs': related to semantic values.
-
-       Refer to the stacks through separate pointers, to allow yyoverflow
+    /* Refer to the stacks through separate pointers, to allow yyoverflow
        to reallocate them elsewhere.  */
 
-    /* The state stack.  */
+    /* Their size.  */
+    YYPTRDIFF_T yystacksize = YYINITDEPTH;
+
+    /* The state stack: array, bottom, top.  */
     yy_state_t yyssa[YYINITDEPTH];
-    yy_state_t *yyss;
-    yy_state_t *yyssp;
+    yy_state_t *yyss = yyssa;
+    yy_state_t *yyssp = yyss;
 
-    /* The semantic value stack.  */
+    /* The semantic value stack: array, bottom, top.  */
     YYSTYPE yyvsa[YYINITDEPTH];
-    YYSTYPE *yyvs;
-    YYSTYPE *yyvsp;
-
-    YYPTRDIFF_T yystacksize;
+    YYSTYPE *yyvs = yyvsa;
+    YYSTYPE *yyvsp = yyvs;
 
   int yyn;
+  /* The return value of yyparse.  */
   int yyresult;
-  /* Lookahead token as an internal (translated) token number.  */
-  int yytoken = 0;
+  /* Lookahead symbol kind.  */
+  yysymbol_kind_t yytoken = YYSYMBOL_YYEMPTY;
   /* The variables used to return semantic value and location from the
      action routines.  */
   YYSTYPE yyval;
 
-#if YYERROR_VERBOSE
-  /* Buffer for error messages, and its allocated size.  */
-  char yymsgbuf[128];
-  char *yymsg = yymsgbuf;
-  YYPTRDIFF_T yymsg_alloc = sizeof yymsgbuf;
-#endif
+
 
 #define YYPOPSTACK(N)   (yyvsp -= (N), yyssp -= (N))
 
@@ -1361,15 +1154,8 @@ yyparse (void)
      Keep to zero when no symbol should be popped.  */
   int yylen = 0;
 
-  yyssp = yyss = yyssa;
-  yyvsp = yyvs = yyvsa;
-  yystacksize = YYINITDEPTH;
-
   YYDPRINTF ((stderr, "Starting parse\n"));
 
-  yystate = 0;
-  yyerrstatus = 0;
-  yynerrs = 0;
   yychar = YYEMPTY; /* Cause a token to be read.  */
   goto yysetstate;
 
@@ -1392,6 +1178,7 @@ yysetstate:
   YY_IGNORE_USELESS_CAST_BEGIN
   *yyssp = YY_CAST (yy_state_t, yystate);
   YY_IGNORE_USELESS_CAST_END
+  YY_STACK_PRINT (yyss, yyssp);
 
   if (yyss + yystacksize - 1 <= yyssp)
 #if !defined yyoverflow && !defined YYSTACK_RELOCATE
@@ -1437,7 +1224,7 @@ yysetstate:
           goto yyexhaustedlab;
         YYSTACK_RELOCATE (yyss_alloc, yyss);
         YYSTACK_RELOCATE (yyvs_alloc, yyvs);
-# undef YYSTACK_RELOCATE
+#  undef YYSTACK_RELOCATE
         if (yyss1 != yyssa)
           YYSTACK_FREE (yyss1);
       }
@@ -1476,17 +1263,28 @@ yybackup:
 
   /* Not known => get a lookahead token if don't already have one.  */
 
-  /* YYCHAR is either YYEMPTY or YYEOF or a valid lookahead symbol.  */
+  /* YYCHAR is either empty, or end-of-input, or a valid lookahead.  */
   if (yychar == YYEMPTY)
     {
-      YYDPRINTF ((stderr, "Reading a token: "));
+      YYDPRINTF ((stderr, "Reading a token\n"));
       yychar = yylex ();
     }
 
   if (yychar <= YYEOF)
     {
-      yychar = yytoken = YYEOF;
+      yychar = YYEOF;
+      yytoken = YYSYMBOL_YYEOF;
       YYDPRINTF ((stderr, "Now at end of input.\n"));
+    }
+  else if (yychar == YYerror)
+    {
+      /* The scanner already issued an error message, process directly
+         to error recovery.  But do not keep the error token as
+         lookahead, it is too special and may lead us to an endless
+         loop in error recovery. */
+      yychar = YYUNDEF;
+      yytoken = YYSYMBOL_YYerror;
+      goto yyerrlab1;
     }
   else
     {
@@ -1556,7 +1354,7 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 2:
+  case 2: /* start: input  */
 #line 79 "go.y"
             {
     list<Statement *>::iterator it = (yyvsp[0].statement_list_t)->begin();
@@ -1565,401 +1363,401 @@ yyreduce:
         it++;
     }
 }
-#line 1569 "go_parser.cpp"
+#line 1367 "go_parser.cpp"
     break;
 
-  case 3:
+  case 3: /* input: input external_declaration  */
 #line 87 "go.y"
                                   {(yyval.statement_list_t) = (yyvsp[-1].statement_list_t); (yyval.statement_list_t)->push_back((yyvsp[0].statement_t));}
-#line 1575 "go_parser.cpp"
+#line 1373 "go_parser.cpp"
     break;
 
-  case 4:
+  case 4: /* input: external_declaration  */
 #line 88 "go.y"
                            {(yyval.statement_list_t) = new StatementList; (yyval.statement_list_t)->push_back((yyvsp[0].statement_t));}
-#line 1581 "go_parser.cpp"
+#line 1379 "go_parser.cpp"
     break;
 
-  case 5:
+  case 5: /* external_declaration: method_definition  */
 #line 91 "go.y"
                                         {(yyval.statement_t) = (yyvsp[0].statement_t);}
-#line 1587 "go_parser.cpp"
+#line 1385 "go_parser.cpp"
     break;
 
-  case 6:
+  case 6: /* external_declaration: declaration  */
 #line 92 "go.y"
                           {(yyval.statement_t) = new GlobalDeclaration((yyvsp[0].declaration_t));}
-#line 1593 "go_parser.cpp"
+#line 1391 "go_parser.cpp"
     break;
 
-  case 7:
+  case 7: /* external_declaration: package_list import_list  */
 #line 93 "go.y"
                                        {
                 /*$$ = new PackageDeclaration($1); 
                 $$ = new ImportDeclaration($2);*/
                 }
-#line 1602 "go_parser.cpp"
+#line 1400 "go_parser.cpp"
     break;
 
-  case 8:
+  case 8: /* external_declaration: package_list  */
 #line 97 "go.y"
                            {/*$$ = new PackageDeclaration($1);*/}
-#line 1608 "go_parser.cpp"
+#line 1406 "go_parser.cpp"
     break;
 
-  case 9:
+  case 9: /* package_list: package_list package  */
 #line 100 "go.y"
                                    { }
-#line 1614 "go_parser.cpp"
+#line 1412 "go_parser.cpp"
     break;
 
-  case 10:
+  case 10: /* package_list: package  */
 #line 101 "go.y"
                       {}
-#line 1620 "go_parser.cpp"
+#line 1418 "go_parser.cpp"
     break;
 
-  case 11:
+  case 11: /* package: TK_PACKAGE TK_ID  */
 #line 104 "go.y"
                           {  }
-#line 1626 "go_parser.cpp"
+#line 1424 "go_parser.cpp"
     break;
 
-  case 12:
+  case 12: /* import_list: TK_IMPORT '(' import ')'  */
 #line 107 "go.y"
                                        {}
-#line 1632 "go_parser.cpp"
+#line 1430 "go_parser.cpp"
     break;
 
-  case 13:
+  case 13: /* import: import TK_LIT_STRING  */
 #line 110 "go.y"
                              { }
-#line 1638 "go_parser.cpp"
+#line 1436 "go_parser.cpp"
     break;
 
-  case 14:
+  case 14: /* import: TK_LIT_STRING  */
 #line 111 "go.y"
                            {}
-#line 1644 "go_parser.cpp"
+#line 1442 "go_parser.cpp"
     break;
 
-  case 15:
+  case 15: /* method_definition: TK_FUNC TK_ID '(' parameters_type_list ')' type block_statement  */
 #line 114 "go.y"
                                                                                    {
                     (yyval.statement_t) = new MethodDefinition((Type)(yyvsp[-1].int_t), (yyvsp[-5].string_t), *(yyvsp[-3].parameter_list_t), (yyvsp[0].statement_t), yylineno );
                     delete (yyvsp[-3].parameter_list_t);
                  }
-#line 1653 "go_parser.cpp"
+#line 1451 "go_parser.cpp"
     break;
 
-  case 16:
+  case 16: /* method_definition: TK_FUNC TK_ID '(' parameters_type_list ')' block_statement  */
 #line 118 "go.y"
                                                                               {
                     (yyval.statement_t) = new MethodDefinition((Type)NULL, (yyvsp[-4].string_t), *(yyvsp[-2].parameter_list_t), (yyvsp[0].statement_t), yylineno );
                     delete (yyvsp[-2].parameter_list_t);
                  }
-#line 1662 "go_parser.cpp"
+#line 1460 "go_parser.cpp"
     break;
 
-  case 17:
+  case 17: /* method_definition: TK_FUNC TK_ID '(' ')' type block_statement  */
 #line 122 "go.y"
                                                              {
                      ParameterList * pm = new ParameterList;
                      (yyval.statement_t) = new MethodDefinition((Type)(yyvsp[-1].int_t), (yyvsp[-4].string_t), *pm, (yyvsp[0].statement_t), yylineno );
                      delete pm;
                  }
-#line 1672 "go_parser.cpp"
+#line 1470 "go_parser.cpp"
     break;
 
-  case 18:
+  case 18: /* method_definition: TK_FUNC TK_ID '(' ')' block_statement  */
 #line 127 "go.y"
                                                         {
                      ParameterList * pm = new ParameterList;
                      (yyval.statement_t) = new MethodDefinition((Type)NULL, (yyvsp[-3].string_t), *pm, (yyvsp[0].statement_t), yylineno );
                      delete pm;
                  }
-#line 1682 "go_parser.cpp"
+#line 1480 "go_parser.cpp"
     break;
 
-  case 19:
+  case 19: /* method_definition: TK_FUNC TK_ID '(' parameters_type_list ')' type ';'  */
 #line 132 "go.y"
                                                                       { // func hola (int x, int y) int;
                      (yyval.statement_t) = new MethodDefinition((Type)(yyvsp[-1].int_t), (yyvsp[-5].string_t), *(yyvsp[-3].parameter_list_t), NULL, yylineno);
                  }
-#line 1690 "go_parser.cpp"
+#line 1488 "go_parser.cpp"
     break;
 
-  case 20:
+  case 20: /* method_definition: TK_FUNC TK_ID '(' ')' type ';'  */
 #line 135 "go.y"
                                                  {
                      ParameterList * pm = new ParameterList;
                      (yyval.statement_t) = new MethodDefinition((Type)(yyvsp[-1].int_t), (yyvsp[-4].string_t), *pm , NULL, yylineno);
                      delete pm;
                  }
-#line 1700 "go_parser.cpp"
+#line 1498 "go_parser.cpp"
     break;
 
-  case 21:
+  case 21: /* declaration_list: declaration_list declaration  */
 #line 142 "go.y"
                                                { (yyval.declaration_list_t) = (yyvsp[-1].declaration_list_t); (yyval.declaration_list_t)->push_back((yyvsp[0].declaration_t)); }
-#line 1706 "go_parser.cpp"
+#line 1504 "go_parser.cpp"
     break;
 
-  case 22:
+  case 22: /* declaration_list: declaration  */
 #line 143 "go.y"
                               {(yyval.declaration_list_t) = new DeclarationList; (yyval.declaration_list_t)->push_back((yyvsp[0].declaration_t));}
-#line 1712 "go_parser.cpp"
+#line 1510 "go_parser.cpp"
     break;
 
-  case 23:
+  case 23: /* declaration: TK_VAR init_declarator_list type ';'  */
 #line 146 "go.y"
                                                    { (yyval.declaration_t) = new Declaration((Type)(yyvsp[-1].int_t), *(yyvsp[-2].init_declarator_list_t), yylineno); delete (yyvsp[-2].init_declarator_list_t);  }
-#line 1718 "go_parser.cpp"
+#line 1516 "go_parser.cpp"
     break;
 
-  case 24:
+  case 24: /* declaration: TK_VAR init_declarator_list ';'  */
 #line 147 "go.y"
                                              { (yyval.declaration_t) = new Declaration((Type)NULL, *(yyvsp[-1].init_declarator_list_t), yylineno); delete (yyvsp[-1].init_declarator_list_t);  }
-#line 1724 "go_parser.cpp"
+#line 1522 "go_parser.cpp"
     break;
 
-  case 25:
+  case 25: /* init_declarator_list: init_declarator_list ',' init_declarator  */
 #line 150 "go.y"
                                                                { (yyval.init_declarator_list_t) = (yyvsp[-2].init_declarator_list_t); (yyval.init_declarator_list_t)->push_back((yyvsp[0].init_declarator_t)); }
-#line 1730 "go_parser.cpp"
+#line 1528 "go_parser.cpp"
     break;
 
-  case 26:
+  case 26: /* init_declarator_list: init_declarator  */
 #line 151 "go.y"
                                   { (yyval.init_declarator_list_t) = new InitDeclaratorList; (yyval.init_declarator_list_t)->push_back((yyvsp[0].init_declarator_t)); }
-#line 1736 "go_parser.cpp"
+#line 1534 "go_parser.cpp"
     break;
 
-  case 27:
+  case 27: /* init_declarator: declarator  */
 #line 154 "go.y"
                             {(yyval.init_declarator_t) = new InitDeclarator((yyvsp[0].declarator_t), NULL, yylineno);}
-#line 1742 "go_parser.cpp"
+#line 1540 "go_parser.cpp"
     break;
 
-  case 28:
+  case 28: /* init_declarator: declarator '=' initializer  */
 #line 155 "go.y"
                                              { (yyval.init_declarator_t) = new InitDeclarator((yyvsp[-2].declarator_t), (yyvsp[0].initializer_t), yylineno); }
-#line 1748 "go_parser.cpp"
+#line 1546 "go_parser.cpp"
     break;
 
-  case 29:
+  case 29: /* declarator: TK_ID  */
 #line 158 "go.y"
                   {(yyval.declarator_t) = new Declarator((yyvsp[0].string_t), NULL, false, yylineno);}
-#line 1754 "go_parser.cpp"
+#line 1552 "go_parser.cpp"
     break;
 
-  case 30:
+  case 30: /* declarator: TK_ID '[' assignment_expression ']'  */
 #line 159 "go.y"
                                                 { (yyval.declarator_t) = new Declarator((yyvsp[-3].string_t), (yyvsp[-1].expr_t), true, yylineno);}
-#line 1760 "go_parser.cpp"
+#line 1558 "go_parser.cpp"
     break;
 
-  case 31:
+  case 31: /* declarator: TK_ID '[' ']'  */
 #line 160 "go.y"
                           {(yyval.declarator_t) = new Declarator((yyvsp[-2].string_t), NULL, true, yylineno);}
-#line 1766 "go_parser.cpp"
+#line 1564 "go_parser.cpp"
     break;
 
-  case 32:
+  case 32: /* parameters_type_list: parameters_type_list ',' parameter_declaration  */
 #line 163 "go.y"
                                                                      {(yyval.parameter_list_t) = (yyvsp[-2].parameter_list_t); (yyval.parameter_list_t)->push_back((yyvsp[0].parameter_t));}
-#line 1772 "go_parser.cpp"
+#line 1570 "go_parser.cpp"
     break;
 
-  case 33:
+  case 33: /* parameters_type_list: parameter_declaration  */
 #line 164 "go.y"
                                            { (yyval.parameter_list_t) = new ParameterList; (yyval.parameter_list_t)->push_back((yyvsp[0].parameter_t)); }
-#line 1778 "go_parser.cpp"
+#line 1576 "go_parser.cpp"
     break;
 
-  case 34:
+  case 34: /* parameter_declaration: type declarator  */
 #line 167 "go.y"
                                        { (yyval.parameter_t) = new Parameter((Type)(yyvsp[-1].int_t), (yyvsp[0].declarator_t), false, yylineno); }
-#line 1784 "go_parser.cpp"
+#line 1582 "go_parser.cpp"
     break;
 
-  case 35:
+  case 35: /* parameter_declaration: type  */
 #line 168 "go.y"
                             { (yyval.parameter_t) = new Parameter((Type)(yyvsp[0].int_t), NULL, false, yylineno); }
-#line 1790 "go_parser.cpp"
+#line 1588 "go_parser.cpp"
     break;
 
-  case 36:
+  case 36: /* parameter_declaration: type '[' ']'  */
 #line 169 "go.y"
                                      { (yyval.parameter_t) = new Parameter((Type)(yyvsp[-2].int_t), NULL, true, yylineno); }
-#line 1796 "go_parser.cpp"
+#line 1594 "go_parser.cpp"
     break;
 
-  case 37:
+  case 37: /* initializer: assignment_expression  */
 #line 172 "go.y"
                                    {
     InitializerElementList * list = new InitializerElementList;
     list->push_back((yyvsp[0].expr_t));
     (yyval.initializer_t) = new Initializer(*list, yylineno);
 }
-#line 1806 "go_parser.cpp"
+#line 1604 "go_parser.cpp"
     break;
 
-  case 38:
+  case 38: /* initializer: '{' initializer_list '}'  */
 #line 177 "go.y"
                                      { (yyval.initializer_t) = new Initializer(*(yyvsp[-1].initializer_list_t), yylineno); delete (yyvsp[-1].initializer_list_t);  }
-#line 1812 "go_parser.cpp"
+#line 1610 "go_parser.cpp"
     break;
 
-  case 39:
+  case 39: /* initializer_list: initializer_list ',' logical_or_expression  */
 #line 180 "go.y"
                                                              { (yyval.initializer_list_t) = (yyvsp[-2].initializer_list_t); (yyval.initializer_list_t)->push_back((yyvsp[0].expr_t)); }
-#line 1818 "go_parser.cpp"
+#line 1616 "go_parser.cpp"
     break;
 
-  case 40:
+  case 40: /* initializer_list: logical_or_expression  */
 #line 181 "go.y"
                                         {(yyval.initializer_list_t) = new InitializerElementList; (yyval.initializer_list_t)->push_back((yyvsp[0].expr_t));}
-#line 1824 "go_parser.cpp"
+#line 1622 "go_parser.cpp"
     break;
 
-  case 41:
+  case 41: /* statement: while_statement  */
 #line 184 "go.y"
                            {(yyval.statement_t) = (yyvsp[0].statement_t);}
-#line 1830 "go_parser.cpp"
+#line 1628 "go_parser.cpp"
     break;
 
-  case 42:
+  case 42: /* statement: expression_statement  */
 #line 185 "go.y"
                                {(yyval.statement_t) = (yyvsp[0].statement_t);}
-#line 1836 "go_parser.cpp"
+#line 1634 "go_parser.cpp"
     break;
 
-  case 43:
+  case 43: /* statement: if_statement  */
 #line 186 "go.y"
                        {(yyval.statement_t) = (yyvsp[0].statement_t);}
-#line 1842 "go_parser.cpp"
+#line 1640 "go_parser.cpp"
     break;
 
-  case 44:
+  case 44: /* statement: block_statement  */
 #line 187 "go.y"
                           {(yyval.statement_t) = (yyvsp[0].statement_t);}
-#line 1848 "go_parser.cpp"
+#line 1646 "go_parser.cpp"
     break;
 
-  case 45:
+  case 45: /* statement: jump_statement  */
 #line 188 "go.y"
                          {(yyval.statement_t) = (yyvsp[0].statement_t);}
-#line 1854 "go_parser.cpp"
+#line 1652 "go_parser.cpp"
     break;
 
-  case 46:
+  case 46: /* statement: for_statement  */
 #line 189 "go.y"
                         { (yyval.statement_t) = (yyvsp[0].statement_t);}
-#line 1860 "go_parser.cpp"
+#line 1658 "go_parser.cpp"
     break;
 
-  case 47:
+  case 47: /* statement: print_statement  */
 #line 190 "go.y"
                           { (yyval.statement_t) = (yyvsp[0].statement_t); }
-#line 1866 "go_parser.cpp"
+#line 1664 "go_parser.cpp"
     break;
 
-  case 48:
+  case 48: /* statement_list: statement_list statement  */
 #line 193 "go.y"
                                          { (yyval.statement_list_t) = (yyvsp[-1].statement_list_t); (yyval.statement_list_t)->push_back((yyvsp[0].statement_t)); }
-#line 1872 "go_parser.cpp"
+#line 1670 "go_parser.cpp"
     break;
 
-  case 49:
+  case 49: /* statement_list: statement  */
 #line 194 "go.y"
                           { (yyval.statement_list_t) = new StatementList; (yyval.statement_list_t)->push_back((yyvsp[0].statement_t)); }
-#line 1878 "go_parser.cpp"
+#line 1676 "go_parser.cpp"
     break;
 
-  case 50:
+  case 50: /* if_statement: TK_IF expression statement  */
 #line 197 "go.y"
                                          {(yyval.statement_t) = new IfStatement((yyvsp[-1].expr_t), (yyvsp[0].statement_t), yylineno);}
-#line 1884 "go_parser.cpp"
+#line 1682 "go_parser.cpp"
     break;
 
-  case 51:
+  case 51: /* if_statement: TK_IF expression ';' expression statement  */
 #line 198 "go.y"
                                                         {(yyval.statement_t) = new IfStatement((yyvsp[-1].expr_t), (yyvsp[0].statement_t), yylineno);}
-#line 1890 "go_parser.cpp"
+#line 1688 "go_parser.cpp"
     break;
 
-  case 52:
+  case 52: /* if_statement: TK_IF expression ';' expression statement TK_ELSE statement  */
 #line 199 "go.y"
                                                                          {(yyval.statement_t) = new ElseStatement((yyvsp[-3].expr_t), (yyvsp[-2].statement_t), (yyvsp[0].statement_t), yylineno);}
-#line 1896 "go_parser.cpp"
+#line 1694 "go_parser.cpp"
     break;
 
-  case 53:
+  case 53: /* if_statement: TK_IF expression statement TK_ELSE statement  */
 #line 200 "go.y"
                                                            {(yyval.statement_t) = new ElseStatement((yyvsp[-3].expr_t), (yyvsp[-2].statement_t), (yyvsp[0].statement_t), yylineno);}
-#line 1902 "go_parser.cpp"
+#line 1700 "go_parser.cpp"
     break;
 
-  case 54:
+  case 54: /* for_statement: TK_FOR expression statement  */
 #line 203 "go.y"
                                            {(yyval.statement_t) = new ForStatement((yyvsp[-1].expr_t),(yyvsp[0].statement_t),yylineno);}
-#line 1908 "go_parser.cpp"
+#line 1706 "go_parser.cpp"
     break;
 
-  case 55:
+  case 55: /* for_statement: TK_FOR expression ';' expression ';' expression statement  */
 #line 204 "go.y"
                                                                          {(yyval.statement_t) = new ForStatementExtended((yyvsp[-5].expr_t),(yyvsp[-3].expr_t),(yyvsp[-1].expr_t),(yyvsp[0].statement_t),yylineno);}
-#line 1914 "go_parser.cpp"
+#line 1712 "go_parser.cpp"
     break;
 
-  case 56:
+  case 56: /* for_statement: TK_FOR statement  */
 #line 205 "go.y"
                                 { {(yyval.statement_t) = new ForStatement(NULL,(yyvsp[0].statement_t),yylineno);} }
-#line 1920 "go_parser.cpp"
+#line 1718 "go_parser.cpp"
     break;
 
-  case 57:
+  case 57: /* expression_statement: expression ';'  */
 #line 208 "go.y"
                                      {(yyval.statement_t) = new ExprStatement((yyvsp[-1].expr_t), yylineno);}
-#line 1926 "go_parser.cpp"
+#line 1724 "go_parser.cpp"
     break;
 
-  case 58:
+  case 58: /* while_statement: TK_WHILE '(' expression ')' statement  */
 #line 211 "go.y"
                                                        { (yyval.statement_t) = new WhileStatement((yyvsp[-2].expr_t), (yyvsp[0].statement_t), yylineno);}
-#line 1932 "go_parser.cpp"
+#line 1730 "go_parser.cpp"
     break;
 
-  case 59:
+  case 59: /* jump_statement: TK_RETURN expression ';'  */
 #line 214 "go.y"
                                          {(yyval.statement_t) = new ReturnStatement((yyvsp[-1].expr_t), yylineno);}
-#line 1938 "go_parser.cpp"
+#line 1736 "go_parser.cpp"
     break;
 
-  case 60:
+  case 60: /* block_statement: '{' statement_list '}'  */
 #line 217 "go.y"
                                         { 
                     DeclarationList * list = new DeclarationList();
                     (yyval.statement_t) = new BlockStatement(*(yyvsp[-1].statement_list_t), *list, yylineno);
                     delete list;
                }
-#line 1948 "go_parser.cpp"
+#line 1746 "go_parser.cpp"
     break;
 
-  case 61:
+  case 61: /* block_statement: '{' declaration_list statement_list '}'  */
 #line 222 "go.y"
                                                           {(yyval.statement_t) = new BlockStatement(*(yyvsp[-1].statement_list_t), *(yyvsp[-2].declaration_list_t), yylineno); delete (yyvsp[-2].declaration_list_t); delete (yyvsp[-1].statement_list_t); }
-#line 1954 "go_parser.cpp"
+#line 1752 "go_parser.cpp"
     break;
 
-  case 62:
+  case 62: /* block_statement: '{' declaration_list '}'  */
 #line 223 "go.y"
                                             {}
-#line 1960 "go_parser.cpp"
+#line 1758 "go_parser.cpp"
     break;
 
-  case 63:
+  case 63: /* block_statement: '{' '}'  */
 #line 224 "go.y"
                          {
                    StatementList * stmts = new StatementList();
@@ -1969,308 +1767,308 @@ yyreduce:
                    delete decls;
 
                }
-#line 1973 "go_parser.cpp"
+#line 1771 "go_parser.cpp"
     break;
 
-  case 64:
+  case 64: /* print_statement: TK_ID '.' TK_PRINTLN '(' concat_list ')' ';'  */
 #line 234 "go.y"
                                                               {(yyval.statement_t) = new PrintStatement((yyvsp[-2].string_t),NULL,yylineno);}
-#line 1979 "go_parser.cpp"
+#line 1777 "go_parser.cpp"
     break;
 
-  case 65:
+  case 65: /* print_statement: TK_ID '.' TK_PRINTLN '(' concat_list ',' expression ')' ';'  */
 #line 235 "go.y"
                                                                             {(yyval.statement_t) = new PrintStatement((yyvsp[-4].string_t),(yyvsp[-2].expr_t),yylineno);}
-#line 1985 "go_parser.cpp"
+#line 1783 "go_parser.cpp"
     break;
 
-  case 66:
+  case 66: /* concat_list: concat_list '+' TK_LIT_STRING  */
 #line 238 "go.y"
                                            {
             strcat(const_cast<char *>(yyvsp[-2].string_t),(yyvsp[0].string_t));
             (yyval.string_t) = (yyvsp[-2].string_t);
             }
-#line 1994 "go_parser.cpp"
+#line 1792 "go_parser.cpp"
     break;
 
-  case 67:
+  case 67: /* concat_list: TK_LIT_STRING  */
 #line 242 "go.y"
                            {(yyval.string_t)=(yyvsp[0].string_t);}
-#line 2000 "go_parser.cpp"
+#line 1798 "go_parser.cpp"
     break;
 
-  case 68:
+  case 68: /* concat_list: TK_ID  */
 #line 243 "go.y"
                    { (yyval.string_t) = (yyvsp[0].string_t);}
-#line 2006 "go_parser.cpp"
+#line 1804 "go_parser.cpp"
     break;
 
-  case 69:
+  case 69: /* type: TK_VOID  */
 #line 245 "go.y"
               {(yyval.int_t) = VOID;}
-#line 2012 "go_parser.cpp"
+#line 1810 "go_parser.cpp"
     break;
 
-  case 70:
+  case 70: /* type: TK_INT_TYPE  */
 #line 246 "go.y"
                  {(yyval.int_t) = INT;}
-#line 2018 "go_parser.cpp"
+#line 1816 "go_parser.cpp"
     break;
 
-  case 71:
+  case 71: /* type: TK_FLOAT_TYPE  */
 #line 247 "go.y"
                    {(yyval.int_t) = FLOAT;}
-#line 2024 "go_parser.cpp"
+#line 1822 "go_parser.cpp"
     break;
 
-  case 72:
+  case 72: /* type: TK_BOOL_TYPE  */
 #line 248 "go.y"
                   {(yyval.int_t) = BOOL;}
-#line 2030 "go_parser.cpp"
+#line 1828 "go_parser.cpp"
     break;
 
-  case 73:
+  case 73: /* primary_expression: '(' expression ')'  */
 #line 251 "go.y"
                                        {(yyval.expr_t) = (yyvsp[-1].expr_t);}
-#line 2036 "go_parser.cpp"
+#line 1834 "go_parser.cpp"
     break;
 
-  case 74:
+  case 74: /* primary_expression: TK_ID  */
 #line 252 "go.y"
             {(yyval.expr_t) = new IdExpr((yyvsp[0].string_t), yylineno);}
-#line 2042 "go_parser.cpp"
+#line 1840 "go_parser.cpp"
     break;
 
-  case 75:
+  case 75: /* primary_expression: constant  */
 #line 253 "go.y"
                {(yyval.expr_t) = (yyvsp[0].expr_t);}
-#line 2048 "go_parser.cpp"
+#line 1846 "go_parser.cpp"
     break;
 
-  case 76:
+  case 76: /* primary_expression: TK_LIT_STRING  */
 #line 254 "go.y"
                     { (yyval.expr_t) = new StringExpr((yyvsp[0].string_t), yylineno); }
-#line 2054 "go_parser.cpp"
+#line 1852 "go_parser.cpp"
     break;
 
-  case 79:
+  case 79: /* postfix_expression: primary_expression  */
 #line 261 "go.y"
                                        {(yyval.expr_t) = (yyvsp[0].expr_t);}
-#line 2060 "go_parser.cpp"
+#line 1858 "go_parser.cpp"
     break;
 
-  case 80:
+  case 80: /* postfix_expression: postfix_expression '[' expression ']'  */
 #line 262 "go.y"
                                                             { (yyval.expr_t) = new ArrayExpr((IdExpr*)(yyvsp[-3].expr_t), (yyvsp[-1].expr_t), yylineno); }
-#line 2066 "go_parser.cpp"
+#line 1864 "go_parser.cpp"
     break;
 
-  case 81:
+  case 81: /* postfix_expression: postfix_expression '(' ')'  */
 #line 263 "go.y"
                                                  { (yyval.expr_t) = new MethodInvocationExpr((IdExpr*)(yyvsp[-2].expr_t), *(new ArgumentList), yylineno); }
-#line 2072 "go_parser.cpp"
+#line 1870 "go_parser.cpp"
     break;
 
-  case 82:
+  case 82: /* postfix_expression: postfix_expression '(' argument_expression_list ')'  */
 #line 264 "go.y"
                                                                           { (yyval.expr_t) = new MethodInvocationExpr((IdExpr*)(yyvsp[-3].expr_t), *(yyvsp[-1].argument_list_t), yylineno); }
-#line 2078 "go_parser.cpp"
+#line 1876 "go_parser.cpp"
     break;
 
-  case 83:
+  case 83: /* postfix_expression: postfix_expression TK_PLUS_PLUS  */
 #line 265 "go.y"
                                                       { (yyval.expr_t) = new PostIncrementExpr((IdExpr*)(yyvsp[-1].expr_t), yylineno); }
-#line 2084 "go_parser.cpp"
+#line 1882 "go_parser.cpp"
     break;
 
-  case 84:
+  case 84: /* postfix_expression: postfix_expression TK_MINUS_MINUS  */
 #line 266 "go.y"
                                                         { (yyval.expr_t) = new PostDecrementExpr((IdExpr*)(yyvsp[-1].expr_t), yylineno); }
-#line 2090 "go_parser.cpp"
+#line 1888 "go_parser.cpp"
     break;
 
-  case 85:
+  case 85: /* argument_expression_list: argument_expression_list ',' assignment_expression  */
 #line 270 "go.y"
                                                                              {(yyval.argument_list_t) = (yyvsp[-2].argument_list_t);  (yyval.argument_list_t)->push_back((yyvsp[0].expr_t));}
-#line 2096 "go_parser.cpp"
+#line 1894 "go_parser.cpp"
     break;
 
-  case 86:
+  case 86: /* argument_expression_list: assignment_expression  */
 #line 271 "go.y"
                                                 { (yyval.argument_list_t) = new ArgumentList; (yyval.argument_list_t)->push_back((yyvsp[0].expr_t));}
-#line 2102 "go_parser.cpp"
+#line 1900 "go_parser.cpp"
     break;
 
-  case 87:
+  case 87: /* unary_expression: TK_PLUS_PLUS unary_expression  */
 #line 274 "go.y"
                                                 {(yyval.expr_t) = new UnaryExpr(INCREMENT, (yyvsp[0].expr_t), yylineno);}
-#line 2108 "go_parser.cpp"
+#line 1906 "go_parser.cpp"
     break;
 
-  case 88:
+  case 88: /* unary_expression: TK_MINUS_MINUS unary_expression  */
 #line 275 "go.y"
                                                   {(yyval.expr_t) = new UnaryExpr(DECREMENT, (yyvsp[0].expr_t), yylineno);}
-#line 2114 "go_parser.cpp"
+#line 1912 "go_parser.cpp"
     break;
 
-  case 89:
+  case 89: /* unary_expression: TK_NOT unary_expression  */
 #line 276 "go.y"
                                            {(yyval.expr_t) = new UnaryExpr(NOT, (yyvsp[0].expr_t), yylineno);}
-#line 2120 "go_parser.cpp"
+#line 1918 "go_parser.cpp"
     break;
 
-  case 90:
+  case 90: /* unary_expression: postfix_expression  */
 #line 277 "go.y"
                                      { (yyval.expr_t) = (yyvsp[0].expr_t);}
-#line 2126 "go_parser.cpp"
+#line 1924 "go_parser.cpp"
     break;
 
-  case 91:
+  case 91: /* multiplicative_expression: multiplicative_expression '*' unary_expression  */
 #line 280 "go.y"
                                                                           { (yyval.expr_t) = new MulExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
-#line 2132 "go_parser.cpp"
+#line 1930 "go_parser.cpp"
     break;
 
-  case 92:
+  case 92: /* multiplicative_expression: multiplicative_expression '/' unary_expression  */
 #line 281 "go.y"
                                                        { (yyval.expr_t) = new DivExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
-#line 2138 "go_parser.cpp"
+#line 1936 "go_parser.cpp"
     break;
 
-  case 93:
+  case 93: /* multiplicative_expression: unary_expression  */
 #line 282 "go.y"
                          {(yyval.expr_t) = (yyvsp[0].expr_t);}
-#line 2144 "go_parser.cpp"
+#line 1942 "go_parser.cpp"
     break;
 
-  case 94:
+  case 94: /* additive_expression: additive_expression '+' multiplicative_expression  */
 #line 285 "go.y"
                                                                        { (yyval.expr_t) = new AddExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
-#line 2150 "go_parser.cpp"
+#line 1948 "go_parser.cpp"
     break;
 
-  case 95:
+  case 95: /* additive_expression: additive_expression '-' multiplicative_expression  */
 #line 286 "go.y"
                                                                         { (yyval.expr_t) = new SubExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
-#line 2156 "go_parser.cpp"
+#line 1954 "go_parser.cpp"
     break;
 
-  case 96:
+  case 96: /* additive_expression: multiplicative_expression  */
 #line 287 "go.y"
                                                 {(yyval.expr_t) = (yyvsp[0].expr_t);}
-#line 2162 "go_parser.cpp"
+#line 1960 "go_parser.cpp"
     break;
 
-  case 97:
+  case 97: /* relational_expression: relational_expression '>' additive_expression  */
 #line 290 "go.y"
                                                                      { (yyval.expr_t) = new GtExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
-#line 2168 "go_parser.cpp"
+#line 1966 "go_parser.cpp"
     break;
 
-  case 98:
+  case 98: /* relational_expression: relational_expression '<' additive_expression  */
 #line 291 "go.y"
                                                                      { (yyval.expr_t) = new LtExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
-#line 2174 "go_parser.cpp"
+#line 1972 "go_parser.cpp"
     break;
 
-  case 99:
+  case 99: /* relational_expression: relational_expression TK_GREATER_OR_EQUAL additive_expression  */
 #line 292 "go.y"
                                                                                      { (yyval.expr_t) = new GteExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
-#line 2180 "go_parser.cpp"
+#line 1978 "go_parser.cpp"
     break;
 
-  case 100:
+  case 100: /* relational_expression: relational_expression TK_LESS_OR_EQUAL additive_expression  */
 #line 293 "go.y"
                                                                                   { (yyval.expr_t) = new LteExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
-#line 2186 "go_parser.cpp"
+#line 1984 "go_parser.cpp"
     break;
 
-  case 101:
+  case 101: /* relational_expression: additive_expression  */
 #line 294 "go.y"
                                            {(yyval.expr_t) = (yyvsp[0].expr_t);}
-#line 2192 "go_parser.cpp"
+#line 1990 "go_parser.cpp"
     break;
 
-  case 102:
+  case 102: /* equality_expression: equality_expression TK_EQUAL relational_expression  */
 #line 297 "go.y"
                                                                          { (yyval.expr_t) = new EqExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
-#line 2198 "go_parser.cpp"
+#line 1996 "go_parser.cpp"
     break;
 
-  case 103:
+  case 103: /* equality_expression: equality_expression TK_NOT_EQUAL relational_expression  */
 #line 298 "go.y"
                                                                             { (yyval.expr_t) = new NeqExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
-#line 2204 "go_parser.cpp"
+#line 2002 "go_parser.cpp"
     break;
 
-  case 104:
+  case 104: /* equality_expression: relational_expression  */
 #line 299 "go.y"
                                            {(yyval.expr_t) = (yyvsp[0].expr_t);}
-#line 2210 "go_parser.cpp"
+#line 2008 "go_parser.cpp"
     break;
 
-  case 105:
+  case 105: /* logical_or_expression: logical_or_expression TK_OR logical_and_expression  */
 #line 302 "go.y"
                                                                           { (yyval.expr_t) = new LogicalOrExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
-#line 2216 "go_parser.cpp"
+#line 2014 "go_parser.cpp"
     break;
 
-  case 106:
+  case 106: /* logical_or_expression: logical_and_expression  */
 #line 304 "go.y"
                                              {(yyval.expr_t) = (yyvsp[0].expr_t);}
-#line 2222 "go_parser.cpp"
+#line 2020 "go_parser.cpp"
     break;
 
-  case 107:
+  case 107: /* logical_and_expression: logical_and_expression TK_AND equality_expression  */
 #line 307 "go.y"
                                                                           { (yyval.expr_t) = new LogicalAndExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
-#line 2228 "go_parser.cpp"
+#line 2026 "go_parser.cpp"
     break;
 
-  case 108:
+  case 108: /* logical_and_expression: equality_expression  */
 #line 308 "go.y"
                                             {(yyval.expr_t) = (yyvsp[0].expr_t);}
-#line 2234 "go_parser.cpp"
+#line 2032 "go_parser.cpp"
     break;
 
-  case 109:
+  case 109: /* assignment_operator: '='  */
 #line 311 "go.y"
                          { (yyval.int_t) = EQUAL; }
-#line 2240 "go_parser.cpp"
+#line 2038 "go_parser.cpp"
     break;
 
-  case 110:
+  case 110: /* assignment_operator: TK_PLUS_EQUAL  */
 #line 312 "go.y"
                                    {(yyval.int_t) = PLUSEQUAL; }
-#line 2246 "go_parser.cpp"
+#line 2044 "go_parser.cpp"
     break;
 
-  case 111:
+  case 111: /* assignment_operator: TK_MINUS_EQUAL  */
 #line 313 "go.y"
                                     { (yyval.int_t) = MINUSEQUAL; }
-#line 2252 "go_parser.cpp"
+#line 2050 "go_parser.cpp"
     break;
 
-  case 112:
+  case 112: /* expression: assignment_expression  */
 #line 316 "go.y"
                                   {(yyval.expr_t) = (yyvsp[0].expr_t);}
-#line 2258 "go_parser.cpp"
+#line 2056 "go_parser.cpp"
     break;
 
-  case 113:
+  case 113: /* constant: TK_LIT_INT  */
 #line 319 "go.y"
                      { (yyval.expr_t) = new IntExpr((yyvsp[0].int_t) , yylineno);}
-#line 2264 "go_parser.cpp"
+#line 2062 "go_parser.cpp"
     break;
 
-  case 114:
+  case 114: /* constant: TK_LIT_FLOAT  */
 #line 320 "go.y"
                        { (yyval.expr_t) = new FloatExpr((yyvsp[0].float_t) , yylineno);}
-#line 2270 "go_parser.cpp"
+#line 2068 "go_parser.cpp"
     break;
 
 
-#line 2274 "go_parser.cpp"
+#line 2072 "go_parser.cpp"
 
       default: break;
     }
@@ -2285,11 +2083,10 @@ yyreduce:
      case of YYERROR or YYBACKUP, subsequent parser actions might lead
      to an incorrect destructor call or verbose syntax error message
      before the lookahead is translated.  */
-  YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
+  YY_SYMBOL_PRINT ("-> $$ =", YY_CAST (yysymbol_kind_t, yyr1[yyn]), &yyval, &yyloc);
 
   YYPOPSTACK (yylen);
   yylen = 0;
-  YY_STACK_PRINT (yyss, yyssp);
 
   *++yyvsp = yyval;
 
@@ -2313,49 +2110,13 @@ yyreduce:
 yyerrlab:
   /* Make sure we have latest lookahead translation.  See comments at
      user semantic actions for why this is necessary.  */
-  yytoken = yychar == YYEMPTY ? YYEMPTY : YYTRANSLATE (yychar);
-
+  yytoken = yychar == YYEMPTY ? YYSYMBOL_YYEMPTY : YYTRANSLATE (yychar);
   /* If not already recovering from an error, report this error.  */
   if (!yyerrstatus)
     {
       ++yynerrs;
-#if ! YYERROR_VERBOSE
       yyerror (YY_("syntax error"));
-#else
-# define YYSYNTAX_ERROR yysyntax_error (&yymsg_alloc, &yymsg, \
-                                        yyssp, yytoken)
-      {
-        char const *yymsgp = YY_("syntax error");
-        int yysyntax_error_status;
-        yysyntax_error_status = YYSYNTAX_ERROR;
-        if (yysyntax_error_status == 0)
-          yymsgp = yymsg;
-        else if (yysyntax_error_status == 1)
-          {
-            if (yymsg != yymsgbuf)
-              YYSTACK_FREE (yymsg);
-            yymsg = YY_CAST (char *, YYSTACK_ALLOC (YY_CAST (YYSIZE_T, yymsg_alloc)));
-            if (!yymsg)
-              {
-                yymsg = yymsgbuf;
-                yymsg_alloc = sizeof yymsgbuf;
-                yysyntax_error_status = 2;
-              }
-            else
-              {
-                yysyntax_error_status = YYSYNTAX_ERROR;
-                yymsgp = yymsg;
-              }
-          }
-        yyerror (yymsgp);
-        if (yysyntax_error_status == 2)
-          goto yyexhaustedlab;
-      }
-# undef YYSYNTAX_ERROR
-#endif
     }
-
-
 
   if (yyerrstatus == 3)
     {
@@ -2405,13 +2166,14 @@ yyerrorlab:
 yyerrlab1:
   yyerrstatus = 3;      /* Each real token shifted decrements this.  */
 
+  /* Pop stack until we find a state that shifts the error token.  */
   for (;;)
     {
       yyn = yypact[yystate];
       if (!yypact_value_is_default (yyn))
         {
-          yyn += YYTERROR;
-          if (0 <= yyn && yyn <= YYLAST && yycheck[yyn] == YYTERROR)
+          yyn += YYSYMBOL_YYerror;
+          if (0 <= yyn && yyn <= YYLAST && yycheck[yyn] == YYSYMBOL_YYerror)
             {
               yyn = yytable[yyn];
               if (0 < yyn)
@@ -2425,7 +2187,7 @@ yyerrlab1:
 
 
       yydestruct ("Error: popping",
-                  yystos[yystate], yyvsp);
+                  YY_ACCESSING_SYMBOL (yystate), yyvsp);
       YYPOPSTACK (1);
       yystate = *yyssp;
       YY_STACK_PRINT (yyss, yyssp);
@@ -2437,7 +2199,7 @@ yyerrlab1:
 
 
   /* Shift the error token.  */
-  YY_SYMBOL_PRINT ("Shifting", yystos[yyn], yyvsp, yylsp);
+  YY_SYMBOL_PRINT ("Shifting", YY_ACCESSING_SYMBOL (yyn), yyvsp, yylsp);
 
   yystate = yyn;
   goto yynewstate;
@@ -2459,20 +2221,20 @@ yyabortlab:
   goto yyreturn;
 
 
-#if !defined yyoverflow || YYERROR_VERBOSE
+#if !defined yyoverflow
 /*-------------------------------------------------.
 | yyexhaustedlab -- memory exhaustion comes here.  |
 `-------------------------------------------------*/
 yyexhaustedlab:
   yyerror (YY_("memory exhausted"));
   yyresult = 2;
-  /* Fall through.  */
+  goto yyreturn;
 #endif
 
 
-/*-----------------------------------------------------.
-| yyreturn -- parsing is finished, return the result.  |
-`-----------------------------------------------------*/
+/*-------------------------------------------------------.
+| yyreturn -- parsing is finished, clean up and return.  |
+`-------------------------------------------------------*/
 yyreturn:
   if (yychar != YYEMPTY)
     {
@@ -2489,17 +2251,15 @@ yyreturn:
   while (yyssp != yyss)
     {
       yydestruct ("Cleanup: popping",
-                  yystos[+*yyssp], yyvsp);
+                  YY_ACCESSING_SYMBOL (+*yyssp), yyvsp);
       YYPOPSTACK (1);
     }
 #ifndef yyoverflow
   if (yyss != yyssa)
     YYSTACK_FREE (yyss);
 #endif
-#if YYERROR_VERBOSE
-  if (yymsg != yymsgbuf)
-    YYSTACK_FREE (yymsg);
-#endif
+
   return yyresult;
 }
+
 #line 322 "go.y"

@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.5.1.  */
+/* A Bison parser, made by GNU Bison 3.7.5.  */
 
 /* Bison interface for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2020 Free Software Foundation,
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2021 Free Software Foundation,
    Inc.
 
    This program is free software: you can redistribute it and/or modify
@@ -31,8 +31,9 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-/* Undocumented macros, especially those whose name start with YY_,
-   are private implementation details.  Do not rely on them.  */
+/* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
+   especially those whose name start with YY_ or yy_.  They are
+   private implementation details that can be changed or removed.  */
 
 #ifndef YY_YY_TOKENS_H_INCLUDED
 # define YY_YY_TOKENS_H_INCLUDED
@@ -48,48 +49,53 @@ extern int yydebug;
 
     #include "ast.h"
 
-#line 52 "tokens.h"
+#line 53 "tokens.h"
 
-/* Token type.  */
+/* Token kinds.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
   enum yytokentype
   {
-    TK_LIT_STRING = 258,
-    TK_ID = 259,
-    TK_LIT_INT = 260,
-    TK_LIT_FLOAT = 261,
-    TK_BOOL_TYPE = 262,
-    TK_TRUE = 263,
-    TK_FALSE = 264,
-    TK_IF = 265,
-    TK_ELSE = 266,
-    TK_WHILE = 267,
-    TK_RETURN = 268,
-    TK_FOR = 269,
-    TK_CONTINUE = 270,
-    TK_BREAK = 271,
-    TK_VOID = 272,
-    TK_INT_TYPE = 273,
-    TK_FLOAT_TYPE = 274,
-    TK_VAR = 275,
-    TK_PRINTF = 276,
-    TK_PLUS_EQUAL = 277,
-    TK_MINUS_EQUAL = 278,
-    TK_PLUS_PLUS = 279,
-    TK_MINUS_MINUS = 280,
-    TK_NOT = 281,
-    TK_OR = 282,
-    TK_AND = 283,
-    TK_EQUAL = 284,
-    TK_NOT_EQUAL = 285,
-    TK_GREATER_OR_EQUAL = 286,
-    TK_LESS_OR_EQUAL = 287,
-    TK_PACKAGE = 288,
-    TK_IMPORT = 289,
-    TK_FUNC = 290,
-    TK_PRINTLN = 291
+    YYEMPTY = -2,
+    YYEOF = 0,                     /* "end of file"  */
+    YYerror = 256,                 /* error  */
+    YYUNDEF = 257,                 /* "invalid token"  */
+    TK_LIT_STRING = 258,           /* TK_LIT_STRING  */
+    TK_ID = 259,                   /* TK_ID  */
+    TK_LIT_INT = 260,              /* TK_LIT_INT  */
+    TK_LIT_FLOAT = 261,            /* TK_LIT_FLOAT  */
+    TK_BOOL_TYPE = 262,            /* TK_BOOL_TYPE  */
+    TK_TRUE = 263,                 /* TK_TRUE  */
+    TK_FALSE = 264,                /* TK_FALSE  */
+    TK_IF = 265,                   /* TK_IF  */
+    TK_ELSE = 266,                 /* TK_ELSE  */
+    TK_WHILE = 267,                /* TK_WHILE  */
+    TK_RETURN = 268,               /* TK_RETURN  */
+    TK_FOR = 269,                  /* TK_FOR  */
+    TK_CONTINUE = 270,             /* TK_CONTINUE  */
+    TK_BREAK = 271,                /* TK_BREAK  */
+    TK_VOID = 272,                 /* TK_VOID  */
+    TK_INT_TYPE = 273,             /* TK_INT_TYPE  */
+    TK_FLOAT_TYPE = 274,           /* TK_FLOAT_TYPE  */
+    TK_VAR = 275,                  /* TK_VAR  */
+    TK_PRINTF = 276,               /* TK_PRINTF  */
+    TK_PLUS_EQUAL = 277,           /* TK_PLUS_EQUAL  */
+    TK_MINUS_EQUAL = 278,          /* TK_MINUS_EQUAL  */
+    TK_PLUS_PLUS = 279,            /* TK_PLUS_PLUS  */
+    TK_MINUS_MINUS = 280,          /* TK_MINUS_MINUS  */
+    TK_NOT = 281,                  /* TK_NOT  */
+    TK_OR = 282,                   /* TK_OR  */
+    TK_AND = 283,                  /* TK_AND  */
+    TK_EQUAL = 284,                /* TK_EQUAL  */
+    TK_NOT_EQUAL = 285,            /* TK_NOT_EQUAL  */
+    TK_GREATER_OR_EQUAL = 286,     /* TK_GREATER_OR_EQUAL  */
+    TK_LESS_OR_EQUAL = 287,        /* TK_LESS_OR_EQUAL  */
+    TK_PACKAGE = 288,              /* TK_PACKAGE  */
+    TK_IMPORT = 289,               /* TK_IMPORT  */
+    TK_FUNC = 290,                 /* TK_FUNC  */
+    TK_PRINTLN = 291               /* TK_PRINTLN  */
   };
+  typedef enum yytokentype yytoken_kind_t;
 #endif
 
 /* Value type.  */
@@ -118,7 +124,7 @@ union YYSTYPE
     Parameter * parameter_t;
     ParameterList * parameter_list_t;
 
-#line 122 "tokens.h"
+#line 128 "tokens.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
