@@ -40,6 +40,7 @@ DIGIT [0-9]
 [a-zA-Z]({DIGIT}|[a-zA-Z_0-9]|_)* { yylval.string_t = strdup(yytext); return TK_ID; }
 "!" {return TK_NOT; }
 ";" {return ';'; }
+":" {return ':'; }
 "," {return ','; }
 "+" {return '+'; }
 "-" {return '-'; }

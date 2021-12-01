@@ -29,6 +29,7 @@ func hola(int x) int{
         var check bool;
         fmt.Println("Mario=");
         fmt.Println("Mario" + "Aaron");
+        break
     }
 }
 

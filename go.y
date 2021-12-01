@@ -233,6 +233,7 @@ block_statement: '{' statement_list '}' {
 
 print_statement: TK_ID '.' TK_PRINTLN '(' concat_list ')' ';' {$$ = new PrintStatement($5,NULL,yylineno);}
                | TK_ID '.' TK_PRINTLN '(' concat_list ',' expression ')' ';'{$$ = new PrintStatement($5,$7,yylineno);}
+               | TK_ID '.' TK_PRINTLN '(' expression ')' ';'{$$ = new PrintStatement(NULL,$5,yylineno);}
                ;
 
 concat_list: concat_list '+' TK_LIT_STRING {
@@ -308,7 +309,8 @@ logical_and_expression: logical_and_expression TK_AND equality_expression { $$ =
                       | equality_expression {$$ = $1;}
                       ;
 
-assignment_operator: '=' { $$ = EQUAL; }
+assignment_operator: ':' '=' { $$ = EQUAL; }
+                    | '=' { $$ = EQUAL; }
                    | TK_PLUS_EQUAL {$$ = PLUSEQUAL; }
                    | TK_MINUS_EQUAL { $$ = MINUSEQUAL; }
                    ;
