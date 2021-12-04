@@ -21,6 +21,11 @@ map<string, Type> resultTypes ={
     {"FLOAT,FLOAT", FLOAT},
     {"INT,FLOAT", FLOAT},
     {"FLOAT,INT", FLOAT},
+    {"STRING,STRING", STRING},
+    {"DYNAMIC,INT", INT},
+    {"INT,DYNAMIC", INT},
+    {"DYNAMIC,FLOAT", FLOAT},
+    {"FLOAT,DYNAMIC", FLOAT},
 };
 
 string getTypeName(Type type){
@@ -37,6 +42,12 @@ string getTypeName(Type type){
             return "FLOAT";
         case BOOL:
             return "BOOL";
+        case IMPORT:
+            return "IMPORT";
+        case PACKAGE:
+            return "PACKAGE";
+        case DYNAMIC:
+            return "DYNAMIC";
     }
 
     cout<<"Unknown type"<<endl;
@@ -132,7 +143,7 @@ int Declaration::evaluateSemantic(){
             list<Expr *>::iterator ite = declaration->initializer->expressions.begin();
             while(ite!= declaration->initializer->expressions.end()){
                 Type exprType = (*ite)->getType();
-                if(exprType != FLOAT && exprType != INT){
+                if(exprType != FLOAT && exprType != INT && exprType != STRING && exprType != DYNAMIC){
                     cout<<"error: invalid conversion from: "<< getTypeName(exprType) <<" to " <<getTypeName(this->type)<< " line: "<<this->line <<endl;
                     exit(0);
                 }
@@ -155,7 +166,7 @@ int GlobalDeclaration::evaluateSemantic(){
     return 0;
 }
 int PackageDeclaration::evaluateSemantic(){
-    //TODO: evaluar semántica.
+    this->declaration->evaluateSemantic();
     return 0;
 }
 int ImportDeclaration::evaluateSemantic(){
@@ -301,7 +312,7 @@ Type MethodInvocationExpr::getType(){
     while(paramIt != func->parameters.end() && argsIt != this->args.end()){
         string paramType = getTypeName((*paramIt)->type);
         string argType = getTypeName((*argsIt)->getType());
-        if( paramType != argType){
+        if( paramType != argType && argType != "DYNAMIC"){
             cout<<"error: invalid conversion from: "<< argType <<" to " <<paramType<< " line: "<<this->line <<endl;
             exit(0);
         }
@@ -392,7 +403,8 @@ int ForStatement::evaluateSemantic(){
 }
 
 int ForStatementExtended::evaluateSemantic(){
-    if(this->leftExpr->getType() != BOOL && this->middleExpr->getType() != BOOL && this->rightExpr->getType() != BOOL){
+    this->leftExpr->evaluateSemantic();
+    if( this->middleExpr->getType() != BOOL && this->rightExpr->getType() != BOOL){
         cout<<"Expressions for for must be boolean";
         exit(0);
     }
@@ -409,7 +421,15 @@ int ExprStatement::evaluateSemantic(){
 }
 
 int ReturnStatement::evaluateSemantic(){
-    return this->expr->getType();
+    return this->expr!= NULL ? this->expr->getType(): 0;
+}
+
+int BreakStatement::evaluateSemantic(){
+    return 0;
+}
+
+int ContinueStatement::evaluateSemantic(){
+    return 0;
 }
 
 int PrintStatement::evaluateSemantic(){

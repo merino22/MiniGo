@@ -42,7 +42,10 @@ enum Type{
     VOID,
     INT_ARRAY,
     FLOAT_ARRAY,
-    BOOL
+    BOOL,
+    IMPORT,
+    PACKAGE,
+    DYNAMIC,
 };
 
 enum UnaryType{
@@ -359,14 +362,14 @@ class ForStatement: public Statement{
 
 class ForStatementExtended: public Statement{
     public:
-        ForStatementExtended(Expr * leftExpr, Expr * middleExpr,Expr * rightExpr, Statement * stmt, int line){
+        ForStatementExtended(Declaration * leftExpr, Expr * middleExpr,Expr * rightExpr, Statement * stmt, int line){
             this->leftExpr = leftExpr;
             this->middleExpr = middleExpr;
             this->rightExpr = rightExpr;
             this->stmt = stmt;
             this->line = line;
         }
-        Expr* leftExpr;
+        Declaration* leftExpr;
         Expr* middleExpr;
         Expr* rightExpr;
         Statement * stmt;
@@ -425,6 +428,24 @@ class ReturnStatement : public Statement{
         Expr * expr;
         int evaluateSemantic();
         StatementKind getKind(){return RETURN_STATEMENT;}
+};
+
+class BreakStatement: public Statement{
+    public:
+        BreakStatement(int line){
+            this->line = line;
+        }
+        int evaluateSemantic();
+        StatementKind getKind(){return BREAK_STATEMENT;}
+};
+
+class ContinueStatement: public Statement{
+    public:
+        ContinueStatement(int line){
+            this->line = line;
+        }
+        int evaluateSemantic();
+        StatementKind getKind(){return CONTINUE_STATEMENT;}
 };
 
 class PrintStatement : public Statement{

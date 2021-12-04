@@ -60,8 +60,8 @@
 %type<expr_t> assignment_expression logical_or_expression
 %type<statement_list_t> statement_list input
 %type<statement_t> external_declaration method_definition block_statement statement
-%type<declaration_t> declaration package import
-%type<declaration_list_t> declaration_list package_list import_list
+%type<declaration_t> declaration
+%type<declaration_list_t> declaration_list
 %type<initializer_t> initializer
 %type<initializer_list_t> initializer_list
 %type<declarator_t> declarator
@@ -79,7 +79,7 @@
 start: input{
     list<Statement *>::iterator it = $1->begin();
     while(it != $1->end()){
-        //printf("semantic result: %d \n",(*it)->evaluateSemantic());
+        printf("semantic result: %d \n",(*it)->evaluateSemantic());
         it++;
     }
 }
@@ -90,26 +90,26 @@ input: input external_declaration {$$ = $1; $$->push_back($2);}
 
 external_declaration: method_definition {$$ = $1;}
             | declaration {$$ = new GlobalDeclaration($1);}
-            | package_list import_list {
+            //| package_list import_list {
                 /*$$ = new PackageDeclaration($1); 
                 $$ = new ImportDeclaration($2);*/
-                }
-            | package_list {/*$$ = new PackageDeclaration($1);*/}
+            //    }
+            //| package_list {/*$$ = new PackageDeclaration($1);*/}
             ;
 
-package_list: package_list package { }
-            | package {}
-            ;
+/* package_list: package_list package { $$ = $1; $$->push_back($2); }
+            | package { $$ = new PackageList; $$->push_back($1); }
+            ;        
 
 package: TK_PACKAGE TK_ID {  }
-        ;
+        ; */
 
-import_list: TK_IMPORT '(' import ')'  {}
+/* import_list: TK_IMPORT '(' import ')'  {}
        ;
        
 import: import TK_LIT_STRING { }
            | TK_LIT_STRING {}
-           ;
+           ; */
 
 method_definition: TK_FUNC TK_ID '(' parameters_type_list ')' type block_statement {
                     $$ = new MethodDefinition((Type)$6, $2, *$4, $7, yylineno );
@@ -143,11 +143,14 @@ declaration_list: declaration_list declaration { $$ = $1; $$->push_back($2); }
                 | declaration {$$ = new DeclarationList; $$->push_back($1);}
                 ;
 
-declaration:  TK_VAR init_declarator_list type ';' { $$ = new Declaration((Type)$3, *$2, yylineno); delete $2;  }
-           | TK_VAR init_declarator_list ';' { $$ = new Declaration((Type)NULL, *$2, yylineno); delete $2;  }
+declaration: TK_VAR init_declarator_list type ';' { $$ = new Declaration((Type)$3, *$2, yylineno); delete $2;  }
+           | TK_VAR init_declarator_list ';' { $$ = new Declaration((Type)DYNAMIC, *$2, yylineno); delete $2;  }
+           | type init_declarator_list ';' { $$ = new Declaration((Type)$1, *$2, yylineno); delete $2;  }
+           | type '(' init_declarator_list ')' { $$ = new Declaration((Type)$1, *$3, yylineno); delete $3;}
            ;
 
 init_declarator_list: init_declarator_list ',' init_declarator { $$ = $1; $$->push_back($3); }
+                | init_declarator_list init_declarator { $$ = $1; $$->push_back($2); }
                 | init_declarator { $$ = new InitDeclaratorList; $$->push_back($1); }
                 ;
 
@@ -156,6 +159,7 @@ init_declarator: declarator {$$ = new InitDeclarator($1, NULL, yylineno);}
                 ;
 
 declarator: TK_ID {$$ = new Declarator($1, NULL, false, yylineno);}
+          | TK_LIT_STRING {}
           | TK_ID '[' assignment_expression ']' { $$ = new Declarator($1, $3, true, yylineno);}
           | TK_ID '[' ']' {$$ = new Declarator($1, NULL, true, yylineno);}
           ;
@@ -201,7 +205,7 @@ if_statement: TK_IF expression statement {$$ = new IfStatement($2, $3, yylineno)
             ;
 
 for_statement: TK_FOR expression statement {$$ = new ForStatement($2,$3,yylineno);}
-             | TK_FOR expression ';' expression ';' expression statement {$$ = new ForStatementExtended($2,$4,$6,$7,yylineno);}
+             | TK_FOR declaration ';' expression ';' expression statement {$$ = new ForStatementExtended($2,$4,$6,$7,yylineno);}
              | TK_FOR statement { {$$ = new ForStatement(NULL,$2,yylineno);} }
              ; 
 
@@ -212,6 +216,9 @@ while_statement: TK_WHILE '(' expression ')' statement { $$ = new WhileStatement
                ;
 
 jump_statement: TK_RETURN expression ';' {$$ = new ReturnStatement($2, yylineno);}
+              | TK_BREAK ';' { $$ = new BreakStatement(yylineno);}
+              | TK_CONTINUE ';' { $$ = new ContinueStatement(yylineno);}
+              | TK_RETURN ';' { $$ = new ReturnStatement(NULL, yylineno);}
               ;
 
 block_statement: '{' statement_list '}' { 
@@ -220,7 +227,9 @@ block_statement: '{' statement_list '}' {
                     delete list;
                }
                | '{' declaration_list  statement_list'}'  {$$ = new BlockStatement(*$3, *$2, yylineno); delete $2; delete $3; }
-               | '{' declaration_list  '}'  {}
+               | '{' declaration_list  '}'  { 
+                   StatementList * stmts = new StatementList();
+                   $$ = new BlockStatement(*stmts, *$2, yylineno); delete $2; delete stmts;}
                | '{' '}' {
                    StatementList * stmts = new StatementList();
                    DeclarationList * decls = new DeclarationList();
@@ -247,12 +256,13 @@ type: TK_VOID {$$ = VOID;} // var a int = 4
     | TK_INT_TYPE{$$ = INT;}
     | TK_FLOAT_TYPE{$$ = FLOAT;}
     | TK_BOOL_TYPE{$$ = BOOL;}
+    | TK_IMPORT { $$ = IMPORT;}
+    | TK_PACKAGE { $$ = PACKAGE;}
     ;
 
 primary_expression: '(' expression ')' {$$ = $2;}
     | TK_ID {$$ = new IdExpr($1, yylineno);}
     | constant {$$ = $1;}
-    | TK_LIT_STRING { $$ = new StringExpr($1, yylineno); }
     ;
 
 assignment_expression: unary_expression assignment_operator assignment_expression
@@ -320,5 +330,6 @@ expression: assignment_expression {$$ = $1;}
 
 constant: TK_LIT_INT { $$ = new IntExpr($1 , yylineno);}
         | TK_LIT_FLOAT { $$ = new FloatExpr($1 , yylineno);}
+        | TK_LIT_STRING { $$ = new StringExpr($1, yylineno); }
         ;
 %%
