@@ -1,6 +1,6 @@
-package main
-package main
-package bye
+package main;
+package main;
+package bye;
 
 import(
     "fmt"
@@ -8,81 +8,80 @@ import(
 )
 
 func hola(int x) int{
-    var z int
-    if x=0;7>2 {
-        var y int
-    }else{
-        var yy int
+    var z int;
+    if x=0  x>2 ;
+    else {
+        var yy int;
     }
 
-    for x = 7; x <= 10; x++ {
-        var yy float32
-        var xx float32
+    for x = 7; x <= 10; x++; {
+        var yy float32;
+        var xx float32;
     }
 
     for {
-        var mario = "Mario"
+        var mario = "Mario";
     }
 
     for x >= 100 {
-        var aaron = 45.67
-        var check bool
-        fmt.Println("Mario=")
-        fmt.Println("Mario" + "Aaron")
-        break
+        var aaron = 45.67;
+        var check bool;
+        fmt.Println("Mario=");
+        fmt.Println("Mario" + "Aaron");
+        break;
     }
 }
 
 func bubble(int a[],int s)
 {
- var i,j
- var temp int
- i = 1
+ var i,j;
+ var temp int;
+ i = 1;
  while(i<s)
   {
-      j = 0
+      j = 0;
     while(j<s-i)
      {
       if(a[j]>a[j+1])
        {
-        temp=a[j]
-        a[j]=a[j+1]
-        a[j+1]=temp
+        temp=a[j];
+        a[j]=a[j+1];
+        a[j+1]=temp;
        }
-       j++
+       j++;
      }
-     i++
+     i++;
    }
 }
 
 
 
 func main(){
-    var size = 8 int
-    var i int
-    var arr[8]
-    arr[0] = 5
-    arr[1] = 8
-    arr[2] = 2
-    arr[3] = 3
-    arr[4] = 66 
-    arr[5] = 4
-    arr[6] = 23
-    arr[7] = 0
+    var size = 8 int;
+    var i int;
+    var arr[8];
+    arr[0] = 5;
+    arr[1] = 8;
+    arr[2] = 2;
+    arr[3] = 3;
+    arr[4] = 66; 
+    arr[5] = 4;
+    arr[6] = 23;
+    arr[7] = 0;
     
-    fmt.Println("\nBefore sorting\n")
-    i = 0
+    fmt.Println("\nBefore sorting\n");
+    i = 0;
     while(i<size){
-        fmt.Println(i)
+        fmt.Println(i);
         i++;
     }
    
-    bubble(arr,size)
+    bubble(arr,size);
    
-    fmt.Println("\nAfter sorting\n")
-    i = 0
+    fmt.Println("\nAfter sorting\n");
+    i = 0;
     while(i<size){
-        fmt.Println(i)
-        i++
+        fmt.Println(i);
+        i++;
     }
 }

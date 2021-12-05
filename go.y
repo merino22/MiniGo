@@ -198,14 +198,14 @@ statement_list: statement_list statement { $$ = $1; $$->push_back($2); }
               | statement { $$ = new StatementList; $$->push_back($1); }
               ;
 
-if_statement: TK_IF expression statement {$$ = new IfStatement($2, $3, yylineno);}
-            | TK_IF expression ';' expression statement {$$ = new IfStatement($4, $5, yylineno);} // Falta que mande assignExpr
-            | TK_IF expression ';' expression statement TK_ELSE statement{$$ = new ElseStatement($4, $5, $7, yylineno);} // Falta que mande assignExpr
+if_statement: TK_IF statement ';' expression statement {$$ = new IfStatementExtended($2,$4,$5, yylineno);}
+            | TK_IF statement ';' expression statement TK_ELSE statement{$$ = new ElseStatementExtended($2,$4, $5, $7, yylineno);}
+            | TK_IF expression statement {$$ = new IfStatement($2, $3, yylineno);}
             | TK_IF expression statement TK_ELSE statement {$$ = new ElseStatement($2, $3, $5, yylineno);}
             ;
 
 for_statement: TK_FOR expression statement {$$ = new ForStatement($2,$3,yylineno);}
-             | TK_FOR declaration ';' expression ';' expression statement {$$ = new ForStatementExtended($2,$4,$6,$7,yylineno);}
+             | TK_FOR statement ';' expression ';' expression statement {$$ = new ForStatementExtended($2,$4,$6,$7,yylineno);}
              | TK_FOR statement { {$$ = new ForStatement(NULL,$2,yylineno);} }
              ; 
 

@@ -6,7 +6,7 @@ import ("fmt")
 
 
 func BubbleSort(int array[], int array2[])int {
-
+  var size;
   for i=0; i< size-1; i++ ;{
 
    for j=0; j < size-i-1; j++ ;{

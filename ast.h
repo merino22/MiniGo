@@ -362,14 +362,14 @@ class ForStatement: public Statement{
 
 class ForStatementExtended: public Statement{
     public:
-        ForStatementExtended(Declaration * leftExpr, Expr * middleExpr,Expr * rightExpr, Statement * stmt, int line){
+        ForStatementExtended(Statement * leftExpr, Expr * middleExpr,Expr * rightExpr, Statement * stmt, int line){
             this->leftExpr = leftExpr;
             this->middleExpr = middleExpr;
             this->rightExpr = rightExpr;
             this->stmt = stmt;
             this->line = line;
         }
-        Declaration* leftExpr;
+        Statement* leftExpr;
         Expr* middleExpr;
         Expr* rightExpr;
         Statement * stmt;
@@ -378,6 +378,33 @@ class ForStatementExtended: public Statement{
         StatementKind getKind(){
             return FOR_STATEMENT;
         }
+};
+class IfStatement : public Statement{
+    public:
+        IfStatement(Expr * conditionalExpr, Statement * trueStatement, int line){
+            this->conditionalExpr = conditionalExpr;
+            this->trueStatement = trueStatement;
+            this->line = line;
+        }
+        Expr * conditionalExpr;
+        Statement * trueStatement;
+        int evaluateSemantic();
+        StatementKind getKind(){return IF_STATEMENT;}
+};
+
+class IfStatementExtended : public Statement{
+    public:
+        IfStatementExtended(Statement* statement, Expr * conditionalExpr, Statement * trueStatement, int line){
+            this->statement = statement;
+            this->conditionalExpr = conditionalExpr;
+            this->trueStatement = trueStatement;
+            this->line = line;
+        }
+        Statement* statement;
+        Expr * conditionalExpr;
+        Statement * trueStatement;
+        int evaluateSemantic();
+        StatementKind getKind(){return IF_STATEMENT;}
 };
 class ElseStatement : public Statement{
     public:
@@ -394,18 +421,23 @@ class ElseStatement : public Statement{
         StatementKind getKind(){return ELSE_STATEMENT;}
 };
 
-class IfStatement : public Statement{
+class ElseStatementExtended : public Statement{
     public:
-        IfStatement(Expr * conditionalExpr, Statement * trueStatement, int line){
+        ElseStatementExtended(Statement* statement, Expr * conditionalExpr, Statement * trueStatement, Statement * falseStatement, int line){
+            this->statement = statement;
             this->conditionalExpr = conditionalExpr;
             this->trueStatement = trueStatement;
             this->line = line;
+            this->falseStatement = falseStatement;
         }
+        Statement* statement;
         Expr * conditionalExpr;
         Statement * trueStatement;
+        Statement * falseStatement;
         int evaluateSemantic();
-        StatementKind getKind(){return IF_STATEMENT;}
+        StatementKind getKind(){return ELSE_STATEMENT;}
 };
+
 
 
 class ExprStatement : public Statement{

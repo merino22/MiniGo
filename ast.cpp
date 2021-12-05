@@ -151,6 +151,7 @@ int Declaration::evaluateSemantic(){
             }
         }
         if(!variableExists(declaration->declarator->id)){
+            cout<<"Variable ["<<declaration->declarator->id<<"] created"<<endl;
             context->variables[declaration->declarator->id] = this->type;
         }else{
             cout<<"error: redefinition of variable: "<< declaration->declarator->id<< " line: "<<this->line <<endl;
@@ -350,9 +351,40 @@ int WhileStatement::evaluateSemantic(){
 }
 
 
-int ElseStatement::evaluateSemantic(){
+
+/*
+while(true){
+    if(true){
+        int a = 5;
+    }
+}
+*/
+
+int IfStatement::evaluateSemantic(){
+    cout<<this->conditionalExpr->getType();
     if(this->conditionalExpr->getType() != BOOL){
         cout<<"Expression for if must be boolean";
+        exit(0);
+    }
+    pushContext();
+    this->trueStatement->evaluateSemantic();
+    popContext();
+    return 0;
+}
+int IfStatementExtended::evaluateSemantic(){
+    this->statement->evaluateSemantic();
+    if(this->conditionalExpr->getType() != BOOL){
+        cout<<"Expression for if Extended must be boolean";
+        exit(0);
+    }
+    pushContext();
+    this->trueStatement->evaluateSemantic();
+    popContext();
+    return 0;
+}
+int ElseStatement::evaluateSemantic(){
+    if(this->conditionalExpr->getType() != BOOL){
+        cout<<"Expression for Else if must be boolean";
         exit(0);
     }
     pushContext();
@@ -364,22 +396,18 @@ int ElseStatement::evaluateSemantic(){
     popContext();
     return 0;
 }
-
-/*
-while(true){
-    if(true){
-        int a = 5;
-    }
-}
-*/
-
-int IfStatement::evaluateSemantic(){
+int ElseStatementExtended::evaluateSemantic(){
+    this->statement->evaluateSemantic();
     if(this->conditionalExpr->getType() != BOOL){
-        cout<<"Expression for if must be boolean";
+        cout<<"Expression for Else if Extended must be boolean";
         exit(0);
     }
     pushContext();
     this->trueStatement->evaluateSemantic();
+    popContext();
+    pushContext();
+    if(this->falseStatement != NULL)
+        this->falseStatement->evaluateSemantic();
     popContext();
     return 0;
 }
@@ -403,6 +431,7 @@ int ForStatement::evaluateSemantic(){
 }
 
 int ForStatementExtended::evaluateSemantic(){
+    cout<<"ARR";
     this->leftExpr->evaluateSemantic();
     if( this->middleExpr->getType() != BOOL && this->rightExpr->getType() != BOOL){
         cout<<"Expressions for for must be boolean";
