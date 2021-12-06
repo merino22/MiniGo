@@ -205,6 +205,16 @@ class MethodDefinition : public Statement{
         }
 };
 
+class BoolExpr : public Expr{
+    public:
+        BoolExpr(bool value, int line){
+            this->value = value;
+            this->line = line;
+        }
+        bool value;
+        Type getType();
+};
+
 class IntExpr : public Expr{
     public:
         IntExpr(int value, int line){
@@ -362,14 +372,14 @@ class ForStatement: public Statement{
 
 class ForStatementExtended: public Statement{
     public:
-        ForStatementExtended(Statement * leftExpr, Expr * middleExpr,Expr * rightExpr, Statement * stmt, int line){
+        ForStatementExtended(Expr * leftExpr, Expr * middleExpr,Expr * rightExpr, Statement * stmt, int line){
             this->leftExpr = leftExpr;
             this->middleExpr = middleExpr;
             this->rightExpr = rightExpr;
             this->stmt = stmt;
             this->line = line;
         }
-        Statement* leftExpr;
+        Expr* leftExpr;
         Expr* middleExpr;
         Expr* rightExpr;
         Statement * stmt;
@@ -394,13 +404,13 @@ class IfStatement : public Statement{
 
 class IfStatementExtended : public Statement{
     public:
-        IfStatementExtended(Statement* statement, Expr * conditionalExpr, Statement * trueStatement, int line){
+        IfStatementExtended(Expr* statement, Expr * conditionalExpr, Statement * trueStatement, int line){
             this->statement = statement;
             this->conditionalExpr = conditionalExpr;
             this->trueStatement = trueStatement;
             this->line = line;
         }
-        Statement* statement;
+        Expr * statement;
         Expr * conditionalExpr;
         Statement * trueStatement;
         int evaluateSemantic();
@@ -423,14 +433,14 @@ class ElseStatement : public Statement{
 
 class ElseStatementExtended : public Statement{
     public:
-        ElseStatementExtended(Statement* statement, Expr * conditionalExpr, Statement * trueStatement, Statement * falseStatement, int line){
+        ElseStatementExtended(Expr* statement, Expr * conditionalExpr, Statement * trueStatement, Statement * falseStatement, int line){
             this->statement = statement;
             this->conditionalExpr = conditionalExpr;
             this->trueStatement = trueStatement;
             this->line = line;
             this->falseStatement = falseStatement;
         }
-        Statement* statement;
+        Expr* statement;
         Expr * conditionalExpr;
         Statement * trueStatement;
         Statement * falseStatement;
@@ -498,6 +508,8 @@ IMPLEMENT_BINARY_EXPR(Add);
 IMPLEMENT_BINARY_EXPR(Sub);
 IMPLEMENT_BINARY_EXPR(Mul);
 IMPLEMENT_BINARY_EXPR(Div);
+IMPLEMENT_BINARY_EXPR(Mod);
+IMPLEMENT_BINARY_EXPR(Pwr);
 IMPLEMENT_BINARY_EXPR(Eq);
 IMPLEMENT_BINARY_EXPR(Neq);
 IMPLEMENT_BINARY_EXPR(Gte);
@@ -509,3 +521,9 @@ IMPLEMENT_BINARY_EXPR(LogicalOr);
 IMPLEMENT_BINARY_EXPR(Assign);
 IMPLEMENT_BINARY_EXPR(PlusAssign);
 IMPLEMENT_BINARY_EXPR(MinusAssign);
+IMPLEMENT_BINARY_EXPR(ModAssign);
+IMPLEMENT_BINARY_EXPR(MultAssign);
+IMPLEMENT_BINARY_EXPR(DivAssign);
+IMPLEMENT_BINARY_EXPR(PwrAssign);
+IMPLEMENT_BINARY_EXPR(AndAssign);
+IMPLEMENT_BINARY_EXPR(OrAssign);

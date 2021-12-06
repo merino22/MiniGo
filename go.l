@@ -25,7 +25,6 @@ DIGIT [0-9]
 "int" { return TK_INT_TYPE; }
 "float32" { return TK_FLOAT_TYPE;  }
 "bool" { return TK_BOOL_TYPE; }
-"printf" { return TK_PRINTF; }
 "package" { return TK_PACKAGE; }
 "import" { return TK_IMPORT; }
 "var" { return TK_VAR; }
@@ -48,12 +47,19 @@ DIGIT [0-9]
 "*" {return '*'; }
 "%" {return '%'; }
 "=" {return '='; }
+"^" { return '^'; }
 "[" { return '['; }
 "]" { return ']'; }
 "{" { return '{'; }
 "}" { return '}'; }
 "+=" { return TK_PLUS_EQUAL; }
 "-=" { return TK_MINUS_EQUAL; }
+"*=" { return TK_MULT_EQUAL; }
+"/=" { return TK_DIV_EQUAL; }
+"^=" { return TK_PWR_EQUAL; }
+"%=" { return TK_MOD_EQUAL; }
+"&=" { return TK_AND_EQUAL; }
+"|=" { return TK_OR_EQUAL; }
 "++" { return TK_PLUS_PLUS; }
 "--" { return TK_MINUS_MINUS; }
 "||" { return TK_OR; }

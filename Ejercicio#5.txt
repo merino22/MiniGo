@@ -2,25 +2,25 @@ package main
 
 
 
-import ("fmt")
+import "fmt"
 
 
 
-func bubbleSort(int array[])int {
+func bubbleSort(input []int) []int {
 
-swapped = 1;
+swapped := true
 
 for swapped {
 
-swapped = 0;
+swapped = false
 
-for i = 1; i < len(input); i++ {
+for i := 1; i < len(input); i++ {
 
 if input[i-1] > input[i] {
 
-input[i]= input[i-1];
-input[i-1] =  input[i];
-swapped = 1;
+input[i], input[i-1] = input[i-1], input[i]
+
+swapped = true
 
 }
 
@@ -28,7 +28,7 @@ swapped = 1;
 
 }
 
-return input;
+return input
 
 }
 
@@ -36,17 +36,17 @@ return input;
 
 func main() {
 
-//unsorted = []int{10, 6, 2, 1, 5, 8, 3, 4, 7, 9}
+unsorted := []int{10, 6, 2, 1, 5, 8, 3, 4, 7, 9}
 
-sorted = bubbleSort(unsorted);
+sorted := bubbleSort(unsorted)
 
-fmt.Println("Sorted Array  ");
+fmt.Println("Sorted Array : ")
 
 
 
-for i = 0; i < len(sorted); i++ {
+for i := 0; i < len(sorted); i++ {
 
-fmt.Println(sorted[i]);
+fmt.Println(sorted[i])
 
 }
 
