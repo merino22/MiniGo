@@ -149,6 +149,7 @@ init_declarator_list: init_declarator_list ',' init_declarator { $$ = $1; $$->pu
 
 init_declarator: declarator {$$ = new InitDeclarator($1, NULL, yylineno);}
                 | declarator '=' initializer { $$ = new InitDeclarator($1, $3, yylineno); }
+                | declarator ':' '=' initializer { $$ = new InitDeclarator($1, $4, yylineno); }
                 ;
 
 declarator: TK_ID {$$ = new Declarator($1, NULL, false, yylineno);}
@@ -174,6 +175,7 @@ initializer: assignment_expression {
     $$ = new Initializer(*list, yylineno);
 }
            | '{' initializer_list '}'{ $$ = new Initializer(*$2, yylineno); delete $2;  }
+           | '[' ']' type  '{' initializer_list '}'{ $$ = new Initializer(*$5, yylineno); delete $5;  }
            ;
 
 initializer_list: initializer_list ',' logical_or_expression { $$ = $1; $$->push_back($3); }

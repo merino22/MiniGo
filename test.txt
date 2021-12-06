@@ -1,6 +1,6 @@
-package main;
-package bruh;
-package bye;
+package main
+package bruh
+package bye
 
 import(
     import "fmt"
@@ -8,40 +8,40 @@ import(
 )
 
 func hola(int x) int{
-    var z int;
-    var check bool;
+    var z int
+    var check bool
     check = true
     if x=0 ; x>2 {
-        fmt.printLn("") ;
+        fmt.printLn("")
     }
     else {
-        var yy int;
+        var yy int
     }
 
     for x = 7; x <= 10; x++ {
-        var yy float32;
-        var xx float32;
+        var yy float32
+        var xx float32
     }
 
     for {
-        var mario = "Mario";
+        var mario = "Mario"
     }
 
     for x >= 100 {
-        var aaron = 45.67;
-        var check2 bool;
+        var aaron = 45.67
+        var check2 bool
         check = false
-        fmt.Println("Mario=");
-        fmt.Println("Mario" + "Aaron");
+        fmt.Println("Mario=")
+        fmt.Println("Mario" + "Aaron")
         check + check2
-        break;
+        break
     }
 }
 
 func bubble(int a[],int s)
 {
- var i,j;
- var temp int;
+ var i,j
+ var temp int
  i = 1
  j |= i % 2
  j &= i % 2
@@ -66,9 +66,9 @@ func bubble(int a[],int s)
 
 
 func main(){
-    var size = 8 int;
-    var i int;
-    var arr[8];
+    var size = 8 int
+    var i int
+    var arr[8]
     arr[0] = 5
     arr[1] = 8
     arr[2] = 2
@@ -78,19 +78,19 @@ func main(){
     arr[6] = 23
     arr[7] = 0
     
-    fmt.Println("\nBefore sorting\n");
+    fmt.Println("\nBefore sorting\n")
     i = 0
     while(i<size){
-        fmt.Println(i);
+        fmt.Println(i)
         i++
     }
    
     bubble(arr,size)
    
-    fmt.Println("\nAfter sorting\n");
+    fmt.Println("\nAfter sorting\n")
     i = 0
     while(i<size){
-        fmt.Println(i);
+        fmt.Println(i)
         i++
     }
 }

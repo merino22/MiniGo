@@ -35,10 +35,11 @@ func main() {
 
 
 
-  var size int 
-  size = 7 
+  var size int
+  var mario int
 
-  //array := []int{11, 14, 3, 8, 18, 17, 43}
+  //var array = []int{11, 14, 3, 8, 18, 17, 43}
+  size = 7
 
   fmt.Println("BubbleSort(array, size)")
 
