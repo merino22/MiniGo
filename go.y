@@ -102,8 +102,12 @@ method_definition: TK_FUNC TK_ID '(' parameters_type_list ')' type block_stateme
                     $$ = new MethodDefinition((Type)$6, $2, *$4, $7, yylineno );
                     delete $4;
                  }
+                 |  TK_FUNC TK_ID '(' parameters_type_list ')' '[' ']' type block_statement {
+                    $$ = new MethodDefinition((Type)$8, $2, *$4, $9, yylineno );
+                    delete $4;
+                 }
                  | TK_FUNC TK_ID '(' parameters_type_list ')' block_statement {
-                    $$ = new MethodDefinition((Type)NULL, $2, *$4, $6, yylineno );
+                    $$ = new MethodDefinition((Type)VOID, $2, *$4, $6, yylineno );
                     delete $4;
                  }
                  | TK_FUNC TK_ID '(' ')' type block_statement{
@@ -111,9 +115,14 @@ method_definition: TK_FUNC TK_ID '(' parameters_type_list ')' type block_stateme
                      $$ = new MethodDefinition((Type)$5, $2, *pm, $6, yylineno );
                      delete pm;
                  }
+                 | TK_FUNC TK_ID '(' ')' '[' ']' type block_statement{
+                     ParameterList * pm = new ParameterList;
+                     $$ = new MethodDefinition((Type)$7, $2, *pm, $8, yylineno );
+                     delete pm;
+                 }
                  | TK_FUNC TK_ID '(' ')' block_statement{
                      ParameterList * pm = new ParameterList;
-                     $$ = new MethodDefinition((Type)NULL, $2, *pm, $5, yylineno );
+                     $$ = new MethodDefinition((Type)VOID, $2, *pm, $5, yylineno );
                      delete pm;
                  }
                  | TK_FUNC TK_ID '(' parameters_type_list ')' type { // func hola (int x, int y) int;
@@ -183,7 +192,7 @@ initializer_list: initializer_list ',' logical_or_expression { $$ = $1; $$->push
                 ;
 
 statement: while_statement {$$ = $1;}
-        | expression_statement {$$ = $1;}
+        //| expression_statement {$$ = $1;}
         | if_statement {$$ = $1;}
         | block_statement {$$ = $1;}
         | jump_statement {$$ = $1;}
@@ -192,8 +201,9 @@ statement: while_statement {$$ = $1;}
         ;
 
 statement_list: statement_list statement { $$ = $1; $$->push_back($2); }
-              //| statement_list expression_statement { $$ = $1; $$->push_back($2); }
+              | statement_list expression_statement { $$ = $1; $$->push_back($2); }
               | statement { $$ = new StatementList; $$->push_back($1); }
+              | expression_statement { $$ = new StatementList; $$->push_back($1); }
               ;
 
 if_statement: TK_IF expression ';' expression statement {$$ = new IfStatementExtended($2,$4,$5, yylineno);}
@@ -224,10 +234,10 @@ block_statement: '{' statement_list '}' {
                     $$ = new BlockStatement(*$2, *list, yylineno);
                     delete list;
                }
-               | '{' declaration_list  statement_list'}'  {$$ = new BlockStatement(*$3, *$2, yylineno); delete $2; delete $3; }
                | '{' declaration_list  '}'  { 
                    StatementList * stmts = new StatementList();
                    $$ = new BlockStatement(*stmts, *$2, yylineno); delete $2; delete stmts;}
+               | '{' declaration_list  statement_list'}'  {$$ = new BlockStatement(*$3, *$2, yylineno); delete $2; delete $3; }
                | '{' '}' {
                    StatementList * stmts = new StatementList();
                    DeclarationList * decls = new DeclarationList();
@@ -261,6 +271,7 @@ type: TK_VOID {$$ = VOID;} // var a int = 4
 primary_expression: '(' expression ')' {$$ = $2;}
     | TK_ID {$$ = new IdExpr($1, yylineno);}
     | constant {$$ = $1;}
+    //| '[' ']' type  '{' initializer_list '}'{ $$ = new Initializer(*$5, yylineno); delete $5;  }
     ;
 
 assignment_expression: unary_expression assignment_operator assignment_expression

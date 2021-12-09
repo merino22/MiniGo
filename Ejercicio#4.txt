@@ -23,7 +23,8 @@ func main() {
    */
 
 
-
+   var a int
+   var b int
 
 
    fmt.Println("a = ", a)
@@ -38,7 +39,7 @@ func main() {
 
    fmt.Println("a/b = ", a/b)
 
-   //fmt.Println("a%b = ", a%b)
+   fmt.Println("a%b = ", a%b)
 
    fmt.Println("a>b = ", a>b)
 

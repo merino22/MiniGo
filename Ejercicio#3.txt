@@ -22,7 +22,13 @@ func main() {
 
   */
 
-  var a, b int = 5, 8
+  var a int
+  var num int
+  var b int
+  var c int
+  
+  a = 0
+  b = 8
 
 	
 
@@ -44,10 +50,8 @@ func main() {
 
   }
 
-
-
   if num := 9; num < 0 {
-
+    var hello float32
     fmt.Println(num, "is negative")
 
   } else if num < 10 {

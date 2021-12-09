@@ -2,13 +2,15 @@ package main
 
 
 
-import "fmt"
+import ("fmt")
 
 
 
 func main () {
 
-
+  var i int
+  var j int
+  var n int
 
   i := 1
 
@@ -19,8 +21,6 @@ func main () {
     i = i + 1
 
   }
-
-
 
   for j := 7; j <= 9; j++ {
 
