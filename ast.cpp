@@ -142,11 +142,19 @@ int Declaration::evaluateSemantic(){
                 exit(0);
             }
         }
+        // if(this->type != (*ite) && this->type != INT && this->type != STRING && this->type != DYNAMIC){
+        //             cout<<"error: invalid conversion from: "<< getTypeName(exprType) <<" to " <<getTypeName(this->type)<< " line: "<<this->line <<endl;
+        //             exit(0);
+        //         }
         if(declaration->initializer != NULL){
             list<Expr *>::iterator ite = declaration->initializer->expressions.begin();
             while(ite!= declaration->initializer->expressions.end()){
                 Type exprType = (*ite)->getType();
                 if(exprType != FLOAT && exprType != INT && exprType != STRING && exprType != DYNAMIC){
+                    cout<<"error: invalid conversion from: "<< getTypeName(exprType) <<" to " <<getTypeName(this->type)<< " line: "<<this->line <<endl;
+                    exit(0);
+                }
+                if(this->type != exprType){
                     cout<<"error: invalid conversion from: "<< getTypeName(exprType) <<" to " <<getTypeName(this->type)<< " line: "<<this->line <<endl;
                     exit(0);
                 }
@@ -385,16 +393,6 @@ int WhileStatement::evaluateSemantic(){
     popContext();
     return 0;
 }
-
-
-
-/*
-while(true){
-    if(true){
-        int a = 5;
-    }
-}
-*/
 
 int IfStatement::evaluateSemantic(){
     cout<<this->conditionalExpr->getType();

@@ -36,8 +36,8 @@ return input
 
 func main() {
 
-//var unsorted := []int{10, 6, 2, 1, 5, 8, 3, 4, 7, 9}
-var unsorted int
+var unsorted := []int{10, 6, 2, 1, 5, 8, 3, 4, 7, 9}
+//var unsorted int
 var sorted int
 var i int
 var j int
@@ -49,7 +49,7 @@ fmt.Println("Sorted Array : ")
 
 for i := 0; i < len(sorted); i++ {
 
-//fmt.Println(sorted[i])
+fmt.Println("sorted[i]")
 
 }
 

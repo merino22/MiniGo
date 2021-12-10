@@ -74,6 +74,7 @@ class Initializer{
             this->line = line;
         }
         InitializerElementList expressions;
+        int evaluateSemantic();
         int line;
 };
 
@@ -295,6 +296,19 @@ class IdExpr : public Expr{
             this->id = id;
             this->line = line;
         }
+        string id;
+        int line;
+        Type getType();
+};
+
+class AssignExpr : public Expr{
+    public:
+        AssignExpr(string id, Expr * rightExpr){
+            this->id = id;
+            this->line = line;
+            this->rightExpr = rightExpr;
+        }
+        Expr * rightExpr;
         string id;
         int line;
         Type getType();
