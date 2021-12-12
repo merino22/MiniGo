@@ -517,7 +517,6 @@ void ArrayExpr::genCode(Code &code){
     }
     code.code = ss.str();
 }
-//CHEQUEAR
 void AssignExpr::genCode(Code &code){
     Code rightSideCode;
     stringstream ss;
