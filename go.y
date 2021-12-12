@@ -5,6 +5,11 @@
 %{
 //http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf
     #include <cstdio>
+    #include <cstdio>
+    #include "asm.h"
+    #include <fstream>
+    #include <cstring>
+    #include <iostream>
     using namespace std;
     int yylex();
     extern int yylineno;
@@ -23,6 +28,17 @@
     #define MODEQUAL 7
     #define ANDEQUAL 8
     #define OREQUAL 9
+
+    Asm assemblyFile;
+
+    void writeFile(string name){
+        ofstream file;
+        file.open(name);
+        file << assemblyFile.data << endl
+        << assemblyFile.global <<endl
+        << assemblyFile.text << endl;
+        file.close();
+    }
 %}
 
 %union{
@@ -83,11 +99,18 @@
 %%
 
 start: input{
+    assemblyFile.global = ".globl main";
+    assemblyFile.data = ".data\n";
+    assemblyFile.text = ".text\n";
     list<Statement *>::iterator it = $1->begin();
+    string code;
     while(it != $1->end()){
         printf("semantic result: %d \n",(*it)->evaluateSemantic());
+        //code += (*it)->genCode();
         it++;
     }
+    assemblyFile.text += code;
+    writeFile("result.s");
 }
 
 input: input external_declaration {$$ = $1; $$->push_back($2);}

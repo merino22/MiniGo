@@ -1,7 +1,8 @@
 #include <string>
 #include <list>
 #include <map>
-#include <cstring>
+#include "code.h"
+
 
 using namespace std;
 
@@ -34,20 +35,6 @@ enum StatementKind{
     ELSE_STATEMENT
 };
 
-enum Type{
-    INVALID,
-    STRING,
-    INT,
-    FLOAT,
-    VOID,
-    INT_ARRAY,
-    FLOAT_ARRAY,
-    BOOL,
-    IMPORT,
-    PACKAGE,
-    DYNAMIC,
-};
-
 enum UnaryType{
     INCREMENT,
     DECREMENT,
@@ -59,12 +46,14 @@ class Statement{
         int line;
         virtual int evaluateSemantic() = 0;
         virtual StatementKind getKind() = 0;
+        virtual string genCode() = 0;
 };
 
 class Expr{
     public:
         int line;
         virtual Type getType() = 0;
+        virtual void genCode(Code &code) = 0;
 };
 
 class Initializer{
@@ -115,6 +104,7 @@ class Declaration{
         InitDeclaratorList declarations;
         int line;
         int evaluateSemantic();
+        string genCode();
 };
 
 class Parameter{
@@ -142,6 +132,7 @@ class BlockStatement : public Statement{
         DeclarationList declarations;
         int line;
         int evaluateSemantic();
+        string genCode();
         StatementKind getKind(){
             return BLOCK_STATEMENT;
         }
@@ -154,6 +145,7 @@ class GlobalDeclaration : public Statement {
         }
         Declaration * declaration;
         int evaluateSemantic();
+        string genCode();
         StatementKind getKind(){
             return GLOBAL_DECLARATION_STATEMENT;
         }
@@ -166,6 +158,7 @@ class PackageDeclaration : public Statement {
         }
         Declaration * declaration;
         int evaluateSemantic();
+        string genCode();
         StatementKind getKind(){
             return GLOBAL_DECLARATION_STATEMENT;
         }
@@ -178,6 +171,7 @@ class ImportDeclaration : public Statement {
         }
         Declaration * declaration;
         int evaluateSemantic();
+        string genCode();
         StatementKind getKind(){
             return GLOBAL_DECLARATION_STATEMENT;
         }
@@ -201,6 +195,7 @@ class MethodDefinition : public Statement{
         Statement * statement;
         int line;
         int evaluateSemantic();
+        string genCode();
         StatementKind getKind(){
             return FUNCTION_DEFINITION_STATEMENT;
         }
@@ -214,6 +209,7 @@ class BoolExpr : public Expr{
         }
         bool value;
         Type getType();
+        void genCode(Code &code);
 };
 
 class IntExpr : public Expr{
@@ -224,6 +220,7 @@ class IntExpr : public Expr{
         }
         int value;
         Type getType();
+        void genCode(Code &code);
 };
 
 class FloatExpr : public Expr{
@@ -234,6 +231,7 @@ class FloatExpr : public Expr{
         }
         float value;
         Type getType();
+        void genCode(Code &code);
 };
 
 class BinaryExpr : public Expr{
@@ -253,6 +251,7 @@ class name##Expr : public BinaryExpr{\
     public: \
         name##Expr(Expr * expr1, Expr *expr2, int line) : BinaryExpr(expr1, expr2, line){}\
         Type getType(); \
+        void genCode(Code &code);\
 };
 
 class UnaryExpr : public Expr{
@@ -266,6 +265,7 @@ class UnaryExpr : public Expr{
         Expr* expr;
         int line;
         Type getType();
+        void genCode(Code &code);
 };
 
 class PostIncrementExpr: public Expr{
@@ -277,6 +277,7 @@ class PostIncrementExpr: public Expr{
         Expr * expr;
         int line;
         Type getType();
+        void genCode(Code &code);
 };
 
 class PostDecrementExpr: public Expr{
@@ -288,6 +289,7 @@ class PostDecrementExpr: public Expr{
         Expr * expr;
         int line;
         Type getType();
+        void genCode(Code &code);
 };
 
 class IdExpr : public Expr{
@@ -299,21 +301,8 @@ class IdExpr : public Expr{
         string id;
         int line;
         Type getType();
+        void genCode(Code &code);
 };
-
-class AssignExpr : public Expr{
-    public:
-        AssignExpr(string id, Expr * rightExpr){
-            this->id = id;
-            this->line = line;
-            this->rightExpr = rightExpr;
-        }
-        Expr * rightExpr;
-        string id;
-        int line;
-        Type getType();
-};
-
 class ArrayExpr : public Expr{
     public:
         ArrayExpr(IdExpr * id, Expr * expr, int line){
@@ -325,6 +314,7 @@ class ArrayExpr : public Expr{
         Expr * expr;
         int line;
         Type getType();
+        void genCode(Code &code);
 };
 
 class MethodInvocationExpr : public Expr{
@@ -338,7 +328,7 @@ class MethodInvocationExpr : public Expr{
         ArgumentList args;
         int line;
         Type getType();
-
+        void genCode(Code &code);
 };
 
 class StringExpr : public Expr{
@@ -350,6 +340,7 @@ class StringExpr : public Expr{
         string value;
         int line;
         Type getType();
+        void genCode(Code &code);
 };
 
 class WhileStatement: public Statement{
@@ -362,6 +353,7 @@ class WhileStatement: public Statement{
         Expr* expr;
         Statement * stmt;
         int line;
+        string genCode();
         int evaluateSemantic();
         StatementKind getKind(){
             return WHILE_STATEMENT;
@@ -378,6 +370,7 @@ class ForStatement: public Statement{
         Expr* expr;
         Statement * stmt;
         int line;
+        string genCode();
         int evaluateSemantic();
         StatementKind getKind(){
             return FOR_STATEMENT;
@@ -398,6 +391,7 @@ class ForStatementExtended: public Statement{
         Expr* rightExpr;
         Statement * stmt;
         int line;
+        string genCode();
         int evaluateSemantic();
         StatementKind getKind(){
             return FOR_STATEMENT;
@@ -412,6 +406,7 @@ class IfStatement : public Statement{
         }
         Expr * conditionalExpr;
         Statement * trueStatement;
+        string genCode();
         int evaluateSemantic();
         StatementKind getKind(){return IF_STATEMENT;}
 };
@@ -427,6 +422,7 @@ class IfStatementExtended : public Statement{
         Expr * statement;
         Expr * conditionalExpr;
         Statement * trueStatement;
+        string genCode();
         int evaluateSemantic();
         StatementKind getKind(){return IF_STATEMENT;}
 };
@@ -441,6 +437,7 @@ class ElseStatement : public Statement{
         Expr * conditionalExpr;
         Statement * trueStatement;
         Statement * falseStatement;
+        string genCode();
         int evaluateSemantic();
         StatementKind getKind(){return ELSE_STATEMENT;}
 };
@@ -458,6 +455,7 @@ class ElseStatementExtended : public Statement{
         Expr * conditionalExpr;
         Statement * trueStatement;
         Statement * falseStatement;
+        string genCode();
         int evaluateSemantic();
         StatementKind getKind(){return ELSE_STATEMENT;}
 };
@@ -472,6 +470,7 @@ class ExprStatement : public Statement{
         }
         Expr * expr;
         int evaluateSemantic();
+        string genCode();
         StatementKind getKind(){return EXPRESSION_STATEMENT;}
 };
 
@@ -483,6 +482,7 @@ class ReturnStatement : public Statement{
         }
         Expr * expr;
         int evaluateSemantic();
+        string genCode();
         StatementKind getKind(){return RETURN_STATEMENT;}
 };
 
@@ -492,6 +492,7 @@ class BreakStatement: public Statement{
             this->line = line;
         }
         int evaluateSemantic();
+        string genCode();
         StatementKind getKind(){return BREAK_STATEMENT;}
 };
 
@@ -501,6 +502,7 @@ class ContinueStatement: public Statement{
             this->line = line;
         }
         int evaluateSemantic();
+        string genCode();
         StatementKind getKind(){return CONTINUE_STATEMENT;}
 };
 
@@ -514,6 +516,7 @@ class PrintStatement : public Statement{
         string localString;
         Expr * expr;
         int evaluateSemantic();
+        string genCode();
         StatementKind getKind(){return PRINT_STATEMENT;}
 };
 
