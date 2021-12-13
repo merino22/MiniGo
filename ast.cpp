@@ -215,6 +215,7 @@ bool variableExists(string id){
 
 //CHEQUEAR
 string Declaration::genCode(){
+    cout << "\n\nTYPEEE HEREEEE HH" << endl;
     stringstream code;
     list<InitDeclarator *>::iterator it = this->declarations.begin();
     while(it != this->declarations.end()){
@@ -263,7 +264,7 @@ string Declaration::genCode(){
 
 string BlockStatement::genCode(){
     stringstream ss;
-
+    cout << "\n\nTYPEEE HEREEEE HH" << endl;
     list<Declaration *>::iterator itd = this->declarations.begin();
     while (itd != this->declarations.end())
     {
@@ -289,6 +290,7 @@ string BlockStatement::genCode(){
 }
 
 string GlobalDeclaration::genCode(){
+    cout << "\n\nTYPEEE HEREEEE HH" << endl;
     list<InitDeclarator *>::iterator it = this->declaration->declarations.begin();
     stringstream data;
     stringstream code;
@@ -339,7 +341,8 @@ string GlobalDeclaration::genCode(){
 }
 //CHEQUEAR
 string PackageDeclaration::genCode(){
-    return "";
+    cout << "PACKAGE GENCODE\n";
+    return "package";
 }
 //CHEQUEAR
 string ImportDeclaration::genCode(){
@@ -348,6 +351,7 @@ string ImportDeclaration::genCode(){
 
 string MethodDefinition::genCode(){
     return this->statement->genCode();
+    return "";
 }
 
 void IntExpr::genCode(Code &code){
@@ -443,6 +447,7 @@ void PostDecrementExpr::genCode(Code &code){
 
 
 void IdExpr::genCode(Code &code){
+    cout << "ID EXPRESSION\n";
     if(codeGenerationVars.find(this->id) == codeGenerationVars.end()){
         code.type = globalVariables[this->id];
         if(globalVariables[this->id] == INT){
@@ -521,6 +526,7 @@ void AssignExpr::genCode(Code &code){
     Code rightSideCode;
     stringstream ss;
     this->expr2->genCode(rightSideCode);
+    cout << "RIGHT SIDE CODE\n";
     ss<< rightSideCode.code <<endl;
     string name = ((IdExpr *)this->expr1)->id;
     if(codeGenerationVars.find(name) == codeGenerationVars.end()){
@@ -1085,9 +1091,11 @@ void AddExpr::genCode(Code &code){
 
 int BlockStatement::evaluateSemantic(){
     list<Declaration *>::iterator itd = this->declarations.begin();
+    cout << "\n\nTYPEEE HEREEEE HH" << endl;
     while (itd != this->declarations.end())
     {
         Declaration * dec = *itd;
+        cout << "\n\nTYPEEE HEREEEE" <<(*itd)->type << endl;
         if(dec != NULL){
             dec->evaluateSemantic();
         }

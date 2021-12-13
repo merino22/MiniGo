@@ -7,64 +7,6 @@ import(
     import "brayan"
 )
 
-func hola(int x) int{
-    var z int
-    var check bool
-    check = true
-    if x=0 ; x>2 {
-        fmt.printLn("")
-    }
-    else {
-        var yy int
-    }
-
-    for x = 7; x <= 10; x++ {
-        var yy float32
-        var xx float32
-    }
-
-    for {
-        var mario = "Mario"
-    }
-
-    for x >= 100 {
-        var aaron = 45.67
-        var check2 bool
-        check = false
-        fmt.Println("Mario=")
-        fmt.Println("Mario" + "Aaron")
-        check + check2
-        break
-    }
-}
-
-func bubble(int a[],int s)
-{
- var i,j
- var temp int
- i = 1
- j |= i % 2
- j &= i % 2
- j = i ^ 42
- while(i<s)
-  {
-      j = 0
-    while(j<s-i)
-     {
-      if(a[j]>a[j+1])
-       {
-        temp=a[j]
-        a[j]=a[j+1]
-        a[j+1]=temp
-       }
-       j++
-     }
-     i++
-   }
-}
-
-
-
 func main(){
     var size = 8 int
     var i int
@@ -78,7 +20,7 @@ func main(){
     arr[6] = 23
     arr[7] = 0
     
-    fmt.Println("\nBefore sorting\n")
+    //fmt.Println("\nBefore sorting\n")
     i = 0
     while(i<size){
         fmt.Println(i)

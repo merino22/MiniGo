@@ -103,12 +103,17 @@ start: input{
     assemblyFile.data = ".data\n";
     assemblyFile.text = ".text\n";
     list<Statement *>::iterator it = $1->begin();
+    printf("BEGIN HERE\n");
     string code;
+    code += "main:\n";
     while(it != $1->end()){
         printf("semantic result: %d \n",(*it)->evaluateSemantic());
-        //code += (*it)->genCode();
+        printf("%d\n\n", (*it)->line);
+        code += (*it)->genCode();
         it++;
     }
+    code += "li $v0, 10\n";
+    code += "syscall";
     assemblyFile.text += code;
     writeFile("result.s");
 }
@@ -297,8 +302,16 @@ primary_expression: '(' expression ')' {$$ = $2;}
     //| '[' ']' type  '{' initializer_list '}'{ $$ = new Initializer(*$5, yylineno); delete $5;  }
     ;
 
-assignment_expression: unary_expression assignment_operator assignment_expression
-                     | logical_or_expression
+assignment_expression: unary_expression assignment_operator assignment_expression {
+        if($2 == EQUAL){
+            $$ = new AssignExpr($1,$3,yylineno);
+        }else if($2 == PLUSEQUAL){
+            $$ = new PlusAssignExpr($1,$3,yylineno);
+        }else if($2 == MINUSEQUAL){
+            $$ = new MinusAssignExpr($1,$3,yylineno);
+        }
+}
+                     | logical_or_expression { $$ = $1; }
                      ;
 
 postfix_expression: primary_expression {$$ = $1;}
