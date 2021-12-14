@@ -215,7 +215,7 @@ bool variableExists(string id){
 
 //CHEQUEAR
 string Declaration::genCode(){
-    cout << "\n\nTYPEEE HEREEEE HH" << endl;
+    //cout << "\n\nTYPEEE HEREEEE HH" << endl;
     stringstream code;
     list<InitDeclarator *>::iterator it = this->declarations.begin();
     while(it != this->declarations.end()){
@@ -264,7 +264,7 @@ string Declaration::genCode(){
 
 string BlockStatement::genCode(){
     stringstream ss;
-    cout << "\n\nTYPEEE HEREEEE HH" << endl;
+    //cout << "\n\nTYPEEE HEREEEE HH" << endl;
     list<Declaration *>::iterator itd = this->declarations.begin();
     while (itd != this->declarations.end())
     {
@@ -290,7 +290,7 @@ string BlockStatement::genCode(){
 }
 
 string GlobalDeclaration::genCode(){
-    cout << "\n\nTYPEEE HEREEEE HH" << endl;
+    //cout << "\n\nTYPEEE HEREEEE HH" << endl;
     list<InitDeclarator *>::iterator it = this->declaration->declarations.begin();
     stringstream data;
     stringstream code;
@@ -447,7 +447,7 @@ void PostDecrementExpr::genCode(Code &code){
 
 
 void IdExpr::genCode(Code &code){
-    cout << "ID EXPRESSION\n";
+    //cout << "ID EXPRESSION\n";
     if(codeGenerationVars.find(this->id) == codeGenerationVars.end()){
         code.type = globalVariables[this->id];
         if(globalVariables[this->id] == INT){
@@ -526,7 +526,7 @@ void AssignExpr::genCode(Code &code){
     Code rightSideCode;
     stringstream ss;
     this->expr2->genCode(rightSideCode);
-    cout << "RIGHT SIDE CODE\n";
+    //cout << "RIGHT SIDE CODE\n";
     ss<< rightSideCode.code <<endl;
     string name = ((IdExpr *)this->expr1)->id;
     if(codeGenerationVars.find(name) == codeGenerationVars.end()){
@@ -963,7 +963,7 @@ void MinusAssignExpr::genCode(Code &code){
     if(leftSideCode.type == INT)
             ss << "sub "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<< rightSideCode.place;
     else if(leftSideCode.type == FLOAT)
-            ss << "sub.s "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<< rightSideCode.place;
+            ss << "div.s "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<< rightSideCode.place;
     string name = ((IdExpr *)this->expr1)->id;
     if(codeGenerationVars.find(name) == codeGenerationVars.end()){
         if(leftSideCode.type == INT)
@@ -1042,7 +1042,7 @@ void BoolExpr::genCode(Code &code){
 }
 //CHEQUEAR
 void OrAssignExpr::genCode(Code &code){
-    
+
 }
 //CHEQUEAR
 void AndAssignExpr::genCode(Code &code){
@@ -1050,19 +1050,118 @@ void AndAssignExpr::genCode(Code &code){
 }
 //CHEQUEAR
 void PwrAssignExpr::genCode(Code &code){
-    
+    Code leftSideCode;
+    Code rightSideCode;
+    stringstream ss;
+    this->expr1->genCode(leftSideCode);
+    this->expr2->genCode(rightSideCode);
+    ss<< leftSideCode.code <<endl;
+    ss<< rightSideCode.code <<endl;
+    if(leftSideCode.type == INT)
+            ss << "sll "<< leftSideCode.place<<", "<<leftSideCode.place <<", "<<rightSideCode.place<<endl;
+    else if(leftSideCode.type == FLOAT)
+            ss << "sll "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<< rightSideCode.place<<endl;
+    string name = ((IdExpr *)this->expr1)->id;
+    if(codeGenerationVars.find(name) == codeGenerationVars.end()){
+        if(leftSideCode.type == INT)
+            ss << "sw "<<leftSideCode.place << ", "<<name <<endl;
+        else if(leftSideCode.type == FLOAT)
+             ss << "s.s "<<leftSideCode.place << ", "<<name <<endl;
+    }else{
+        if(leftSideCode.type == INT)
+            ss<< "sw "<< leftSideCode.place <<", "<<codeGenerationVars[name]->offset<<"($sp)"<<endl;
+        else if(leftSideCode.type == FLOAT)
+            ss<< "s.s "<< leftSideCode.place <<", "<<codeGenerationVars[name]->offset<<"($sp)"<<endl;
+    }
+    releaseRegister(leftSideCode.place);
+    code.code = ss.str();
 }
 //CHEQUEAR
 void DivAssignExpr::genCode(Code &code){
-    
+    Code leftSideCode;
+    Code rightSideCode;
+    stringstream ss;
+    this->expr1->genCode(leftSideCode);
+    this->expr2->genCode(rightSideCode);
+    ss<< leftSideCode.code <<endl;
+    ss<< rightSideCode.code <<endl;
+    if(leftSideCode.type == INT){
+            ss << "div "<< leftSideCode.place<<", "<< rightSideCode.place<<endl;
+            ss << "mflo "<< leftSideCode.place<<endl;
+    }else if(leftSideCode.type == FLOAT)
+            ss << "div.s "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<< rightSideCode.place<<endl;
+    string name = ((IdExpr *)this->expr1)->id;
+    if(codeGenerationVars.find(name) == codeGenerationVars.end()){
+        if(leftSideCode.type == INT)
+            ss << "sw "<<leftSideCode.place << ", "<<name <<endl;
+        else if(leftSideCode.type == FLOAT)
+             ss << "s.s "<<leftSideCode.place << ", "<<name <<endl;
+    }else{
+        if(leftSideCode.type == INT)
+            ss<< "sw "<< leftSideCode.place <<", "<<codeGenerationVars[name]->offset<<"($sp)"<<endl;
+        else if(leftSideCode.type == FLOAT)
+            ss<< "s.s "<< leftSideCode.place <<", "<<codeGenerationVars[name]->offset<<"($sp)"<<endl;
+    }
+    releaseRegister(leftSideCode.place);
+    code.code = ss.str();
 }
 //CHEQUEAR
 void MultAssignExpr::genCode(Code &code){
-    
+    Code leftSideCode;
+    Code rightSideCode;
+    stringstream ss;
+    this->expr1->genCode(leftSideCode);
+    this->expr2->genCode(rightSideCode);
+    ss<< leftSideCode.code <<endl;
+    ss<< rightSideCode.code <<endl;
+    if(leftSideCode.type == INT){
+            ss << "mul "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<<rightSideCode.place<<endl;
+            ss << "mflo "<< leftSideCode.place<<endl;
+    }else if(leftSideCode.type == FLOAT)
+            ss << "mul.s "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<< rightSideCode.place<<endl;
+    string name = ((IdExpr *)this->expr1)->id;
+    if(codeGenerationVars.find(name) == codeGenerationVars.end()){
+        if(leftSideCode.type == INT)
+            ss << "sw "<<leftSideCode.place << ", "<<name <<endl;
+        else if(leftSideCode.type == FLOAT)
+             ss << "s.s "<<leftSideCode.place << ", "<<name <<endl;
+    }else{
+        if(leftSideCode.type == INT)
+            ss<< "sw "<< leftSideCode.place <<", "<<codeGenerationVars[name]->offset<<"($sp)"<<endl;
+        else if(leftSideCode.type == FLOAT)
+            ss<< "s.s "<< leftSideCode.place <<", "<<codeGenerationVars[name]->offset<<"($sp)"<<endl;
+    }
+    releaseRegister(leftSideCode.place);
+    code.code = ss.str();
 }
 //CHEQUEAR
 void ModAssignExpr::genCode(Code &code){
-    
+    Code leftSideCode;
+    Code rightSideCode;
+    stringstream ss;
+    this->expr1->genCode(leftSideCode);
+    this->expr2->genCode(rightSideCode);
+    ss<< leftSideCode.code <<endl;
+    ss<< rightSideCode.code <<endl;
+    if(leftSideCode.type == INT){
+            ss << "div "<< leftSideCode.place<<", "<< rightSideCode.place<<endl;
+            ss << "mfhi "<< leftSideCode.place<<endl;
+    }else if(leftSideCode.type == FLOAT)
+            ss << "div.s "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<< rightSideCode.place<<endl;
+    string name = ((IdExpr *)this->expr1)->id;
+    if(codeGenerationVars.find(name) == codeGenerationVars.end()){
+        if(leftSideCode.type == INT)
+            ss << "sw "<<leftSideCode.place << ", "<<name <<endl;
+        else if(leftSideCode.type == FLOAT)
+             ss << "s.s "<<leftSideCode.place << ", "<<name <<endl;
+    }else{
+        if(leftSideCode.type == INT)
+            ss<< "sw "<< leftSideCode.place <<", "<<codeGenerationVars[name]->offset<<"($sp)"<<endl;
+        else if(leftSideCode.type == FLOAT)
+            ss<< "s.s "<< leftSideCode.place <<", "<<codeGenerationVars[name]->offset<<"($sp)"<<endl;
+    }
+    releaseRegister(leftSideCode.place);
+    code.code = ss.str();
 }
 //CHEQUEAR
 void PwrExpr::genCode(Code &code){
@@ -1091,11 +1190,11 @@ void AddExpr::genCode(Code &code){
 
 int BlockStatement::evaluateSemantic(){
     list<Declaration *>::iterator itd = this->declarations.begin();
-    cout << "\n\nTYPEEE HEREEEE HH" << endl;
+    //cout << "\n\nTYPEEE HEREEEE HH" << endl;
     while (itd != this->declarations.end())
     {
         Declaration * dec = *itd;
-        cout << "\n\nTYPEEE HEREEEE" <<(*itd)->type << endl;
+        //cout << "\n\nTYPEEE HEREEEE" <<(*itd)->type << endl;
         if(dec != NULL){
             dec->evaluateSemantic();
         }

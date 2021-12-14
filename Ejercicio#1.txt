@@ -34,12 +34,10 @@ func BubbleSort(array[] int, size int)int {
 func main() {
 
 
-  var array := []int{11, 14, 3, 8, 18, 17, 43}
-  var size int
+  var sizen int
   var mario int
+  //var array := []int{11, 14, 3, 8, 18, 17, 43}
+  sizen = 7
 
-  size = 7
-
-  fmt.Println(BubbleSort(array, size, 8))
-
+  sizen.Println(2+2)
 }

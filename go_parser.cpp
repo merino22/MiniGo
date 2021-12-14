@@ -614,12 +614,12 @@ static const yytype_int16 yyrline[] =
      232,   233,   234,   237,   238,   239,   240,   243,   244,   245,
      248,   251,   254,   255,   256,   257,   260,   265,   268,   269,
      279,   280,   281,   284,   288,   289,   291,   292,   293,   294,
-     295,   296,   299,   300,   301,   305,   314,   317,   318,   319,
-     320,   321,   322,   326,   327,   330,   331,   332,   333,   336,
-     337,   338,   339,   340,   343,   344,   345,   348,   349,   350,
-     351,   352,   355,   356,   357,   360,   361,   364,   365,   368,
-     369,   370,   371,   372,   373,   374,   375,   376,   377,   380,
-     383,   384,   385,   386,   387
+     295,   296,   299,   300,   301,   305,   320,   323,   324,   325,
+     326,   327,   328,   332,   333,   336,   337,   338,   339,   342,
+     343,   344,   345,   346,   349,   350,   351,   354,   355,   356,
+     357,   358,   361,   362,   363,   366,   367,   370,   371,   374,
+     375,   376,   377,   378,   379,   380,   381,   382,   383,   386,
+     389,   390,   391,   392,   393
 };
 #endif
 
@@ -683,29 +683,29 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int16 yypact[] =
 {
-     264,  -144,  -144,  -144,  -144,   137,  -144,  -144,     1,    18,
-     264,  -144,  -144,  -144,     4,  -144,   -19,   355,  -144,    60,
-     -11,  -144,  -144,  -144,   211,   130,   137,  -144,  -144,   305,
-     -10,   385,   452,     9,  -144,    -2,  -144,  -144,  -144,  -144,
-    -144,  -144,   433,   433,   433,   433,  -144,  -144,     5,    -9,
-     457,   261,   -34,    84,   124,    35,    37,  -144,  -144,    41,
+     264,  -144,  -144,  -144,  -144,   137,  -144,  -144,     1,    19,
+     264,  -144,  -144,  -144,     4,  -144,   -14,   355,  -144,    99,
+      -8,  -144,  -144,  -144,   211,   130,   137,  -144,  -144,   305,
+      22,   385,   452,     9,  -144,     6,  -144,  -144,  -144,  -144,
+    -144,  -144,   433,   433,   433,   433,  -144,  -144,    41,    -9,
+     457,   103,   -16,    84,   139,    35,    55,  -144,  -144,    45,
      433,  -144,  -144,   305,   361,   338,  -144,  -144,   211,  -144,
-      43,  -144,  -144,  -144,  -144,    50,  -144,  -144,  -144,   410,
+      50,  -144,  -144,  -144,  -144,    56,  -144,  -144,  -144,   410,
      433,  -144,  -144,  -144,  -144,  -144,  -144,  -144,  -144,  -144,
-      52,   433,   433,   433,   433,   433,   433,   433,   433,   433,
-     433,   433,   433,   433,   433,   433,   452,   -16,  -144,    35,
-    -144,    45,   174,  -144,    46,   368,  -144,  -144,  -144,  -144,
-    -144,    23,    59,  -144,  -144,  -144,  -144,  -144,  -144,   261,
-     261,   -34,   -34,   -34,   -34,    84,    84,    37,   124,    61,
-     433,  -144,   452,    71,   433,    90,   433,   282,  -144,  -144,
+      46,   433,   433,   433,   433,   433,   433,   433,   433,   433,
+     433,   433,   433,   433,   433,   433,   452,    -1,  -144,    35,
+    -144,    63,   174,  -144,    74,   368,  -144,  -144,  -144,  -144,
+    -144,    61,    65,  -144,  -144,  -144,  -144,  -144,  -144,   103,
+     103,   -16,   -16,   -16,   -16,    84,    84,    55,   139,    83,
+     433,  -144,   452,    98,   433,   110,   433,   282,  -144,  -144,
     -144,   197,  -144,  -144,   228,  -144,  -144,  -144,  -144,  -144,
-    -144,  -144,  -144,  -144,   101,  -144,    46,  -144,   433,  -144,
-     433,    35,    46,   111,    47,   433,  -144,  -144,   112,  -144,
-    -144,   251,  -144,  -144,  -144,   452,  -144,  -144,    -1,  -144,
-     118,    71,   433,   151,   125,   433,  -144,  -144,    46,  -144,
-     440,   322,   322,   322,   119,  -144,    48,   104,   121,   133,
-     162,  -144,  -144,   433,  -144,   433,   178,  -144,   322,   322,
-     150,  -144,  -144,  -144,  -144
+    -144,  -144,  -144,  -144,   117,  -144,    74,  -144,   433,  -144,
+     433,    35,    74,   127,    47,   433,  -144,  -144,   112,  -144,
+    -144,   251,  -144,  -144,  -144,   452,  -144,  -144,    20,  -144,
+     128,    98,   433,   165,   138,   433,  -144,  -144,    74,  -144,
+     440,   322,   322,   322,   142,  -144,    48,   -28,   -22,   161,
+     208,  -144,  -144,   433,  -144,   433,   205,  -144,   322,   322,
+     182,  -144,  -144,  -144,  -144
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -734,17 +734,17 @@ static const yytype_uint8 yydefact[] =
       17,     0,    66,    49,    50,     0,     7,    93,     0,    11,
        0,     0,     0,    55,     0,     0,    57,    68,     0,    40,
        0,     0,     0,     0,     0,     8,   132,    83,     0,     0,
-      53,    56,    61,     0,    70,     0,     0,    72,     0,     0,
-       0,    73,    54,    58,    71
+      53,    56,    61,     0,    71,     0,     0,    70,     0,     0,
+       0,    73,    54,    58,    72
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int16 yypgoto[] =
 {
-    -144,  -144,  -144,   185,  -144,  -144,  -108,  -144,     3,    92,
-     165,   -24,   141,    38,   -89,    68,  -144,  -144,  -143,  -144,
+    -144,  -144,  -144,   216,  -144,  -144,  -108,  -144,     3,    92,
+     196,   -24,   172,    75,   -89,    97,  -144,  -144,  -143,  -144,
     -144,   -61,  -144,  -144,     0,  -144,   -23,  -144,  -144,   -21,
-      69,   221,    89,   120,   -53,   122,  -144,   -44,  -144
+      95,    66,    93,   153,   -53,   158,  -144,   -44,  -144
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
@@ -762,38 +762,38 @@ static const yytype_int16 yydefgoto[] =
 static const yytype_int16 yytable[] =
 {
       14,    75,    48,   113,   152,    20,    62,   109,    23,    69,
-      14,   184,    15,    16,    77,    78,     1,    28,    21,    96,
-      27,    71,    72,    73,    97,    25,     2,     3,     4,    58,
-     140,    31,    66,    79,   141,    80,   122,    63,   184,   108,
-      62,    69,    70,   180,   116,   140,    24,     6,     7,   199,
-      76,   191,    67,   163,   165,    68,   120,   144,   177,   145,
-     146,   147,   148,   149,   114,   183,   167,   104,   124,   168,
-     105,   125,   126,   127,   128,   108,   108,   108,   108,   108,
-     108,   108,   108,   108,   108,   193,   106,   171,   117,   196,
-     142,   -74,   183,   118,   -74,   112,   112,    19,   192,   123,
-     174,   -74,   176,   178,   169,   186,   139,    29,    30,    19,
-     170,   189,   210,   211,   212,   166,   191,   109,    19,   108,
-      98,    99,   144,   173,   145,   146,   147,   148,   149,   222,
-     223,   194,   175,    36,    37,    38,    39,   205,    40,    41,
-      15,    16,   172,   100,   101,   187,   185,   -75,   201,   108,
-     -75,   204,   190,    42,    43,    44,   209,   -75,   102,   103,
-     200,   112,   202,   195,   214,   129,   130,   215,   203,   219,
-     213,   220,    45,   218,   216,    46,   217,    36,   143,    38,
-      39,   221,    40,    41,   144,   198,   145,   146,   147,   148,
-     149,   135,   136,   224,     5,    22,    65,    42,    43,    44,
-      36,   143,    38,    39,   110,    40,    41,   144,   188,   145,
-     146,   147,   148,   149,    15,    16,    45,     5,     1,   181,
-      42,    43,    44,   112,   150,   138,   137,     0,     2,     3,
-       4,    36,   143,    38,    39,     0,    40,    41,   144,    45,
-     145,   146,   147,   148,   149,     0,   112,   179,     0,     6,
-       7,    42,    43,    44,    36,   143,    38,    39,     0,    40,
-      41,   144,     0,   145,   146,   147,   148,   149,     0,     0,
+      14,   184,    15,    16,    77,    78,     1,    28,   -75,    21,
+      27,    71,    72,    73,   215,   -75,     2,     3,     4,    58,
+      25,   216,    66,    79,    31,    80,   122,    96,   184,   108,
+      62,    69,    97,   180,   116,   140,    24,     6,     7,   141,
+      70,   191,    67,   163,   165,    68,   120,   144,   177,   145,
+     146,   147,   148,   149,   114,   183,   140,   104,   124,    63,
+     199,   125,   126,   127,   128,   108,   108,   108,   108,   108,
+     108,   108,   108,   108,   108,   193,    76,   171,   105,   196,
+     106,   214,   183,   123,   -74,   117,   112,    19,   192,   118,
+     174,   -74,   176,   178,   167,   186,   139,   168,   142,    19,
+     169,   189,   210,   211,   212,   166,   191,   109,    19,   108,
+      98,    99,   144,   112,   145,   146,   147,   148,   149,   222,
+     223,   194,   170,    36,    37,    38,    39,   205,    40,    41,
+      15,    16,   172,   100,   101,   187,    29,    30,   201,   108,
+     173,   204,   175,    42,    43,    44,   209,    92,    93,    94,
+      95,   112,   185,   195,   131,   132,   133,   134,   190,   219,
+     200,   220,    45,   102,   103,    46,   202,    36,   143,    38,
+      39,   203,    40,    41,   144,   198,   145,   146,   147,   148,
+     149,   129,   130,   213,     5,   135,   136,    42,    43,    44,
+      36,   143,    38,    39,   217,    40,    41,   144,   221,   145,
+     146,   147,   148,   149,    15,    16,    45,     5,     1,   218,
+      42,    43,    44,   112,   150,   224,    22,    65,     2,     3,
+       4,    36,   143,    38,    39,   110,    40,    41,   144,    45,
+     145,   146,   147,   148,   149,   188,   112,   179,   181,     6,
+       7,    42,    43,    44,    36,   143,    38,    39,   138,    40,
+      41,   144,   137,   145,   146,   147,   148,   149,     0,     0,
       45,     1,     0,     0,    42,    43,    44,   112,   182,     0,
        0,     2,     3,     4,     5,    36,   143,    38,    39,     0,
       40,    41,   144,    45,   145,   146,   147,   148,   149,     0,
      112,   197,     6,     7,     8,    42,    43,    44,    36,    37,
-      38,    39,     0,    40,    41,    92,    93,    94,    95,   131,
-     132,   133,   134,     0,    45,     0,   191,     0,    42,    43,
+      38,    39,     0,    40,    41,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,    45,     0,   191,     0,    42,    43,
       44,   112,   144,     0,   145,   146,   147,   148,   149,     0,
        0,    15,    16,     0,     0,     1,     0,    45,     0,    59,
        0,     0,     0,     0,    60,     2,     3,     4,    15,    16,
@@ -817,38 +817,38 @@ static const yytype_int16 yytable[] =
 static const yytype_int16 yycheck[] =
 {
        0,    45,    25,    64,   112,     4,    29,    60,     4,    33,
-      10,   154,     3,     4,    23,    24,     7,    17,     0,    53,
-      17,    42,    43,    44,    58,    44,    17,    18,    19,    26,
-      46,    42,    32,    42,    50,    44,    80,    47,   181,    60,
-      63,    65,    44,   151,    68,    46,    42,    38,    39,    50,
-      45,     4,    43,   114,   115,    46,    79,    10,   147,    12,
-      13,    14,    15,    16,    64,   154,    43,    32,    91,    46,
-      33,    92,    93,    94,    95,    96,    97,    98,    99,   100,
-     101,   102,   103,   104,   105,   174,    45,   140,    45,   178,
-      45,    43,   181,    43,    46,    49,    49,     5,    51,    47,
-     144,    53,   146,   147,    45,   166,   106,    47,    48,    17,
-      49,   172,   201,   202,   203,   115,     4,   170,    26,   140,
-      36,    37,    10,    52,    12,    13,    14,    15,    16,   218,
-     219,   175,    42,     3,     4,     5,     6,   198,     8,     9,
-       3,     4,   142,    59,    60,   168,    45,    43,   192,   170,
-      46,   195,    41,    23,    24,    25,   200,    53,    34,    35,
-      42,    49,    11,    51,    43,    96,    97,    46,    43,   213,
-      51,   215,    42,    11,    53,    45,    43,     3,     4,     5,
-       6,     3,     8,     9,    10,   185,    12,    13,    14,    15,
-      16,   102,   103,    43,    20,    10,    31,    23,    24,    25,
-       3,     4,     5,     6,    63,     8,     9,    10,   170,    12,
-      13,    14,    15,    16,     3,     4,    42,    20,     7,   151,
-      23,    24,    25,    49,    50,   105,   104,    -1,    17,    18,
-      19,     3,     4,     5,     6,    -1,     8,     9,    10,    42,
-      12,    13,    14,    15,    16,    -1,    49,    50,    -1,    38,
-      39,    23,    24,    25,     3,     4,     5,     6,    -1,     8,
-       9,    10,    -1,    12,    13,    14,    15,    16,    -1,    -1,
+      10,   154,     3,     4,    23,    24,     7,    17,    46,     0,
+      17,    42,    43,    44,    46,    53,    17,    18,    19,    26,
+      44,    53,    32,    42,    42,    44,    80,    53,   181,    60,
+      63,    65,    58,   151,    68,    46,    42,    38,    39,    50,
+      44,     4,    43,   114,   115,    46,    79,    10,   147,    12,
+      13,    14,    15,    16,    64,   154,    46,    32,    91,    47,
+      50,    92,    93,    94,    95,    96,    97,    98,    99,   100,
+     101,   102,   103,   104,   105,   174,    45,   140,    33,   178,
+      45,    43,   181,    47,    46,    45,    49,     5,    51,    43,
+     144,    53,   146,   147,    43,   166,   106,    46,    45,    17,
+      45,   172,   201,   202,   203,   115,     4,   170,    26,   140,
+      36,    37,    10,    49,    12,    13,    14,    15,    16,   218,
+     219,   175,    49,     3,     4,     5,     6,   198,     8,     9,
+       3,     4,   142,    59,    60,   168,    47,    48,   192,   170,
+      52,   195,    42,    23,    24,    25,   200,    54,    55,    56,
+      57,    49,    45,    51,    98,    99,   100,   101,    41,   213,
+      42,   215,    42,    34,    35,    45,    11,     3,     4,     5,
+       6,    43,     8,     9,    10,   185,    12,    13,    14,    15,
+      16,    96,    97,    51,    20,   102,   103,    23,    24,    25,
+       3,     4,     5,     6,    43,     8,     9,    10,     3,    12,
+      13,    14,    15,    16,     3,     4,    42,    20,     7,    11,
+      23,    24,    25,    49,    50,    43,    10,    31,    17,    18,
+      19,     3,     4,     5,     6,    63,     8,     9,    10,    42,
+      12,    13,    14,    15,    16,   170,    49,    50,   151,    38,
+      39,    23,    24,    25,     3,     4,     5,     6,   105,     8,
+       9,    10,   104,    12,    13,    14,    15,    16,    -1,    -1,
       42,     7,    -1,    -1,    23,    24,    25,    49,    50,    -1,
       -1,    17,    18,    19,    20,     3,     4,     5,     6,    -1,
        8,     9,    10,    42,    12,    13,    14,    15,    16,    -1,
       49,    50,    38,    39,    40,    23,    24,    25,     3,     4,
-       5,     6,    -1,     8,     9,    54,    55,    56,    57,    98,
-      99,   100,   101,    -1,    42,    -1,     4,    -1,    23,    24,
+       5,     6,    -1,     8,     9,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    42,    -1,     4,    -1,    23,    24,
       25,    49,    10,    -1,    12,    13,    14,    15,    16,    -1,
       -1,     3,     4,    -1,    -1,     7,    -1,    42,    -1,    44,
       -1,    -1,    -1,    -1,    49,    17,    18,    19,     3,     4,
@@ -927,7 +927,7 @@ static const yytype_int8 yyr2[] =
        6,     3,     1,     1,     1,     1,     1,     1,     1,     2,
        2,     1,     1,     5,     7,     3,     5,     3,     7,     2,
        1,     5,     2,     1,     1,     1,     3,     3,     4,     2,
-       6,     8,     6,     3,     1,     1,     1,     1,     1,     1,
+       6,     6,     8,     3,     1,     1,     1,     1,     1,     1,
        1,     1,     3,     1,     1,     3,     1,     1,     4,     3,
        4,     2,     2,     3,     1,     2,     2,     2,     1,     3,
        3,     3,     3,     1,     3,     3,     1,     3,     3,     3,
@@ -1635,7 +1635,7 @@ yyreduce:
     assemblyFile.data = ".data\n";
     assemblyFile.text = ".text\n";
     list<Statement *>::iterator it = (yyvsp[0].statement_list_t)->begin();
-    printf("BEGIN HERE\n");
+    //printf("BEGIN HERE\n");
     string code;
     code += "main:\n";
     while(it != (yyvsp[0].statement_list_t)->end()){
@@ -2106,19 +2106,19 @@ yyreduce:
 
   case 70:
 #line 279 "go.y"
-                                                          {(yyval.statement_t) = new PrintStatement((yyvsp[-1].string_t),NULL,yylineno);}
+                                                         {(yyval.statement_t) = new PrintStatement(NULL,(yyvsp[-1].expr_t),yylineno);}
 #line 2111 "go_parser.cpp"
     break;
 
   case 71:
 #line 280 "go.y"
-                                                                        {(yyval.statement_t) = new PrintStatement((yyvsp[-3].string_t),(yyvsp[-1].expr_t),yylineno);}
+                                                            {(yyval.statement_t) = new PrintStatement((yyvsp[-1].string_t),NULL,yylineno);}
 #line 2117 "go_parser.cpp"
     break;
 
   case 72:
 #line 281 "go.y"
-                                                         {(yyval.statement_t) = new PrintStatement(NULL,(yyvsp[-1].expr_t),yylineno);}
+                                                                        {(yyval.statement_t) = new PrintStatement((yyvsp[-3].string_t),(yyvsp[-1].expr_t),yylineno);}
 #line 2123 "go_parser.cpp"
     break;
 
@@ -2206,307 +2206,313 @@ yyreduce:
             (yyval.expr_t) = new PlusAssignExpr((yyvsp[-2].expr_t),(yyvsp[0].expr_t),yylineno);
         }else if((yyvsp[-1].int_t) == MINUSEQUAL){
             (yyval.expr_t) = new MinusAssignExpr((yyvsp[-2].expr_t),(yyvsp[0].expr_t),yylineno);
+        }else if((yyvsp[-1].int_t) == DIVEQUAL){
+            (yyval.expr_t) = new DivAssignExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno);
+        }else if((yyvsp[-1].int_t) == MODEQUAL){
+            (yyval.expr_t) = new ModAssignExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno);
+        }else if((yyvsp[-1].int_t) == PWREQUAL){
+            (yyval.expr_t) = new PwrAssignExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno);
         }
 }
-#line 2212 "go_parser.cpp"
-    break;
-
-  case 86:
-#line 314 "go.y"
-                                             { (yyval.expr_t) = (yyvsp[0].expr_t); }
 #line 2218 "go_parser.cpp"
     break;
 
-  case 87:
-#line 317 "go.y"
-                                       {(yyval.expr_t) = (yyvsp[0].expr_t);}
+  case 86:
+#line 320 "go.y"
+                                             { (yyval.expr_t) = (yyvsp[0].expr_t); }
 #line 2224 "go_parser.cpp"
     break;
 
-  case 88:
-#line 318 "go.y"
-                                                            { (yyval.expr_t) = new ArrayExpr((IdExpr*)(yyvsp[-3].expr_t), (yyvsp[-1].expr_t), yylineno); }
+  case 87:
+#line 323 "go.y"
+                                       {(yyval.expr_t) = (yyvsp[0].expr_t);}
 #line 2230 "go_parser.cpp"
     break;
 
-  case 89:
-#line 319 "go.y"
-                                                 { (yyval.expr_t) = new MethodInvocationExpr((IdExpr*)(yyvsp[-2].expr_t), *(new ArgumentList), yylineno); }
+  case 88:
+#line 324 "go.y"
+                                                            { (yyval.expr_t) = new ArrayExpr((IdExpr*)(yyvsp[-3].expr_t), (yyvsp[-1].expr_t), yylineno); }
 #line 2236 "go_parser.cpp"
     break;
 
-  case 90:
-#line 320 "go.y"
-                                                                          { (yyval.expr_t) = new MethodInvocationExpr((IdExpr*)(yyvsp[-3].expr_t), *(yyvsp[-1].argument_list_t), yylineno); }
+  case 89:
+#line 325 "go.y"
+                                                 { (yyval.expr_t) = new MethodInvocationExpr((IdExpr*)(yyvsp[-2].expr_t), *(new ArgumentList), yylineno); }
 #line 2242 "go_parser.cpp"
     break;
 
-  case 91:
-#line 321 "go.y"
-                                                      { (yyval.expr_t) = new PostIncrementExpr((IdExpr*)(yyvsp[-1].expr_t), yylineno); }
+  case 90:
+#line 326 "go.y"
+                                                                          { (yyval.expr_t) = new MethodInvocationExpr((IdExpr*)(yyvsp[-3].expr_t), *(yyvsp[-1].argument_list_t), yylineno); }
 #line 2248 "go_parser.cpp"
     break;
 
-  case 92:
-#line 322 "go.y"
-                                                        { (yyval.expr_t) = new PostDecrementExpr((IdExpr*)(yyvsp[-1].expr_t), yylineno); }
+  case 91:
+#line 327 "go.y"
+                                                      { (yyval.expr_t) = new PostIncrementExpr((IdExpr*)(yyvsp[-1].expr_t), yylineno); }
 #line 2254 "go_parser.cpp"
     break;
 
-  case 93:
-#line 326 "go.y"
-                                                                             {(yyval.argument_list_t) = (yyvsp[-2].argument_list_t);  (yyval.argument_list_t)->push_back((yyvsp[0].expr_t));}
+  case 92:
+#line 328 "go.y"
+                                                        { (yyval.expr_t) = new PostDecrementExpr((IdExpr*)(yyvsp[-1].expr_t), yylineno); }
 #line 2260 "go_parser.cpp"
     break;
 
-  case 94:
-#line 327 "go.y"
-                                                { (yyval.argument_list_t) = new ArgumentList; (yyval.argument_list_t)->push_back((yyvsp[0].expr_t));}
+  case 93:
+#line 332 "go.y"
+                                                                             {(yyval.argument_list_t) = (yyvsp[-2].argument_list_t);  (yyval.argument_list_t)->push_back((yyvsp[0].expr_t));}
 #line 2266 "go_parser.cpp"
     break;
 
-  case 95:
-#line 330 "go.y"
-                                                {(yyval.expr_t) = new UnaryExpr(INCREMENT, (yyvsp[0].expr_t), yylineno);}
+  case 94:
+#line 333 "go.y"
+                                                { (yyval.argument_list_t) = new ArgumentList; (yyval.argument_list_t)->push_back((yyvsp[0].expr_t));}
 #line 2272 "go_parser.cpp"
     break;
 
-  case 96:
-#line 331 "go.y"
-                                                  {(yyval.expr_t) = new UnaryExpr(DECREMENT, (yyvsp[0].expr_t), yylineno);}
+  case 95:
+#line 336 "go.y"
+                                                {(yyval.expr_t) = new UnaryExpr(INCREMENT, (yyvsp[0].expr_t), yylineno);}
 #line 2278 "go_parser.cpp"
     break;
 
-  case 97:
-#line 332 "go.y"
-                                           {(yyval.expr_t) = new UnaryExpr(NOT, (yyvsp[0].expr_t), yylineno);}
+  case 96:
+#line 337 "go.y"
+                                                  {(yyval.expr_t) = new UnaryExpr(DECREMENT, (yyvsp[0].expr_t), yylineno);}
 #line 2284 "go_parser.cpp"
     break;
 
-  case 98:
-#line 333 "go.y"
-                                     { (yyval.expr_t) = (yyvsp[0].expr_t);}
+  case 97:
+#line 338 "go.y"
+                                           {(yyval.expr_t) = new UnaryExpr(NOT, (yyvsp[0].expr_t), yylineno);}
 #line 2290 "go_parser.cpp"
     break;
 
-  case 99:
-#line 336 "go.y"
-                                                                          { (yyval.expr_t) = new MulExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
+  case 98:
+#line 339 "go.y"
+                                     { (yyval.expr_t) = (yyvsp[0].expr_t);}
 #line 2296 "go_parser.cpp"
     break;
 
-  case 100:
-#line 337 "go.y"
-                                                       { (yyval.expr_t) = new DivExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno);}
+  case 99:
+#line 342 "go.y"
+                                                                          { (yyval.expr_t) = new MulExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
 #line 2302 "go_parser.cpp"
     break;
 
-  case 101:
-#line 338 "go.y"
-                                                       { (yyval.expr_t) = new ModExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno);}
+  case 100:
+#line 343 "go.y"
+                                                       { (yyval.expr_t) = new DivExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno);}
 #line 2308 "go_parser.cpp"
     break;
 
-  case 102:
-#line 339 "go.y"
-                                                       { (yyval.expr_t) = new PwrExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno);}
+  case 101:
+#line 344 "go.y"
+                                                       { (yyval.expr_t) = new ModExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno);}
 #line 2314 "go_parser.cpp"
     break;
 
-  case 103:
-#line 340 "go.y"
-                         {(yyval.expr_t) = (yyvsp[0].expr_t);}
+  case 102:
+#line 345 "go.y"
+                                                       { (yyval.expr_t) = new PwrExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno);}
 #line 2320 "go_parser.cpp"
     break;
 
-  case 104:
-#line 343 "go.y"
-                                                                       { (yyval.expr_t) = new AddExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
+  case 103:
+#line 346 "go.y"
+                         {(yyval.expr_t) = (yyvsp[0].expr_t);}
 #line 2326 "go_parser.cpp"
     break;
 
-  case 105:
-#line 344 "go.y"
-                                                                        { (yyval.expr_t) = new SubExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
+  case 104:
+#line 349 "go.y"
+                                                                       { (yyval.expr_t) = new AddExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
 #line 2332 "go_parser.cpp"
     break;
 
-  case 106:
-#line 345 "go.y"
-                                                {(yyval.expr_t) = (yyvsp[0].expr_t);}
+  case 105:
+#line 350 "go.y"
+                                                                        { (yyval.expr_t) = new SubExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
 #line 2338 "go_parser.cpp"
     break;
 
-  case 107:
-#line 348 "go.y"
-                                                                     { (yyval.expr_t) = new GtExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
+  case 106:
+#line 351 "go.y"
+                                                {(yyval.expr_t) = (yyvsp[0].expr_t);}
 #line 2344 "go_parser.cpp"
     break;
 
-  case 108:
-#line 349 "go.y"
-                                                                     { (yyval.expr_t) = new LtExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
+  case 107:
+#line 354 "go.y"
+                                                                     { (yyval.expr_t) = new GtExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
 #line 2350 "go_parser.cpp"
     break;
 
-  case 109:
-#line 350 "go.y"
-                                                                                     { (yyval.expr_t) = new GteExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
+  case 108:
+#line 355 "go.y"
+                                                                     { (yyval.expr_t) = new LtExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
 #line 2356 "go_parser.cpp"
     break;
 
-  case 110:
-#line 351 "go.y"
-                                                                                  { (yyval.expr_t) = new LteExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
+  case 109:
+#line 356 "go.y"
+                                                                                     { (yyval.expr_t) = new GteExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
 #line 2362 "go_parser.cpp"
     break;
 
-  case 111:
-#line 352 "go.y"
-                                           {(yyval.expr_t) = (yyvsp[0].expr_t);}
+  case 110:
+#line 357 "go.y"
+                                                                                  { (yyval.expr_t) = new LteExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
 #line 2368 "go_parser.cpp"
     break;
 
-  case 112:
-#line 355 "go.y"
-                                                                         { (yyval.expr_t) = new EqExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
+  case 111:
+#line 358 "go.y"
+                                           {(yyval.expr_t) = (yyvsp[0].expr_t);}
 #line 2374 "go_parser.cpp"
     break;
 
-  case 113:
-#line 356 "go.y"
-                                                                            { (yyval.expr_t) = new NeqExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
+  case 112:
+#line 361 "go.y"
+                                                                         { (yyval.expr_t) = new EqExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
 #line 2380 "go_parser.cpp"
     break;
 
-  case 114:
-#line 357 "go.y"
-                                           {(yyval.expr_t) = (yyvsp[0].expr_t);}
+  case 113:
+#line 362 "go.y"
+                                                                            { (yyval.expr_t) = new NeqExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
 #line 2386 "go_parser.cpp"
     break;
 
-  case 115:
-#line 360 "go.y"
-                                                                          { (yyval.expr_t) = new LogicalOrExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
+  case 114:
+#line 363 "go.y"
+                                           {(yyval.expr_t) = (yyvsp[0].expr_t);}
 #line 2392 "go_parser.cpp"
     break;
 
-  case 116:
-#line 361 "go.y"
-                                             {(yyval.expr_t) = (yyvsp[0].expr_t);}
+  case 115:
+#line 366 "go.y"
+                                                                          { (yyval.expr_t) = new LogicalOrExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
 #line 2398 "go_parser.cpp"
     break;
 
-  case 117:
-#line 364 "go.y"
-                                                                          { (yyval.expr_t) = new LogicalAndExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
+  case 116:
+#line 367 "go.y"
+                                             {(yyval.expr_t) = (yyvsp[0].expr_t);}
 #line 2404 "go_parser.cpp"
     break;
 
-  case 118:
-#line 365 "go.y"
-                                            {(yyval.expr_t) = (yyvsp[0].expr_t);}
+  case 117:
+#line 370 "go.y"
+                                                                          { (yyval.expr_t) = new LogicalAndExpr((yyvsp[-2].expr_t), (yyvsp[0].expr_t), yylineno); }
 #line 2410 "go_parser.cpp"
     break;
 
-  case 119:
-#line 368 "go.y"
-                             { (yyval.int_t) = EQUAL; }
+  case 118:
+#line 371 "go.y"
+                                            {(yyval.expr_t) = (yyvsp[0].expr_t);}
 #line 2416 "go_parser.cpp"
     break;
 
-  case 120:
-#line 369 "go.y"
-                          { (yyval.int_t) = EQUAL; }
+  case 119:
+#line 374 "go.y"
+                             { (yyval.int_t) = EQUAL; }
 #line 2422 "go_parser.cpp"
     break;
 
-  case 121:
-#line 370 "go.y"
-                                   {(yyval.int_t) = PLUSEQUAL; }
+  case 120:
+#line 375 "go.y"
+                          { (yyval.int_t) = EQUAL; }
 #line 2428 "go_parser.cpp"
     break;
 
-  case 122:
-#line 371 "go.y"
-                                    { (yyval.int_t) = MINUSEQUAL; }
+  case 121:
+#line 376 "go.y"
+                                   {(yyval.int_t) = PLUSEQUAL; }
 #line 2434 "go_parser.cpp"
     break;
 
-  case 123:
-#line 372 "go.y"
-                                   { (yyval.int_t) = MULTEQUAL; }
+  case 122:
+#line 377 "go.y"
+                                    { (yyval.int_t) = MINUSEQUAL; }
 #line 2440 "go_parser.cpp"
     break;
 
-  case 124:
-#line 373 "go.y"
-                                  { (yyval.int_t) = PWREQUAL; }
+  case 123:
+#line 378 "go.y"
+                                   { (yyval.int_t) = MULTEQUAL; }
 #line 2446 "go_parser.cpp"
     break;
 
-  case 125:
-#line 374 "go.y"
-                                  { (yyval.int_t) = DIVEQUAL; }
+  case 124:
+#line 379 "go.y"
+                                  { (yyval.int_t) = PWREQUAL; }
 #line 2452 "go_parser.cpp"
     break;
 
-  case 126:
-#line 375 "go.y"
-                                  { (yyval.int_t) = MODEQUAL; }
+  case 125:
+#line 380 "go.y"
+                                  { (yyval.int_t) = DIVEQUAL; }
 #line 2458 "go_parser.cpp"
     break;
 
-  case 127:
-#line 376 "go.y"
-                                  { (yyval.int_t) = ANDEQUAL; }
+  case 126:
+#line 381 "go.y"
+                                  { (yyval.int_t) = MODEQUAL; }
 #line 2464 "go_parser.cpp"
     break;
 
-  case 128:
-#line 377 "go.y"
-                                 { (yyval.int_t) = OREQUAL; }
+  case 127:
+#line 382 "go.y"
+                                  { (yyval.int_t) = ANDEQUAL; }
 #line 2470 "go_parser.cpp"
     break;
 
-  case 129:
-#line 380 "go.y"
-                                  {(yyval.expr_t) = (yyvsp[0].expr_t);}
+  case 128:
+#line 383 "go.y"
+                                 { (yyval.int_t) = OREQUAL; }
 #line 2476 "go_parser.cpp"
     break;
 
-  case 130:
-#line 383 "go.y"
-                     { (yyval.expr_t) = new IntExpr((yyvsp[0].int_t) , yylineno);}
+  case 129:
+#line 386 "go.y"
+                                  {(yyval.expr_t) = (yyvsp[0].expr_t);}
 #line 2482 "go_parser.cpp"
     break;
 
-  case 131:
-#line 384 "go.y"
-                       { (yyval.expr_t) = new FloatExpr((yyvsp[0].float_t) , yylineno);}
+  case 130:
+#line 389 "go.y"
+                     { (yyval.expr_t) = new IntExpr((yyvsp[0].int_t) , yylineno);}
 #line 2488 "go_parser.cpp"
     break;
 
-  case 132:
-#line 385 "go.y"
-                        { (yyval.expr_t) = new StringExpr((yyvsp[0].string_t), yylineno); }
+  case 131:
+#line 390 "go.y"
+                       { (yyval.expr_t) = new FloatExpr((yyvsp[0].float_t) , yylineno);}
 #line 2494 "go_parser.cpp"
     break;
 
-  case 133:
-#line 386 "go.y"
-                  { (yyval.expr_t) = new BoolExpr(true, yylineno); }
+  case 132:
+#line 391 "go.y"
+                        { (yyval.expr_t) = new StringExpr((yyvsp[0].string_t), yylineno); }
 #line 2500 "go_parser.cpp"
     break;
 
-  case 134:
-#line 387 "go.y"
-                   { (yyval.expr_t) = new BoolExpr(false, yylineno); }
+  case 133:
+#line 392 "go.y"
+                  { (yyval.expr_t) = new BoolExpr(true, yylineno); }
 #line 2506 "go_parser.cpp"
     break;
 
+  case 134:
+#line 393 "go.y"
+                   { (yyval.expr_t) = new BoolExpr(false, yylineno); }
+#line 2512 "go_parser.cpp"
+    break;
 
-#line 2510 "go_parser.cpp"
+
+#line 2516 "go_parser.cpp"
 
       default: break;
     }
@@ -2738,4 +2744,4 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 389 "go.y"
+#line 395 "go.y"

@@ -103,7 +103,7 @@ start: input{
     assemblyFile.data = ".data\n";
     assemblyFile.text = ".text\n";
     list<Statement *>::iterator it = $1->begin();
-    printf("BEGIN HERE\n");
+    //printf("BEGIN HERE\n");
     string code;
     code += "main:\n";
     while(it != $1->end()){
@@ -276,9 +276,9 @@ block_statement: '{' statement_list '}' {
                }
                ;
 
-print_statement: TK_ID '.' TK_PRINTLN '(' concat_list ')' {$$ = new PrintStatement($5,NULL,yylineno);}
+print_statement: TK_ID '.' TK_PRINTLN '(' expression ')' {$$ = new PrintStatement(NULL,$5,yylineno);}
+               | TK_ID '.' TK_PRINTLN '(' TK_LIT_STRING ')' {$$ = new PrintStatement($5,NULL,yylineno);}
                | TK_ID '.' TK_PRINTLN '(' concat_list ',' expression ')'{$$ = new PrintStatement($5,$7,yylineno);}
-               | TK_ID '.' TK_PRINTLN '(' expression ')' {$$ = new PrintStatement(NULL,$5,yylineno);}
                ;
 
 concat_list: concat_list '+' TK_LIT_STRING {
@@ -309,6 +309,12 @@ assignment_expression: unary_expression assignment_operator assignment_expressio
             $$ = new PlusAssignExpr($1,$3,yylineno);
         }else if($2 == MINUSEQUAL){
             $$ = new MinusAssignExpr($1,$3,yylineno);
+        }else if($2 == DIVEQUAL){
+            $$ = new DivAssignExpr($1, $3, yylineno);
+        }else if($2 == MODEQUAL){
+            $$ = new ModAssignExpr($1, $3, yylineno);
+        }else if($2 == PWREQUAL){
+            $$ = new PwrAssignExpr($1, $3, yylineno);
         }
 }
                      | logical_or_expression { $$ = $1; }
