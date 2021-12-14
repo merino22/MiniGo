@@ -1,6 +1,9 @@
 #include "ast.h"
 #include <iostream>
+#include <string.h>
+#include <string>
 #include <sstream>
+#include <stdlib.h>
 #include <set>
 #include "asm.h"
 
@@ -1053,22 +1056,32 @@ void PwrAssignExpr::genCode(Code &code){
     Code leftSideCode;
     Code rightSideCode;
     stringstream ss;
+    string name = ((IdExpr *)this->expr1)->id;
     this->expr1->genCode(leftSideCode);
     this->expr2->genCode(rightSideCode);
+    
     ss<< leftSideCode.code <<endl;
     ss<< rightSideCode.code <<endl;
-    if(leftSideCode.type == INT)
-            ss << "sll "<< leftSideCode.place<<", "<<leftSideCode.place <<", "<<rightSideCode.place<<endl;
-    else if(leftSideCode.type == FLOAT)
-            ss << "sll "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<< rightSideCode.place<<endl;
-    string name = ((IdExpr *)this->expr1)->id;
+    ss<< "li $t2, 0" << endl;
+    ss<< "forPwr:"<<endl;
+    ss<< "slt $t3, $t2, "<<rightSideCode.place<<endl;
+    ss<< "beq $t3, $zero, endForPwr"<<endl;
+    cout << leftSideCode.code << endl;
+    cout << rightSideCode.code << endl;
+    if(leftSideCode.type == INT){
+        ss<< "mult "<< leftSideCode.place<< ", "<<leftSideCode.place<<endl;
+        ss<< "mflo "<< leftSideCode.place<<endl;
+    }else if(leftSideCode.type == FLOAT)
+        ss << "mul.s "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<< leftSideCode.place<<endl;
+    ss<< "addi $t2, $t2, 1"<<endl;
+    ss<< "endForPwr:"<<endl;
     if(codeGenerationVars.find(name) == codeGenerationVars.end()){
-        if(leftSideCode.type == INT)
+        if(rightSideCode.type == INT)
             ss << "sw "<<leftSideCode.place << ", "<<name <<endl;
         else if(leftSideCode.type == FLOAT)
              ss << "s.s "<<leftSideCode.place << ", "<<name <<endl;
     }else{
-        if(leftSideCode.type == INT)
+        if(rightSideCode.type == INT)
             ss<< "sw "<< leftSideCode.place <<", "<<codeGenerationVars[name]->offset<<"($sp)"<<endl;
         else if(leftSideCode.type == FLOAT)
             ss<< "s.s "<< leftSideCode.place <<", "<<codeGenerationVars[name]->offset<<"($sp)"<<endl;
@@ -1165,27 +1178,113 @@ void ModAssignExpr::genCode(Code &code){
 }
 //CHEQUEAR
 void PwrExpr::genCode(Code &code){
+    Code leftSideCode;
+    Code rightSideCode;
+    stringstream ss;
+    string name = ((IdExpr *)this->expr1)->id;
+    this->expr1->genCode(leftSideCode);
+    this->expr2->genCode(rightSideCode);
     
+    ss<< leftSideCode.code <<endl;
+    ss<< rightSideCode.code <<endl;
+    ss<< "li $t2, 0" << endl;
+    ss<< "forPwr:"<<endl;
+    ss<< "slt $t3, $t2, "<<rightSideCode.place<<endl;
+    ss<< "beq $t3, $zero, endForPwr"<<endl;
+    ss<< "mult "<< leftSideCode.place<< ", "<<leftSideCode.place<<endl;
+    ss<< "mflo "<< leftSideCode.place<<endl;
+    ss<< "addi $t2, $t2, 1"<<endl;
+    ss<< "endForPwr:"<<endl;
 }
 //CHEQUEAR
 void ModExpr::genCode(Code &code){
-    
+    Code leftSideCode;
+    Code rightSideCode;
+    stringstream ss;
+    this->expr1->genCode(leftSideCode);
+    this->expr2->genCode(rightSideCode);
+    ss<< leftSideCode.code <<endl;
+    ss<< rightSideCode.code <<endl;
+    if(leftSideCode.type == INT){
+            ss << "div "<< leftSideCode.place<<", "<< rightSideCode.place<<endl;
+            ss << "mfhi "<< leftSideCode.place<<endl;
+    }else if(leftSideCode.type == FLOAT)
+            ss << "div.s "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<< rightSideCode.place<<endl;
+
+    releaseRegister(leftSideCode.place);
+    code.code = ss.str();
 }
 //CHEQUEAR
 void DivExpr::genCode(Code &code){
-    
+    Code leftSideCode;
+    Code rightSideCode;
+    stringstream ss;
+    this->expr1->genCode(leftSideCode);
+    this->expr2->genCode(rightSideCode);
+    ss<< leftSideCode.code <<endl;
+    ss<< rightSideCode.code <<endl;
+    if(leftSideCode.type == INT){
+            ss << "div "<< leftSideCode.place<<", "<< rightSideCode.place<<endl;
+            ss << "mflo "<< leftSideCode.place<<endl;
+    }else if(leftSideCode.type == FLOAT)
+            ss << "div.s "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<< rightSideCode.place<<endl;
+
+    releaseRegister(leftSideCode.place);
+    code.code = ss.str();
 }
 //CHEQUEAR
 void MulExpr::genCode(Code &code){
-    
+    Code leftSideCode;
+    Code rightSideCode;
+    stringstream ss;
+    this->expr1->genCode(leftSideCode);
+    this->expr2->genCode(rightSideCode);
+    ss<< leftSideCode.code <<endl;
+    ss<< rightSideCode.code <<endl;
+    if(leftSideCode.type == INT){
+            ss << "mul "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<<rightSideCode.place<<endl;
+            ss << "mflo "<< leftSideCode.place<<endl;
+    }else if(leftSideCode.type == FLOAT)
+            ss << "mul.s "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<< rightSideCode.place<<endl;
+
+    releaseRegister(leftSideCode.place);
+    code.code = ss.str();
 }
 //CHEQUEAR
 void SubExpr::genCode(Code &code){
-    
+    Code leftSideCode;
+    Code rightSideCode;
+    stringstream ss;
+    this->expr1->genCode(leftSideCode);
+    this->expr2->genCode(rightSideCode);
+    ss<< leftSideCode.code <<endl;
+    ss<< rightSideCode.code <<endl;
+    if(leftSideCode.type == INT)
+            ss << "sub "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<< rightSideCode.place;
+    else if(leftSideCode.type == FLOAT)
+            ss << "div.s "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<< rightSideCode.place;
+
+    releaseRegister(leftSideCode.place);
+    code.code = ss.str();
 }
 //CHEQUEAR
 void AddExpr::genCode(Code &code){
-    
+    Code leftSideCode;
+    Code rightSideCode;
+    stringstream ss;
+    this->expr1->genCode(leftSideCode);
+    this->expr2->genCode(rightSideCode);
+    ss<< leftSideCode.code <<endl;
+    ss<< rightSideCode.code <<endl;
+    cout << leftSideCode.code << endl;
+    cout << rightSideCode.code << endl;
+    if(leftSideCode.type == INT)
+            ss << "add "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<< rightSideCode.place;
+    else if(leftSideCode.type == FLOAT)
+            ss << "add.s "<< leftSideCode.place<<", "<< leftSideCode.place <<", "<< rightSideCode.place;
+
+    releaseRegister(leftSideCode.place);
+    code.code = ss.str();
 }
 
 int BlockStatement::evaluateSemantic(){
@@ -1267,6 +1366,7 @@ int PackageDeclaration::evaluateSemantic(){
 }
 int ImportDeclaration::evaluateSemantic(){
     //TODO: evaluar semántica.
+    this->declaration->evaluateSemantic();
     return 0;
 }
 
