@@ -150,9 +150,9 @@ string retrieveState(string state){
     string s = "sw";
     while ( ( n = state.find( s, n ) ) != std::string::npos )
     {
-    state.replace( n, s.size(), "lw" );
-    n += 2;
-    globalStackPointer-=4;
+        state.replace( n, s.size(), "lw" );
+        n += 2;
+        globalStackPointer-=4;
     }
     return state;
 }
@@ -679,7 +679,7 @@ Type UnaryExpr::getType(){
 }
 
 void UnaryExpr::genCode(Code &code){
-    
+    expr->genCode(code);
 }
 
 Type ArrayExpr::getType(){
@@ -1165,15 +1165,15 @@ int BreakStatement::evaluateSemantic(){
 }
 
 string BreakStatement::genCode(){
-    return "BREAK STATEMENT";
+    return "jr $ra";
 }
 
 int ContinueStatement::evaluateSemantic(){
     return 0;
 }
 
-string ContinueStatement::genCode(){
-    return "CONTINUE STATEMENT";
+string ContinueStatement::genCode(){    
+    return "jr $ra";
 }
 
 int ReturnStatement::evaluateSemantic(){
