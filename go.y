@@ -131,6 +131,14 @@ method_definition: TK_FUNC TK_ID '(' ')' block_statement {
                  | TK_FUNC TK_ID '(' parameters_type_list ')' type {
                      $$ = new MethodDefinition((Type)$6, $2, *$4, NULL, yylineno);
                  }
+                 | TK_FUNC TK_ID '(' parameters_type_list ')' '[' ']' type block_statement{
+                     $$ = new MethodDefinition((Type)$8, $2, *$4, $9, yylineno);
+                 }
+                 | TK_FUNC TK_ID '(' ')' '[' ']' type block_statement{
+                     ParameterList * pm = new ParameterList;
+                     $$ = new MethodDefinition((Type)$7, $2, *pm, $8, yylineno);
+                     delete pm;
+                 }
                  | TK_FUNC TK_ID '(' ')' type block_statement {
                      ParameterList * pm = new ParameterList;
                      $$ = new MethodDefinition((Type)$5, $2, *pm, $6, yylineno);

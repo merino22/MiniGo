@@ -12,22 +12,29 @@ func hello(int x, float32 y) {
     fmt.Println(x)
 }
 
+func getArr(int x) []int{
+    fmt.Println(x)
+}
 
 func printFor(){
     var i, y int
     var array[3]= {11,10,5}
-    i := 120
+    i := 0
     y := 13
     //i %= y
 
-    fmt.Println(i)
-    if y == 13{
-        fmt.Println("doubleday")
+    for i > 3 {
+        fmt.Println(array[i])
     }
+
+    //fmt.Println(i)
+    //if y == 13{
+    //    fmt.Println("doubleday")
+    //}
     
 
 
-    hello(i, 13.5)
+    //hello(i, 13.5)
 
     //if i > 10; i < 20 {
     //    fmt.Println("Soy Mayor\n")
