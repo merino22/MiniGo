@@ -1,6 +1,15 @@
+package main
+package bruh
+
+import (
+    "fmt"
+    "hello"
+    "bishop"
+)
+
 func hello(int x, float32 y) {
-    printf(y);
-    printf(x);
+    fmt.Println(y)
+    fmt.Println(x)
 }
 
 
@@ -10,9 +19,9 @@ func printFor(){
     y := 13
     //i %= y
 
-    printf(i);
+    fmt.Println(i)
     if y == 13{
-        printf("doubleday");
+        fmt.Println("doubleday")
     }
     
 
@@ -20,11 +29,11 @@ func printFor(){
     hello(i, 13.5)
 
     //if i > 10; i < 20 {
-    //    printf("Soy Mayor\n");
+    //    fmt.Println("Soy Mayor\n")
     //}
 
     //for i > 10{
-    //    printf(i);
+    //    fmt.Println(i)
     //    i = i - 1
     //}
 

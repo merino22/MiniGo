@@ -73,28 +73,29 @@ extern int yydebug;
     TK_FLOAT_TYPE = 273,
     TK_BOOL_TYPE = 274,
     TK_STRING_TYPE = 275,
-    TK_PRINTF = 276,
-    TK_PLUS_EQUAL = 277,
-    TK_MINUS_EQUAL = 278,
-    TK_PLUS_PLUS = 279,
-    TK_MINUS_MINUS = 280,
-    TK_NOT = 281,
-    TK_OR = 282,
-    TK_AND = 283,
-    TK_EQUAL = 284,
-    TK_NOT_EQUAL = 285,
-    TK_GREATER_OR_EQUAL = 286,
-    TK_LESS_OR_EQUAL = 287,
-    TK_VAR = 288,
-    TK_FUNC = 289,
-    TK_MULT_EQUAL = 290,
-    TK_DIV_EQUAL = 291,
-    TK_PWR_EQUAL = 292,
-    TK_MOD_EQUAL = 293,
-    TK_AND_EQUAL = 294,
-    TK_OR_EQUAL = 295,
-    TK_PACKAGE = 296,
-    TK_IMPORT = 297
+    TK_FMT = 276,
+    TK_PRINTLN = 277,
+    TK_PLUS_EQUAL = 278,
+    TK_MINUS_EQUAL = 279,
+    TK_PLUS_PLUS = 280,
+    TK_MINUS_MINUS = 281,
+    TK_NOT = 282,
+    TK_OR = 283,
+    TK_AND = 284,
+    TK_EQUAL = 285,
+    TK_NOT_EQUAL = 286,
+    TK_GREATER_OR_EQUAL = 287,
+    TK_LESS_OR_EQUAL = 288,
+    TK_VAR = 289,
+    TK_FUNC = 290,
+    TK_MULT_EQUAL = 291,
+    TK_DIV_EQUAL = 292,
+    TK_PWR_EQUAL = 293,
+    TK_MOD_EQUAL = 294,
+    TK_AND_EQUAL = 295,
+    TK_OR_EQUAL = 296,
+    TK_PACKAGE = 297,
+    TK_IMPORT = 298
   };
 #endif
 
@@ -122,7 +123,7 @@ union YYSTYPE
     Parameter * parameter_t;
     ParameterList * parameter_list_t;
 
-#line 126 "tokens.h"
+#line 127 "tokens.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

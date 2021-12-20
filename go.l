@@ -25,10 +25,11 @@ DIGIT [0-9]
 "continue" { return TK_CONTINUE; }
 "break" { return TK_BREAK; }
 "int" { return TK_INT_TYPE; }
+"fmt" { return TK_FMT; }
+"Println" { return TK_PRINTLN; }
 "float32" { return TK_FLOAT_TYPE; }
 "bool" { return TK_BOOL_TYPE; }
 "string" { return TK_STRING_TYPE; }
-"printf" { return TK_PRINTF; }
 "for" { return TK_FOR; }
 "var" { return TK_VAR; }
 "func" { return TK_FUNC; }
@@ -48,6 +49,7 @@ DIGIT [0-9]
 "^" {return '^'; }
 "*" {return '*'; }
 "%" {return '%'; }
+"." { return '.'; }
 "=" {return '='; }
 "[" { return '['; }
 "]" { return ']'; }

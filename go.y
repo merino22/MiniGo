@@ -67,7 +67,7 @@
 %token TK_IF TK_ELSE
 %token TK_WHILE TK_RETURN TK_CONTINUE TK_BREAK TK_FOR
 %token TK_VOID TK_INT_TYPE TK_FLOAT_TYPE TK_BOOL_TYPE TK_STRING_TYPE
-%token TK_PRINTF
+%token TK_FMT TK_PRINTLN
 %token TK_PLUS_EQUAL TK_MINUS_EQUAL TK_PLUS_PLUS TK_MINUS_MINUS TK_NOT
 %token TK_OR TK_AND
 %token TK_EQUAL TK_NOT_EQUAL TK_GREATER_OR_EQUAL TK_LESS_OR_EQUAL
@@ -91,7 +91,7 @@
 %type<expr_t> constant expression logical_and_expression additive_expression multiplicative_expression equality_expression relational_expression
 %type<expr_t> unary_expression postfix_expression primary_expression
 %type<argument_list_t> argument_expression_list
-%type <statement_t> if_statement while_statement expression_statement jump_statement for_statement
+%type <statement_t> if_statement while_statement expression_statement jump_statement for_statement print_statement
 %%
 
 start: input{
@@ -120,24 +120,7 @@ external_declaration: method_definition {$$ = $1;}
             | declaration {$$ = new GlobalDeclaration($1);}
             ;
 
-method_definition: //type TK_ID '(' parameters_type_list ')' block_statement {
-                    //$$ = new MethodDefinition((Type)$1, $2, *$4, $6, yylineno );
-                   // delete $4;
-                //}
-                 /* | type TK_ID '(' ')' block_statement{
-                     ParameterList * pm = new ParameterList;
-                     $$ = new MethodDefinition((Type)$1, $2, *pm, $5, yylineno );
-                     delete pm;
-                 }
-                 | type TK_ID '(' parameters_type_list ')' ';'{
-                     $$ = new MethodDefinition((Type)$1, $2, *$4, NULL, yylineno);
-                 }
-                 | type TK_ID '(' ')' block_statement ';'{
-                     ParameterList * pm = new ParameterList;
-                     $$ = new MethodDefinition((Type)$1, $2, *pm , NULL, yylineno);
-                     delete pm;
-                 } */
-                 TK_FUNC TK_ID '(' ')' block_statement {
+method_definition: TK_FUNC TK_ID '(' ')' block_statement {
                      ParameterList * pm = new ParameterList;
                      $$ = new MethodDefinition((Type)DYNAMIC, $2, *pm, $5, yylineno);
                      delete pm;
@@ -169,6 +152,16 @@ declaration_list: declaration_list declaration { $$ = $1; $$->push_back($2); }
 
 declaration: TK_VAR init_declarator_list type { $$ = new Declaration((Type)$3, *$2, yylineno); delete $2;  }
            | TK_VAR init_declarator_list { $$ = new Declaration((Type)DYNAMIC, *$2, yylineno); delete $2;  }
+           | TK_PACKAGE TK_ID { 
+               InitDeclaratorList * dl = new InitDeclaratorList();
+               $$ = new Declaration((Type)PACKAGE, *dl, yylineno); delete dl;}
+           | TK_IMPORT '(' import_list ')'{ 
+               InitDeclaratorList * dl = new InitDeclaratorList();
+               $$ = new Declaration((Type)IMPORT, *dl, yylineno); delete dl;}
+           ;
+
+import_list: import_list TK_LIT_STRING
+           | TK_LIT_STRING
            ;
 
 init_declarator_list: init_declarator_list ',' init_declarator { $$ = $1; $$->push_back($3); }
@@ -212,8 +205,10 @@ statement: while_statement {$$ = $1;}
         | if_statement {$$ = $1;}
         | block_statement {$$ = $1;}
         | jump_statement {$$ = $1;}
-        | TK_PRINTF expression ';' {$$ = new PrintStatement($2, yylineno);}
+        | print_statement { $$ = $1;}
         ;
+
+print_statement: TK_FMT '.' TK_PRINTLN '(' expression ')' {$$ = new PrintStatement($5, yylineno);}
 
 statement_list: statement_list statement { $$ = $1; $$->push_back($2); }
               | statement { $$ = new StatementList; $$->push_back($1); }
