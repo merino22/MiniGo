@@ -1,78 +1,85 @@
 .data
+string3: .asciiz"doubleday"
 
 .globl main
 .text
-main:
+hello: 
+addiu $sp, $sp, -12
 
+sw $ra, 0($sp)
 
-li $t0, 20
+sw $a0, 4($sp)
+sw $a1, 8($sp)
+l.s $f0, 8($sp)
 
-sw $t0, 0($sp)
+mov.s $f12, $f0
+li $v0, 2
+syscall
 
-lw $t0, 0($sp)
+lw $t0, 4($sp)
 
-li $t1, 2
-
-li $t2, 0
-forPwr:
-slt $t3, $t2, $t1
-beq $t3, $zero, endForPwr
-mult $t0, $t0
-mflo $t0
-addi $t2, $t2, 1
-endForPwr:
-sw $t0, 0($sp)
-
-lw $t0, 0($sp)
-
-li $t2, 4
-
-add $t0, $t0, $t2
-lw $t0, 0($sp)
-
-li $t3, 1
-
-sub $t0, $t0, $t3
-lw $t0, 0($sp)
-
-li $t4, 8
-
-mul $t0, $t0, $t4
-mflo $t0
-
-lw $t0, 0($sp)
-
-li $t5, 2
-
-div $t0, $t5
-mflo $t0
-
-
-li $t7, 100
-
-sw $t7, 4($sp)
-
-lw $t7, 4($sp)
-
-li $t8, 5
-
-div $t7, $t8
-mflo $t7
-sw $t7, 4($sp)
-
-lw $t7, 4($sp)
-
-li $t9, 2
-
-div $t7, $t9
-mfhi $t7
-sw $t7, 4($sp)
-
-lw $t7, 0($sp)
-
-move $a0, $t7
+move $a0, $t0
 li $v0, 1
 syscall
 
+
+lw $ra, 0($sp)
+addiu $sp, $sp, 12
+jr $ra
+
+main:
+printFor: 
+addiu $sp, $sp, -12
+
+sw $ra, 0($sp)
+
+
+li $t0, 120
+
+sw $t0, 4($sp)
+
+li $t0, 13
+
+sw $t0, 8($sp)
+
+lw $t0, 4($sp)
+
+move $a0, $t0
+li $v0, 1
+syscall
+
+lw $t0, 8($sp)
+
+li $t1, 13
+
+beq $t0, $t1, label1
+addi $t0, $zero, 0
+ j finalLabel2
+label1:
+addi $t0, $zero, 1
+finalLabel2:
+
+beqz $t0, endif0
+
+la $a0, string3
+li $v0, 4
+syscall
+
+
+endif0 :
+
+lw $t0, 4($sp)
+
+li.s $f0, 13.5
+
+move $a0, $t0
+mfc1 $a1, $f0
+jal hello
+move $t0, $v0
+
+lw $ra, 0($sp)
+addiu $sp, $sp, 12
+jr $ra
 li $v0, 10
 syscall
+

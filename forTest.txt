@@ -1,0 +1,32 @@
+func hello(int x, float32 y) {
+    printf(y);
+    printf(x);
+}
+
+
+func printFor(){
+    var i, y int
+    i := 120
+    y := 13
+    //i %= y
+
+    printf(i);
+    if y == 13{
+        printf("doubleday");
+    }
+    
+
+
+    hello(i, 13.5)
+
+    //if i > 10; i < 20 {
+    //    printf("Soy Mayor\n");
+    //}
+
+    //for i > 10{
+    //    printf(i);
+    //    i = i - 1
+    //}
+
+    //hello(0, 1.5)
+}

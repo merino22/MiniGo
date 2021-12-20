@@ -2,8 +2,6 @@
 #include <list>
 #include <map>
 #include "code.h"
-
-
 using namespace std;
 
 class Expr;
@@ -14,16 +12,17 @@ class Statement;
 typedef list<Expr *> InitializerElementList;
 typedef list<InitDeclarator *> InitDeclaratorList;
 typedef list<Declaration *> DeclarationList;
-typedef list<Declaration *> PackageList;
-typedef list<Declaration *> ImportList;
 typedef list<Parameter *> ParameterList;
 typedef list<Statement *> StatementList;
 typedef list<Expr *> ArgumentList;
 
 enum StatementKind{
     WHILE_STATEMENT,
+    FOR_STATE,
+    FOR_MID,
     FOR_STATEMENT,
     IF_STATEMENT,
+    IF_STATEMENT_EXTENDED,
     EXPRESSION_STATEMENT,
     RETURN_STATEMENT,
     CONTINUE_STATEMENT,
@@ -63,7 +62,6 @@ class Initializer{
             this->line = line;
         }
         InitializerElementList expressions;
-        int evaluateSemantic();
         int line;
 };
 
@@ -151,34 +149,6 @@ class GlobalDeclaration : public Statement {
         }
 };
 
-class PackageDeclaration : public Statement {
-    public:
-        PackageDeclaration(Declaration * declaration){
-            this->declaration = declaration;
-        }
-        Declaration * declaration;
-        int evaluateSemantic();
-        string genCode();
-        StatementKind getKind(){
-            return GLOBAL_DECLARATION_STATEMENT;
-        }
-};
-
-class ImportDeclaration : public Statement {
-    public:
-        ImportDeclaration(Declaration * declaration){
-            this->declaration = declaration;
-        }
-        Declaration * declaration;
-        int evaluateSemantic();
-        string genCode();
-        StatementKind getKind(){
-            return GLOBAL_DECLARATION_STATEMENT;
-        }
-};
-
-
-
 class MethodDefinition : public Statement{
     public:
         MethodDefinition(Type type, string id, ParameterList params, Statement * statement, int line){
@@ -203,11 +173,11 @@ class MethodDefinition : public Statement{
 
 class BoolExpr : public Expr{
     public:
-        BoolExpr(bool value, int line){
+        BoolExpr(int value, int line){
             this->value = value;
             this->line = line;
         }
-        bool value;
+        int value;
         Type getType();
         void genCode(Code &code);
 };
@@ -303,6 +273,7 @@ class IdExpr : public Expr{
         Type getType();
         void genCode(Code &code);
 };
+
 class ArrayExpr : public Expr{
     public:
         ArrayExpr(IdExpr * id, Expr * expr, int line){
@@ -329,6 +300,7 @@ class MethodInvocationExpr : public Expr{
         int line;
         Type getType();
         void genCode(Code &code);
+
 };
 
 class StringExpr : public Expr{
@@ -360,34 +332,49 @@ class WhileStatement: public Statement{
         }
 };
 
-class ForStatement: public Statement{
+class ForState: public Statement{
     public:
-        ForStatement(Expr * expr, Statement * stmt, int line){
-            this->expr = expr;
+        ForState(Statement * stmt, int line){
             this->stmt = stmt;
             this->line = line;
         }
-        Expr* expr;
         Statement * stmt;
         int line;
         string genCode();
         int evaluateSemantic();
         StatementKind getKind(){
-            return FOR_STATEMENT;
+            return FOR_STATE;
         }
 };
 
-class ForStatementExtended: public Statement{
+class ForMid: public Statement{
     public:
-        ForStatementExtended(Expr * leftExpr, Expr * middleExpr,Expr * rightExpr, Statement * stmt, int line){
+        ForMid(Expr* expr, Statement * stmt, int line){
+            this->expr = expr;
+            this->stmt = stmt;
+            this->line = line;
+        }
+        Expr * expr;
+        Statement * stmt;
+        int line;
+        string genCode();
+        int evaluateSemantic();
+        StatementKind getKind(){
+            return FOR_MID;
+        }
+};
+
+class ForStatement: public Statement{
+    public:
+        ForStatement(Expr * leftExpr, Expr * midExpr, Expr * rightExpr, Statement * stmt, int line){
             this->leftExpr = leftExpr;
-            this->middleExpr = middleExpr;
+            this->midExpr = midExpr;
             this->rightExpr = rightExpr;
             this->stmt = stmt;
             this->line = line;
         }
         Expr* leftExpr;
-        Expr* middleExpr;
+        Expr* midExpr;
         Expr* rightExpr;
         Statement * stmt;
         int line;
@@ -397,35 +384,7 @@ class ForStatementExtended: public Statement{
             return FOR_STATEMENT;
         }
 };
-class IfStatement : public Statement{
-    public:
-        IfStatement(Expr * conditionalExpr, Statement * trueStatement, int line){
-            this->conditionalExpr = conditionalExpr;
-            this->trueStatement = trueStatement;
-            this->line = line;
-        }
-        Expr * conditionalExpr;
-        Statement * trueStatement;
-        string genCode();
-        int evaluateSemantic();
-        StatementKind getKind(){return IF_STATEMENT;}
-};
 
-class IfStatementExtended : public Statement{
-    public:
-        IfStatementExtended(Expr* statement, Expr * conditionalExpr, Statement * trueStatement, int line){
-            this->statement = statement;
-            this->conditionalExpr = conditionalExpr;
-            this->trueStatement = trueStatement;
-            this->line = line;
-        }
-        Expr * statement;
-        Expr * conditionalExpr;
-        Statement * trueStatement;
-        string genCode();
-        int evaluateSemantic();
-        StatementKind getKind(){return IF_STATEMENT;}
-};
 class ElseStatement : public Statement{
     public:
         ElseStatement(Expr * conditionalExpr, Statement * trueStatement, Statement * falseStatement, int line){
@@ -442,24 +401,35 @@ class ElseStatement : public Statement{
         StatementKind getKind(){return ELSE_STATEMENT;}
 };
 
-class ElseStatementExtended : public Statement{
+class IfStatement : public Statement{
     public:
-        ElseStatementExtended(Expr* statement, Expr * conditionalExpr, Statement * trueStatement, Statement * falseStatement, int line){
-            this->statement = statement;
+        IfStatement(Expr * conditionalExpr, Statement * trueStatement, int line){
             this->conditionalExpr = conditionalExpr;
             this->trueStatement = trueStatement;
             this->line = line;
-            this->falseStatement = falseStatement;
         }
-        Expr* statement;
         Expr * conditionalExpr;
         Statement * trueStatement;
-        Statement * falseStatement;
         string genCode();
         int evaluateSemantic();
-        StatementKind getKind(){return ELSE_STATEMENT;}
+        StatementKind getKind(){return IF_STATEMENT;}
 };
 
+class IfStatementExtended : public Statement{
+    public:
+        IfStatementExtended(Expr * expr1, Expr* expr2, Statement * trueStatement, int line){
+            this->expr1 = expr1;
+            this->expr2 = expr2;
+            this->trueStatement = trueStatement;
+            this->line = line;
+        }
+        Expr * expr1;
+        Expr * expr2;
+        Statement * trueStatement;
+        string genCode();
+        int evaluateSemantic();
+        StatementKind getKind(){return IF_STATEMENT_EXTENDED;}
+};
 
 
 class ExprStatement : public Statement{
@@ -486,17 +456,7 @@ class ReturnStatement : public Statement{
         StatementKind getKind(){return RETURN_STATEMENT;}
 };
 
-class BreakStatement: public Statement{
-    public:
-        BreakStatement(int line){
-            this->line = line;
-        }
-        int evaluateSemantic();
-        string genCode();
-        StatementKind getKind(){return BREAK_STATEMENT;}
-};
-
-class ContinueStatement: public Statement{
+class ContinueStatement : public Statement{
     public:
         ContinueStatement(int line){
             this->line = line;
@@ -506,14 +466,22 @@ class ContinueStatement: public Statement{
         StatementKind getKind(){return CONTINUE_STATEMENT;}
 };
 
+class BreakStatement : public Statement{
+    public:
+        BreakStatement(int line){
+            this->line = line;
+        }
+        int evaluateSemantic();
+        string genCode();
+        StatementKind getKind(){return BREAK_STATEMENT;}
+};
+
 class PrintStatement : public Statement{
     public:
-        PrintStatement(string string, Expr * expr, int line){
-            localString = string;
+        PrintStatement(Expr * expr, int line){
             this->expr = expr;
             this->line = line;
         }
-        string localString;
         Expr * expr;
         int evaluateSemantic();
         string genCode();
@@ -525,8 +493,8 @@ IMPLEMENT_BINARY_EXPR(Add);
 IMPLEMENT_BINARY_EXPR(Sub);
 IMPLEMENT_BINARY_EXPR(Mul);
 IMPLEMENT_BINARY_EXPR(Div);
-IMPLEMENT_BINARY_EXPR(Mod);
 IMPLEMENT_BINARY_EXPR(Pwr);
+IMPLEMENT_BINARY_EXPR(Mod);
 IMPLEMENT_BINARY_EXPR(Eq);
 IMPLEMENT_BINARY_EXPR(Neq);
 IMPLEMENT_BINARY_EXPR(Gte);
@@ -538,9 +506,9 @@ IMPLEMENT_BINARY_EXPR(LogicalOr);
 IMPLEMENT_BINARY_EXPR(Assign);
 IMPLEMENT_BINARY_EXPR(PlusAssign);
 IMPLEMENT_BINARY_EXPR(MinusAssign);
-IMPLEMENT_BINARY_EXPR(ModAssign);
 IMPLEMENT_BINARY_EXPR(MultAssign);
 IMPLEMENT_BINARY_EXPR(DivAssign);
 IMPLEMENT_BINARY_EXPR(PwrAssign);
+IMPLEMENT_BINARY_EXPR(ModAssign);
 IMPLEMENT_BINARY_EXPR(AndAssign);
 IMPLEMENT_BINARY_EXPR(OrAssign);

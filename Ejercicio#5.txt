@@ -1,8 +1,8 @@
-package main
+//package main
 
 
 
-import ("fmt")
+//import ("fmt")
 
 func len(array []int) int{}
 
@@ -16,19 +16,19 @@ swapped = false
 
 for i := 1; i < len(input); i++ {
 
-if input[i-1] > input[i] {
+    if input[i-1] > input[i] {
 
-input[i] = input[i-1]
-input[i-1] =  input[i]
-swapped = true
+        input[i] = input[i-1]
+        input[i-1] =  input[i]
+        swapped = true
 
-}
-
-}
+    }
 
 }
 
-return input
+}
+
+//return swapped
 
 }
 
@@ -36,19 +36,17 @@ return input
 
 func main() {
 
-var unsorted := []int{10, 6, 2, 1, 5, 8, 3, 4, 7, 9}
-//var unsorted int
+//var unsorted := []int{10, 6, 2, 1, 5, 8, 3, 4, 7, 9}
+var unsorted int
 var sorted int
-var i int
 var j int
-sorted := bubbleSort(unsorted)
+//sorted := bubbleSort(unsorted)
 
-fmt.Println("Sorted Array : ")
+//fmt.Println("Sorted Array : ")
 
-
-
+var i int
 for i := 0; i < len(sorted); i++ {
-
+//var i int
 fmt.Println("sorted[i]")
 
 }

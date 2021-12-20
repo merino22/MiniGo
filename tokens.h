@@ -59,41 +59,42 @@ extern int yydebug;
     TK_ID = 259,
     TK_LIT_INT = 260,
     TK_LIT_FLOAT = 261,
-    TK_BOOL_TYPE = 262,
-    TK_TRUE = 263,
-    TK_FALSE = 264,
-    TK_IF = 265,
-    TK_ELSE = 266,
-    TK_WHILE = 267,
-    TK_RETURN = 268,
-    TK_FOR = 269,
-    TK_CONTINUE = 270,
-    TK_BREAK = 271,
-    TK_VOID = 272,
-    TK_INT_TYPE = 273,
-    TK_FLOAT_TYPE = 274,
-    TK_VAR = 275,
-    TK_PLUS_EQUAL = 276,
-    TK_MINUS_EQUAL = 277,
-    TK_PLUS_PLUS = 278,
-    TK_MINUS_MINUS = 279,
-    TK_NOT = 280,
-    TK_MULT_EQUAL = 281,
-    TK_DIV_EQUAL = 282,
-    TK_MOD_EQUAL = 283,
-    TK_PWR_EQUAL = 284,
-    TK_AND_EQUAL = 285,
-    TK_OR_EQUAL = 286,
-    TK_OR = 287,
-    TK_AND = 288,
-    TK_EQUAL = 289,
-    TK_NOT_EQUAL = 290,
-    TK_GREATER_OR_EQUAL = 291,
-    TK_LESS_OR_EQUAL = 292,
-    TK_PACKAGE = 293,
-    TK_IMPORT = 294,
-    TK_FUNC = 295,
-    TK_PRINTLN = 296
+    TK_LIT_TRUE = 262,
+    TK_LIT_FALSE = 263,
+    TK_IF = 264,
+    TK_ELSE = 265,
+    TK_WHILE = 266,
+    TK_RETURN = 267,
+    TK_CONTINUE = 268,
+    TK_BREAK = 269,
+    TK_FOR = 270,
+    TK_VOID = 271,
+    TK_INT_TYPE = 272,
+    TK_FLOAT_TYPE = 273,
+    TK_BOOL_TYPE = 274,
+    TK_STRING_TYPE = 275,
+    TK_PRINTF = 276,
+    TK_PLUS_EQUAL = 277,
+    TK_MINUS_EQUAL = 278,
+    TK_PLUS_PLUS = 279,
+    TK_MINUS_MINUS = 280,
+    TK_NOT = 281,
+    TK_OR = 282,
+    TK_AND = 283,
+    TK_EQUAL = 284,
+    TK_NOT_EQUAL = 285,
+    TK_GREATER_OR_EQUAL = 286,
+    TK_LESS_OR_EQUAL = 287,
+    TK_VAR = 288,
+    TK_FUNC = 289,
+    TK_MULT_EQUAL = 290,
+    TK_DIV_EQUAL = 291,
+    TK_PWR_EQUAL = 292,
+    TK_MOD_EQUAL = 293,
+    TK_AND_EQUAL = 294,
+    TK_OR_EQUAL = 295,
+    TK_PACKAGE = 296,
+    TK_IMPORT = 297
   };
 #endif
 
@@ -101,7 +102,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 44 "go.y"
+#line 43 "go.y"
 
     const char * string_t;
     int int_t;
@@ -118,12 +119,10 @@ union YYSTYPE
     InitializerElementList * initializer_list_t;
     Declaration * declaration_t;
     DeclarationList * declaration_list_t;
-    DeclarationList * package_list_t;
-    DeclarationList * import_list_t;
     Parameter * parameter_t;
     ParameterList * parameter_list_t;
 
-#line 127 "tokens.h"
+#line 126 "tokens.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
