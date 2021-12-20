@@ -15,7 +15,7 @@ func hello(int x, float32 y) {
 
 func printFor(){
     var i, y int
-    var int array[3]= {11,10,5}
+    var array[3]= {11,10,5}
     i := 120
     y := 13
     //i %= y
