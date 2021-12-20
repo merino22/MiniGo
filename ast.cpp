@@ -679,7 +679,7 @@ Type UnaryExpr::getType(){
 }
 
 void UnaryExpr::genCode(Code &code){
-    
+    this->expr->genCode(code);
 }
 
 Type ArrayExpr::getType(){
@@ -1165,7 +1165,7 @@ int BreakStatement::evaluateSemantic(){
 }
 
 string BreakStatement::genCode(){
-    return "BREAK STATEMENT";
+    return "jr $ra\n";
 }
 
 int ContinueStatement::evaluateSemantic(){
@@ -1173,7 +1173,7 @@ int ContinueStatement::evaluateSemantic(){
 }
 
 string ContinueStatement::genCode(){
-    return "CONTINUE STATEMENT";
+    return "";
 }
 
 int ReturnStatement::evaluateSemantic(){
