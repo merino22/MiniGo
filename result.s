@@ -29,10 +29,20 @@ jr $ra
 
 main:
 printFor: 
-addiu $sp, $sp, -12
+addiu $sp, $sp, -16
 
 sw $ra, 0($sp)
 
+
+li $t0, 11
+
+sw $t0, 12($sp)
+li $t0, 10
+
+sw $t0, 12($sp)
+li $t0, 5
+
+sw $t0, 12($sp)
 
 li $t0, 120
 
@@ -78,7 +88,7 @@ jal hello
 move $t0, $v0
 
 lw $ra, 0($sp)
-addiu $sp, $sp, 12
+addiu $sp, $sp, 16
 jr $ra
 li $v0, 10
 syscall
