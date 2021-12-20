@@ -12,38 +12,43 @@ func hello(int x, float32 y) {
     fmt.Println(x)
 }
 
-func getArr(int x) []int{
-    fmt.Println(x)
-}
+//func getArr(int x) []int{
+//    fmt.Println(x)
+//}
 
-func printFor(){
+func main(){
     var i, y int
-    var array[3]= {11,10,5}
+    //var array[3]= {11,10,5}
     i := 0
     y := 13
     //i %= y
 
-    for i > 3 {
-        fmt.Println(array[i])
+    for i; i < 20; i+=1 {
+        fmt.Println("i=", i)
+    }
+    /*
+    for i < 3 {
+        fmt.Println(i)
+        fmt.Println("\n")
+        i=i+1
     }
 
-    //fmt.Println(i)
-    //if y == 13{
-    //    fmt.Println("doubleday")
-    //}
-    
+    fmt.Println(i)
+    if y == 13{
+        fmt.Println("doubleday\n")
+    }
 
+    hello(i, 13.5)
 
-    //hello(i, 13.5)
+    if i > 10; i < 20 {
+        fmt.Println("Soy Mayor\n")
+    }
 
-    //if i > 10; i < 20 {
-    //    fmt.Println("Soy Mayor\n")
-    //}
-
-    //for i > 10{
-    //    fmt.Println(i)
-    //    i = i - 1
-    //}
-
+    for i < 10{
+        fmt.Println(i)
+        fmt.Println("\n")
+        i = i + 1
+    }
+    */
     //hello(0, 1.5)
 }

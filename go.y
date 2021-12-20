@@ -46,6 +46,7 @@
     float float_t;
     bool bool_t;
     Expr * expr_t;
+    ExprList * expr_list_t;
     ArgumentList * argument_list_t;
     Statement * statement_t;
     StatementList * statement_list_t;
@@ -76,6 +77,7 @@
 %token TK_PACKAGE TK_IMPORT
 
 %type<expr_t> assignment_expression logical_or_expression
+%type<expr_list_t> expression_list
 %type<statement_list_t> statement_list input
 %type<statement_t> external_declaration method_definition block_statement statement
 %type<declaration_t> declaration
@@ -193,7 +195,8 @@ parameters_type_list: parameters_type_list ',' parameter_declaration {$$ = $1; $
 
 parameter_declaration: type declarator { $$ = new Parameter((Type)$1, $2, false, yylineno); }
                      | type { $$ = new Parameter((Type)$1, NULL, false, yylineno); }
-                     | type '[' ']'  { $$ = new Parameter((Type)$1, NULL, true, yylineno); }
+                     | declarator type { $$ = new Parameter((Type)$2, $1, false, yylineno); }
+                     | declarator '[' ']' type { $$ = new Parameter((Type)$4, $1, true, yylineno); }
                     ;
 
 initializer: assignment_expression {
@@ -218,6 +221,11 @@ statement: while_statement {$$ = $1;}
         ;
 
 print_statement: TK_FMT '.' TK_PRINTLN '(' expression ')' {$$ = new PrintStatement($5, yylineno);}
+               | TK_FMT '.' TK_PRINTLN '(' TK_LIT_STRING ',' expression_list ')' {$$ = new PrintStatementExtended($5, *$7, yylineno);}
+
+expression_list: expression { $$ = new ExprList; $$->push_back($1); }
+               | expression_list ',' expression { $$ = $1; $$->push_back($3); }
+               ;
 
 statement_list: statement_list statement { $$ = $1; $$->push_back($2); }
               | statement { $$ = new StatementList; $$->push_back($1); }

@@ -10,6 +10,7 @@ class Declaration;
 class Parameter;
 class Statement;
 typedef list<Expr *> InitializerElementList;
+typedef list<Expr *> ExprList;
 typedef list<InitDeclarator *> InitDeclaratorList;
 typedef list<Declaration *> DeclarationList;
 typedef list<Parameter *> ParameterList;
@@ -488,6 +489,20 @@ class PrintStatement : public Statement{
         StatementKind getKind(){return PRINT_STATEMENT;}
 };
 
+
+class PrintStatementExtended : public Statement{
+    public:
+        PrintStatementExtended(string id, ExprList expressions, int line){
+            this->id = id;
+            this->expressions = expressions;
+            this->line = line;
+        }
+        string id;
+        ExprList expressions;
+        int evaluateSemantic();
+        string genCode();
+        StatementKind getKind(){return PRINT_STATEMENT;}
+};
 
 IMPLEMENT_BINARY_EXPR(Add);
 IMPLEMENT_BINARY_EXPR(Sub);

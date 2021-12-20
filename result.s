@@ -1,4 +1,5 @@
 .data
+string2: .asciiz"i="
 
 .globl main
 .text
@@ -25,39 +26,11 @@ syscall
 lw $ra, 0($sp)
 addiu $sp, $sp, 12
 jr $ra
-getArr: 
-addiu $sp, $sp, -8
+main: 
+addiu $sp, $sp, -12
 
 sw $ra, 0($sp)
 
-sw $a0, 4($sp)
-lw $t0, 4($sp)
-
-move $a0, $t0
-li $v0, 1
-syscall
-
-
-lw $ra, 0($sp)
-addiu $sp, $sp, 8
-jr $ra
-
-main:
-printFor: 
-addiu $sp, $sp, -24
-
-sw $ra, 0($sp)
-
-
-li $t0, 11
-
-sw $t0, 12($sp)
-li $t0, 10
-
-sw $t0, 16($sp)
-li $t0, 5
-
-sw $t0, 20($sp)
 
 li $t0, 0
 
@@ -68,24 +41,22 @@ li $t0, 13
 sw $t0, 8($sp)
 
 for0: 
+lw $t1, 4($sp)
+
+li $t2, 20
+
+slt $t3, $t1, $t2
+
+beqz $t3, endFor1
+addi $t0, $t0, 1
+sw $t0, 4($sp)
+la $a0, string2
+li $v0, 4
+syscall
 lw $t0, 4($sp)
 
-li $t1, 3
-
-slt $t2, $t1, $t0
-
-beqz $t2, endFor1
-lw $t0, 4($sp)
-
-li $a0, 4
-mult $a0, $t0
-mflo $t0
-la $t1, 12($sp)
-add $t0, $t1, $t0
-l.s $f0, 0($t0)
-
-mov.s $f12, $f0
-li $v0, 2
+move $a0, $t0
+li $v0, 1
 syscall
 
 
@@ -94,7 +65,7 @@ endFor1:
 
 
 lw $ra, 0($sp)
-addiu $sp, $sp, 24
+addiu $sp, $sp, 12
 jr $ra
 li $v0, 10
 syscall

@@ -1,0 +1,21 @@
+package main
+package bruh
+
+import (
+    "fmt"
+    "hello"
+    "bishop"
+)
+
+func hello(int x, float32 y) int{
+    fmt.Println("Entre a la funcion\n")
+    return 100
+}
+
+func main() {
+    var x float32
+    x := 111.8
+    fmt.Println("Hello")
+    fmt.Println(x)
+    fmt.Println("x=", hello(100, x))
+}

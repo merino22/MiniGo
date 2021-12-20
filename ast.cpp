@@ -742,11 +742,15 @@ void ArrayExpr::genCode(Code &code){
 Type IdExpr::getType(){
     Type value;
     if(context != NULL){
+        //cout << "Entered on if" << endl;
         value = getLocalVariableType(this->id);
         if(value != 0)
             return value;
     }
+
     value = getVariableType(this->id);
+    //cout << "Value vasrrr" << value << endl;
+    //cout << "this->id " << this->id << endl;
     if(value == 0){
         cout<<"error: '"<<this->id<<"' was not declared in this scope line: "<<this->line<<endl;
         exit(0);
@@ -985,7 +989,6 @@ int ForStatement::evaluateSemantic(){
         cout<<"Expression for for must be boolean";
         exit(0);
     }
-    
     pushContext();
     if(this->stmt != NULL){
         this->stmt->evaluateSemantic();
@@ -1173,7 +1176,7 @@ int ContinueStatement::evaluateSemantic(){
 }
 
 string ContinueStatement::genCode(){
-    return "";
+    return "jr $ra\n";
 }
 
 int ReturnStatement::evaluateSemantic(){
@@ -1185,16 +1188,52 @@ string ReturnStatement::genCode(){
     this->expr->genCode(exprCode);
     releaseRegister(exprCode.place);
     stringstream ss;
+    //cout << exprCode.code << endl;
     ss << exprCode.code << endl;
     if(exprCode.type == INT)
-        ss<< "move $v0, "<< exprCode.place <<endl;
+        ss<< "move $a0, "<< exprCode.place <<endl;
     else
-        ss<< "mfc1 $v0, "<<exprCode.place<<endl;
+        ss<< "mfc1 $a0, "<<exprCode.place<<endl;
+    return ss.str();
+}
+
+int PrintStatementExtended::evaluateSemantic(){
+    return 0;
+}
+
+string PrintStatementExtended::genCode(){
+    Code exprCode;
+    list<Expr *>::iterator it = this->expressions.begin();
+    stringstream ss;
+    stringstream lbl;
+    string strLabel = getNewLabel("string");
+    lbl << strLabel <<": .asciiz" << this->id << ""<<endl;
+    assemblyFile.data += lbl.str();
+    ss << "la $a0, " << strLabel << endl;
+    ss << "li $v0, 4" << endl;
+    ss << "syscall" << endl;
+    while (it != this->expressions.end())
+    {
+        (*it)->genCode(exprCode);
+        ss << exprCode.code << endl;
+        if(exprCode.type == INT){
+            ss << "move $a0, " << exprCode.place << endl;
+            ss << "li $v0, 1" << endl;
+            ss << "syscall" << endl;
+            releaseIntTemp(exprCode.place);
+        }else{
+            ss << "mov.s $f12, " << exprCode.place << endl;
+            ss << "li $v0, 2" << endl;
+            ss << "syscall" << endl;
+            releaseFloatTemp(exprCode.place);
+        }        
+        it++;
+    }
     return ss.str();
 }
 
 int PrintStatement::evaluateSemantic(){
-    return this->expr->getType();
+    return 0;
 }
 
 string PrintStatement::genCode(){
