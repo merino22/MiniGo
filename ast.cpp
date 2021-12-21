@@ -1045,7 +1045,7 @@ string WhileStatement::genCode(){
 int ElseStatement::evaluateSemantic(){
     if(this->conditionalExpr->getType() != BOOL){
         cout<<"Expression for if must be boolean";
-        exit(0);
+          exit(0);
     }
     pushContext();
     this->trueStatement->evaluateSemantic();
@@ -1079,10 +1079,10 @@ string ElseStatement::genCode(){
 }
 
 int IfStatementExtended::evaluateSemantic(){
-    if(this->expr1->getType() != BOOL){
-        cout<<"Expr1 for if must be boolean";
-        exit(0);
-    }
+    // if(this->expr1->getType() != BOOL){
+    //     cout<<"Expr1 for if must be boolean";
+    //     exit(0);
+    // }
     if(this->expr2->getType() != BOOL){
         cout<<"Expr2 for if must be boolean";
         exit(0);

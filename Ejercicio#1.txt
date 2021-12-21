@@ -6,7 +6,7 @@ import ("fmt")
 
 
 
-func BubbleSort(array[] int, size int)[]int {
+func BubbleSort(array int, size int)[]int {
   var i int
   i:= 0
 
@@ -15,29 +15,30 @@ func BubbleSort(array[] int, size int)[]int {
     j := 0
    for j; j < size-i-1; j+=1 {
 
-     if (array[j] > array[j+1]) {
+    // if (array[j] > array[j+1]) {
 
-     array[j] = array[j+1]
+    // array[j] = array[j+1]
 
-     array[j+1] = array[j]
+    // array[j+1] = array[j]
 
-    } 
+    //} 
 
    }
 
   }
-
-  return 20 
+  //fmt.Prinln("\nEstoy dentro de la funcion")
+  return 20
 
 }
 
 
 
+
 func main() {
   var sizen int
-  var mario int
-  //var array := []int{11, 14, 3, 8, 18, 17, 43}
-  //sizen = 7
-
+  var array := []int{11, 14, 3, 8, 18, 17, 43}
+  sizen := 7
+  
+  BubbleSort(sizen, sizen)
   fmt.Println(2*20)
 }

@@ -26,44 +26,44 @@ func main() {
    //var a int
    var b int
 
-   a = 20
+   a = 200
    //a *= 5
-   a ^= 2
-   a + 4
-   a - 1
-   a * 8
-   a / 2
-   a ^ 2
+   //a ^= 2
+   //a + 4
+   //a - 1
+   //a * 8
+   //a / 2
+   //a ^ 2
 
    b = 100
-   b /= 5
-   b %= 2
+   //b /= 5
+   //b %= 2
    
 
    //fmt.Println(a)
-   fmt.Println("a = ", a)
+   fmt.Println("\na = ", a)
 
-   //fmt.Println("b = ", b)
-   /*
-   fmt.Println("a+b = ", a-b)
+   fmt.Println("\nb = ", b)
+   
+   fmt.Println("\na+b = ", a+b)
 
-   fmt.Println("a-b = ", a-b)
+   fmt.Println("\na-b = ", a-b)
 
-   fmt.Println("a*b = ", a*b)   
+   fmt.Println("\na*b = ", a*b)   
 
-   fmt.Println("a/b = ", a/b)
+   fmt.Println("\na/b = ", a/b)
 
-   fmt.Println("a%b = ", a%b)
+   fmt.Println("\na%b = ", a%b)
 
-   fmt.Println("a>b = ", a>b)
+   fmt.Println("\na>b = ", a>b)
 
-   fmt.Println("a<b = ", a<b)
+   fmt.Println("\na<b = ", a<b)
 
-   fmt.Println("a>=b = ", a>=b)
+   fmt.Println("\na>=b = ", a>=b)
 
-   fmt.Println("a<=b = ", a<=b)
-   */
-   //fmt.Println("true&&true = ", true && false")
+   fmt.Println("\na<=b = ", a<=b)
+
+   fmt.Println("\ntrue&&false = ", true && false)
 
 
 }

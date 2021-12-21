@@ -19,9 +19,18 @@ func hello(int x, float32 y) {
 func main(){
     var i, y int
     //var array[3]= {11,10,5}
-    i := 0
+    i := 13
     y := 13
     //i %= y
+    if i%2 == 0 {
+        fmt.Println("a is even")
+    }else {
+     fmt.Println("a is odd")
+    }   
+
+    if i > 10 {
+        fmt.Println("Es mayor")
+    }
 
     for i; i < 20; i+=1 {
         fmt.Println("i=", i)

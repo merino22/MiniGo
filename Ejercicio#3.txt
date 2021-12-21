@@ -27,42 +27,39 @@ func main() {
   var num int
   var b int
   var c int
-  
-  a = 0
+  num := 9
+  a = 13
   b = 8
-  a = true
+  //a = true
 	
+  fmt.Println("\na=", a)
+  fmt.Println("\nb=", b)
 
   if a%2 == 0 {
-
-    fmt.Println("a is even")
-
-  } else {
-
-    fmt.Println("a is odd")
-
+    fmt.Println("\na is even")
+  } 
+  else {
+    fmt.Println("\na is odd")
   }
 
    
 
   if b%4 == 0 {
 
-    fmt.Println("8 is divisible by 4")
+    fmt.Println("\n8 is divisible by 4")
 
   }
 
   if num := 9; num < 0 {
     var hello float32
-    fmt.Println(num, "is negative")
+    fmt.Println("\nis negative", num)
 
   } else if num < 10 {
 
-    fmt.Println(num, "has 1 digit")
+    fmt.Println("\nhas 1 digit", num)
 
   } else {
     var yy float32
-    fmt.Println(num, "has multiple digits")
-    
+    fmt.Println("\nhas multiple digits", num)
   }
-
 }

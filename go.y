@@ -234,7 +234,7 @@ statement_list: statement_list statement { $$ = $1; $$->push_back($2); }
 if_statement: TK_IF expression statement {$$ = new IfStatement($2, $3, yylineno);}
             | TK_IF expression ';' expression statement {$$ = new IfStatementExtended($2, $4, $5, yylineno);}
             | TK_IF expression statement TK_ELSE statement {$$ = new ElseStatement($2, $3, $5, yylineno);}
-            //| TK_IF expression ';' expression statement TK_ELSE statement {$$ = new IfStatementExtended($2, $4, $5, yylineno);}
+            | TK_IF expression ';' expression statement TK_ELSE statement {$$ = new ElseStatement($4, $5, $7, yylineno);}
             ;
 
 expression_statement: expression {$$ = new ExprStatement($1, yylineno);}
